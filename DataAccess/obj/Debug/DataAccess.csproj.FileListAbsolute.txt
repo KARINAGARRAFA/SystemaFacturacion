@@ -1,0 +1,6 @@
+C:\Users\Procont Business\source\repos\FacturationSystem\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Procont Business\source\repos\FacturationSystem\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Procont Business\source\repos\FacturationSystem\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache
+C:\Users\Procont Business\source\repos\FacturationSystem\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Procont Business\source\repos\FacturationSystem\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Procont Business\source\repos\FacturationSystem\DataAccess\obj\Debug\DataAccess.pdb
