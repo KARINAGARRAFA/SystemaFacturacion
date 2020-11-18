@@ -7,3 +7,21 @@ C:\Users\Procont Business\source\repos\FacturationSystem\Business\obj\Debug\Busi
 C:\Users\Procont Business\source\repos\FacturationSystem\Business\obj\Debug\Business.csproj.CopyComplete
 C:\Users\Procont Business\source\repos\FacturationSystem\Business\obj\Debug\Business.dll
 C:\Users\Procont Business\source\repos\FacturationSystem\Business\obj\Debug\Business.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\bin\Debug\Business.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\bin\Debug\Business.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\bin\Debug\DataAccess.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\bin\Debug\DataAccess.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Debug\Business.csprojAssemblyReference.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Debug\Business.csproj.CoreCompileInputs.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Debug\Business.csproj.CopyComplete
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Debug\Business.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Debug\Business.pdb
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\bin\Debug\Business.dll
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\bin\Debug\Business.pdb
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\bin\Debug\DataAccess.dll
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\bin\Debug\DataAccess.pdb
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\obj\Debug\Business.csprojAssemblyReference.cache
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\obj\Debug\Business.csproj.CoreCompileInputs.cache
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\obj\Debug\Business.csproj.CopyComplete
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\obj\Debug\Business.dll
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Business\obj\Debug\Business.pdb

@@ -124,5 +124,14 @@ namespace Presentation.Forms
                 case 0: CargarListado(); break;
             }
         }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
+                timer1.Stop();
+            }
+        }
     }
 }

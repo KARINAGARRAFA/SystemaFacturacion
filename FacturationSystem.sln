@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{D2758958-C693-4BC0-94C3-A03872D52497}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SFE", "SFE\SFE.vdproj", "{8054D3FE-1A57-40D4-8AC4-29723891886B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{D2758958-C693-4BC0-94C3-A03872D52497}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2758958-C693-4BC0-94C3-A03872D52497}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2758958-C693-4BC0-94C3-A03872D52497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8054D3FE-1A57-40D4-8AC4-29723891886B}.Debug|Any CPU.ActiveCfg = Debug
+		{8054D3FE-1A57-40D4-8AC4-29723891886B}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

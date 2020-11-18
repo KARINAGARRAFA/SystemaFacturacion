@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Presentation.exe" version="1.0.0.0" publicKeyToken="4ee4bbdcb72e266d" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Presentation" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Presentation.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          Opciones del manifiesto de Control de cuentas de usuario
+          Si quiere cambiar el nivel de Control de cuentas de usuario de Windows, reemplace el
+          nodo requestedExecutionLevel por alguno de los siguientes.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         Si desea usar la virtualización de archivos y del Registro para la
+         compatibilidad con versiones anteriores, elimine el nodo requestedExecutionLevel.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Business.dll" size="28160">
+      <assemblyIdentity name="Business" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>COJfimYpJVQN8m6Pab/UvEK/ynNZL5e4nldicWRFomY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataAccess.dll" size="6656">
+      <assemblyIdentity name="DataAccess" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>q5yV7kvffKc/eIfuokjvGCj0YXOvNtxH+9MulyBVD1s=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Presentation.exe" size="82440">
+      <assemblyIdentity name="Presentation" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>tgUidPbBMuEc/+mqaLPyPvlMKCP8FMilkrLUXOiFjPE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Presentation.exe.config" size="597">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>8phet2gIUidKa9uwSeSJ0aPqh/BNe82z3ZgNtBXKd1g=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=PROCONT_01\Procont Business" issuerKeyHash="a8e6b73303d296680244c7a0ddf78f33403fbdeb" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>/SnxoyHFTDpvTi6NW/2auvtLnk3VcSMNIEDwZ2qWaXs=</DigestValue></Reference></SignedInfo><SignatureValue>slSRzRQ2fx5d1cd7qiuIeThuHHiTxVl0nAgNVJiPmlTFEWG8biLsoV9ceSyyQYkEKOVA1DPJcT8wAhzelE+J8G3GccYG7Eqhpr+NEB4qb2pFlrDXewQBRwcU//vr8KkflsW7S/pWFTzPw0U0XU8pMk9h12CcBEEAWyg3H76BpBM=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>07Po9bdJT35terYVO4Yi1rYom/q4S+XCsxEvckkTOBS25laWo2+6b/N5SThfF8IhHvzXzveZFM9XCEKJUr0rh9L5Nbtu1FzctIv78ApPpekVudFesf54K0vDEkAl54smTiAreuTkrUgXZXkkVk3+e9Xo3Ls+xZkkV0Y93qGf0LE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="7b69966a67f040200d2371d54d9e4bfbba9afd5b8d2e4e6f3a4cc521a3f129fd" Description="" Url=""><as:assemblyIdentity name="Presentation.exe" version="1.0.0.0" publicKeyToken="4ee4bbdcb72e266d" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=PROCONT_01\Procont Business</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>iVxkKQNrUqIh0IfgpfRitL6kPZ2/4WXtPEfJxqT6B9I=</DigestValue></Reference></SignedInfo><SignatureValue>iBjseSTd7mWsdm5iyARrPWcmZfMA9KocY9B30Hb/VKV5pU+ojf/j5dUM3+kKivxun0EDijkBlC0Ay5u8o29i8nYZkntpxmqPd8dwNfgHmVH8pamk7Fgxu0oaYqw3AxJy3qasSTTZ8uxpqWi0wRp2vsQaGJ8ER+g0pEMEOkBEVz8=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>07Po9bdJT35terYVO4Yi1rYom/q4S+XCsxEvckkTOBS25laWo2+6b/N5SThfF8IhHvzXzveZFM9XCEKJUr0rh9L5Nbtu1FzctIv78ApPpekVudFesf54K0vDEkAl54smTiAreuTkrUgXZXkkVk3+e9Xo3Ls+xZkkV0Y93qGf0LE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIICBTCCAW6gAwIBAgIQc5i+8CgxdYFBmOjFM8zf9jANBgkqhkiG9w0BAQsFADBBMT8wPQYDVQQDHjYAUABSAE8AQwBPAE4AVABfADAAMQBcAFAAcgBvAGMAbwBuAHQAIABCAHUAcwBpAG4AZQBzAHMwHhcNMjAxMTE3MTYxMTI3WhcNMjExMTE3MjIxMTI3WjBBMT8wPQYDVQQDHjYAUABSAE8AQwBPAE4AVABfADAAMQBcAFAAcgBvAGMAbwBuAHQAIABCAHUAcwBpAG4AZQBzAHMwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANOz6PW3SU9+bXq2FTuGIta2KJv6uEvlwrMRL3JJEzgUtuZWlqNvum/zeUk4XxfCIR781873mRTPVwhCiVK9K4fS+TW7btRc3LSL+/AKT6XpFbnRXrH+eCtLwxJAJeeLJk4gK3rk5K1IF2V5JFZN/nvV6Ny7PsWZJFdGPd6hn9CxAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAM+dHP/4jBbprEvqC5DyxWFGHvhonBi50EiFXZD5c1dKiHMEriZyPJJ80VcLg1gChPPPF8xSju+wEZkDVcsObeBZLwciw6O1q4I33umyErHrybh5WRZSTmvRkph+YO+0oBBLBqBaSBltpfXeEe7SaVVoqIUmFL+RBiUVnvmwXO2Q=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

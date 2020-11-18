@@ -21,6 +21,17 @@ namespace Presentation
         public static String Code_category;
         public static String Description;
 
+        //Datos del Cliente
+        public static String Ruc_cliente;
+        public static String Business_name;
+        public static String Brand;
+        public static String Address;
+        public static String Email;
+        public static String Telephone;
+        public static String Status;
+        public static String Condition;
+
+
 
         [STAThread]
         static void Main()

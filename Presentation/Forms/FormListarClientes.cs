@@ -137,5 +137,75 @@ namespace Presentation.Forms
                 //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+        
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //FormRegistrarVentas V = new FormRegistrarVentas();
+            //V.txtDocIdentidad.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            //V.txtDatos.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
+                timer1.Stop();
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            var ct = new Cliente();
+            if (e.KeyChar == 13)
+            {
+                DataTable dt = new DataTable();
+                ct.Ruc_client = textBox1.Text;
+                //C.Dni = txtBuscarCliente.Text;
+                dt = CL.BuscarCliente(ct.Ruc_client);
+                    //C.BuscarCliente(C.Dni);
+                try
+                {
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(dt.Rows[i][0]);
+                        dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                        dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
+                        dataGridView1.Rows[i].Cells[3].Value = dt.Rows[i][3].ToString();
+                        dataGridView1.Rows[i].Cells[4].Value = dt.Rows[i][4].ToString();
+                        dataGridView1.Rows[i].Cells[5].Value = dt.Rows[i][5].ToString();
+                        dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
+                        dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
+                    }
+                    dataGridView1.ClearSelection();
+                    timer1.Stop();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                CargarListado();
+                timer1.Start();
+            }
+        }
+        
+        private void dataGridView1_DoubleClick_1(object sender, EventArgs e)
+        {
+            //FormRegistrarVentas ven = new FormRegistrarVentas();
+            //ven.txtRucCliente.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            //ven.txtNombreCliente.Text =  dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            //ven.txtDireccionCliente.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            Program.Ruc_cliente = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            Program.Business_name = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            Program.Address = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            this.Close();
+        }
     }
 }

@@ -103,5 +103,10 @@ namespace Presentation.Forms
             FormListarClientes Ct = new FormListarClientes();
             Ct.Show();
         }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

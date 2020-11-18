@@ -12,7 +12,7 @@ namespace DataAccess.Connection
 {
     public class ClsManejador
     {
-        SqlConnection conexion = new SqlConnection("Server=PROCONT_SERVER ; DataBase=PROCONT_DEV; User=usuario_web ; Password=#U5u4R10W3b$");
+        SqlConnection conexion = new SqlConnection("Server=PROCONT_SERVER ; DataBase=PROCONT_DEV; User=Developer3 ; Password=#DeV310Per3$");
 
         public void Conectar()
         {

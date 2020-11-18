@@ -243,6 +243,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
             this.Name = "FormRegistrarClientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormRegistrarClientes";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -32,3 +32,83 @@ C:\Users\Procont Business\source\repos\FacturationSystem\Presentation\obj\Debug\
 C:\Users\Procont Business\source\repos\FacturationSystem\Presentation\obj\Debug\Presentation.Forms.FormListarVentas.resources
 C:\Users\Procont Business\source\repos\FacturationSystem\Presentation\obj\Debug\Presentation.Forms.FormRegistrarClientes.resources
 C:\Users\Procont Business\source\repos\FacturationSystem\Presentation\obj\Debug\Presentation.Forms.FormListarUser.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\Presentation.exe.config
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\Presentation.exe
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\Presentation.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\Business.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\DataAccess.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\Business.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\DataAccess.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.csprojAssemblyReference.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarCategoria.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarClientes.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarCompras.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarMarca.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarModelo.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarPersonal.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarUM.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarUser.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarVentas.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormLogin.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormPrincipal.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormProduct.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistrarClientes.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroCategoria.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroMarca.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroModelo.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroPersonal.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroProducto.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroUnidadMedida.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroUsuario.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Properties.Resources.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.csproj.GenerateResource.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.csproj.CoreCompileInputs.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.csproj.CopyComplete
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.exe
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\Presentation.exe.manifest
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\bin\Debug\Presentation.application
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.exe.manifest
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.application
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistrarVentas.resources
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormReistrarCompras.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Presentation.exe.config
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Presentation.exe.manifest
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Presentation.application
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Presentation.exe
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Presentation.pdb
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Business.dll
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\DataAccess.dll
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Business.pdb
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\DataAccess.pdb
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.csprojAssemblyReference.cache
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarCategoria.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarClientes.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarCompras.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarMarca.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarModelo.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarPersonal.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarUM.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarUser.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarVentas.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormLogin.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormPrincipal.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormProduct.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistrarClientes.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistrarVentas.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroCategoria.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroMarca.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroModelo.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroPersonal.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroProducto.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroUnidadMedida.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistroUsuario.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormReistrarCompras.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Properties.Resources.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.csproj.GenerateResource.cache
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.csproj.CoreCompileInputs.cache
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.exe.manifest
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.application
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.csproj.CopyComplete
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.exe
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.pdb

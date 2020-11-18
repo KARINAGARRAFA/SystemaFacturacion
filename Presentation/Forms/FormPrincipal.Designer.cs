@@ -228,7 +228,7 @@
             this.flowLayoutPanel1.Controls.Add(this.panel6);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 51);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 473);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(265, 473);
             this.flowLayoutPanel1.TabIndex = 7;
             // 
             // panel2
@@ -281,6 +281,7 @@
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormPrincipal";
+            this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.pnlProducto.ResumeLayout(false);
             this.pnlUser.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);

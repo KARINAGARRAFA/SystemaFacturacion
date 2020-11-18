@@ -1,0 +1,9 @@
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\bin\Release\Business.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\bin\Release\Business.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\bin\Release\DataAccess.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\bin\Release\DataAccess.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Release\Business.csprojAssemblyReference.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Release\Business.csproj.CoreCompileInputs.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Release\Business.csproj.CopyComplete
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Release\Business.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\Business\obj\Release\Business.pdb

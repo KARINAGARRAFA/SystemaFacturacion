@@ -1,0 +1,6 @@
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\DataAccess\bin\Release\DataAccess.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\DataAccess\bin\Release\DataAccess.pdb
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\DataAccess\obj\Release\DataAccess.csprojAssemblyReference.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\DataAccess\obj\Release\DataAccess.csproj.CoreCompileInputs.cache
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\DataAccess\obj\Release\DataAccess.dll
+D:\KARINA\ejemplos\SYSTEMAFacturacion\SystemaFacturacion\DataAccess\obj\Release\DataAccess.pdb

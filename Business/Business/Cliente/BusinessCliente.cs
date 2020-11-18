@@ -61,6 +61,14 @@ namespace Business.Business.Cliente
             return Mensaje;
         }
 
+        public DataTable BuscarCliente(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("FiltrarDatosCliente", lst);
+        }
+
         public DataTable ListarCliente()
         {
             return M.Listado("ListarCliente", null);

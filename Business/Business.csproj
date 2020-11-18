@@ -50,6 +50,7 @@
     <Compile Include="Business\Producto\BusinessProducto.cs" />
     <Compile Include="Business\UnidadMedida\BusinessUnidadMedida.cs" />
     <Compile Include="Business\User\BusinessUser.cs" />
+    <Compile Include="Business\Venta\BusinessDetalleVenta.cs" />
     <Compile Include="Business\Venta\BusinessVenta.cs" />
     <Compile Include="Entity\Categoria.cs" />
     <Compile Include="Entity\Cliente.cs" />
