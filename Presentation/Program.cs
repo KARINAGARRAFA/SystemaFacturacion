@@ -38,7 +38,7 @@ namespace Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.FormLogin());
+            Application.Run(new Forms.FormPrincipal());
         }
     }
 }

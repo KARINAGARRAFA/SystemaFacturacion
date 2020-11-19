@@ -85,5 +85,12 @@ namespace Business.Business.Producto
             }
             return Mensaje;
         }
+        public DataTable BuscarProducto(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("BuscarProducto", lst);
+        }
     }
 }

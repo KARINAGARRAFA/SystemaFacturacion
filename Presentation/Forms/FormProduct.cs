@@ -121,15 +121,7 @@ namespace Presentation.Forms
             }
         }
 
-        private void dataGridView1_DoubleClick(object sender, EventArgs e)
-        {
-            Program.code_product = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            Program.Product_name = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            Program.Code_trademark = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            Program.Code_category = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            Program.Description = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            this.Close();
-        }
+       
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -164,6 +156,16 @@ namespace Presentation.Forms
                     //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 //Close();            
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            Program.code_product = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            Program.Product_name = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            Program.Code_trademark = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            Program.Code_category = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            Program.Description = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            this.Close();
         }
     }
 }
