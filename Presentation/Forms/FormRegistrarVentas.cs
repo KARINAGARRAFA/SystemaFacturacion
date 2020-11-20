@@ -19,6 +19,7 @@ namespace Presentation.Forms
     public partial class FormRegistrarVentas : Form
     {
         BusinessVenta VENTA = new BusinessVenta();
+        BusinessDetalleVenta Dventa = new BusinessDetalleVenta();
         BusinessCliente CL = new BusinessCliente();
         BusinessProducto P = new BusinessProducto();
         int n=0;
@@ -37,7 +38,7 @@ namespace Presentation.Forms
         {
             LlenarCombox();
             GenerarNumeroComprobante();
-            Visibilidad();
+            
             
         }
         private void LlenarCombox()
@@ -63,41 +64,40 @@ namespace Presentation.Forms
         }
         private void Visibilidad()
         {
-            if (txtAnticipos.Text != null)
+            if (txtAnticipos.Text != "")
             {
                 pnlAnticipo.Visible = true;
             }
-            if (txtSubTotalVentas.Text != null)
+            if (txtSubTotalVentas.Text != "")
             {
                 pnlSubTotalVentas.Visible = true;
             }
-            if (txtDescuentos.Text != null)
+            if (txtDescuentos.Text != "")
             {
                 pnlDescuento.Visible = true;
             }
-            if (txtValorVenta.Text != null)
+            if (txtValorVenta.Text != "")
             {
                 pnlValorVenta.Visible = true;
             }
-            if (txtISC.Text != null)
+            if (txtISC.Text != "")
             {
                 pnlISC.Visible = true;
             }
-            if (txtOtrosTributos.Text != null)
+            if (txtOtrosTributos.Text != "")
             {
                 pnlOtrosTributos.Visible = true;
             }
-            if (txtOtrosCargos.Text != null)
+            if (txtOtrosCargos.Text != "")
             {
                 pnlOtrosCargos.Visible = true;
             }
-
-
         }
         private void tmHora_Tick(object sender, EventArgs e)
         {
-            lblFechaEmision.Text = DateTime.Now.ToString("dd:MM:yy  HH:mm");
+            lblFechaEmision.Text = DateTime.Now.ToString("yyyy:MM:dd  HH:mm:ss");
             Calculos();
+            Visibilidad();
         }
 
         private void cbxTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,11 +132,19 @@ namespace Presentation.Forms
                 dt = CL.BuscarCliente(ruc);
                 try
                 {
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    if (dt.Rows.Count == 0)
                     {
-                        txtNombreCliente.Text = dt.Rows[i][1].ToString();
-                        txtDireccionCliente.Text = dt.Rows[i][3].ToString();
+                        // buscar en la api y registrarlo en la BD
                     }
+                    else
+                    {
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            txtNombreCliente.Text = dt.Rows[i][1].ToString();
+                            txtDireccionCliente.Text = dt.Rows[i][3].ToString();
+                        }
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -147,13 +155,27 @@ namespace Presentation.Forms
 
         private void Calculos()
         {
-            double total=0;
+            decimal ImporteTotal=0;
+            decimal IGV=0;
+            decimal SubTotal=0;
 
             foreach(DataGridViewRow row in dataGridView1.Rows)
             {
-                total += Convert.ToDouble(row.Cells["Importe"].Value);
+                ImporteTotal += Convert.ToDecimal(row.Cells["Importe"].Value);
             }
-            txtImporteTotal.Text = total.ToString();
+            txtImporteTotal.Text = ImporteTotal.ToString("N2");
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                IGV += Convert.ToDecimal(row.Cells["Igv"].Value);
+            }
+            txtIGV.Text = IGV.ToString("N2");
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                SubTotal += Convert.ToDecimal(row.Cells["V_U"].Value);
+            }
+            txtSubTotalVentas.Text = SubTotal.ToString("N2");
         }
 
         private void FormRegistrarVentas_Activated(object sender, EventArgs e)
@@ -162,8 +184,9 @@ namespace Presentation.Forms
             txtNombreCliente.Text = Program.Business_name;
             txtDireccionCliente.Text = Program.Address;
 
-            if(a == true)
+            if (a == true)
             {
+                dataGridView1.Rows[n].Cells[0].Value = VENTA.GenerarIdVenta();
                 dataGridView1.Rows[n].Cells[2].Value = Program.code_product;
                 dataGridView1.Rows[n].Cells[4].Value = Program.Product_name;
                 dataGridView1.Rows[n].Cells[6].Value = Convert.ToDecimal(500.00);
@@ -175,7 +198,6 @@ namespace Presentation.Forms
                 Program.Product_name = "";
                 a = false;
             }
-            
         }
 
 
@@ -232,17 +254,12 @@ namespace Presentation.Forms
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
+                        dgvRow.Cells["IdD"].Value = VENTA.GenerarIdVenta();
                         dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();
                         dgvRow.Cells["V_U"].Value = Convert.ToDecimal(500.00);
                         dgvRow.Cells["P_unidad"].Value = Convert.ToDecimal(600.00);
                         dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * 0.18;
-
-                        //if (dgvRow.Cells["Cant"].Value != null) Igv
-                        //{
                         dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value);
-                        //}
-                       
-
                     }
                 }
                 catch (Exception ex)
@@ -250,9 +267,8 @@ namespace Presentation.Forms
                     MessageBox.Show(ex.Message);
                 }
                 
-            }
+            }  
         }
-
         private void btnEliminarItem_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -273,6 +289,139 @@ namespace Presentation.Forms
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void txtImporteTotal_Leave(object sender, EventArgs e)
+        {
+        }
+
+        private void btnRegistrarVenta_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                if (Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value) != "")
+                {
+                    GuardarVenta();
+                    try
+                    {
+                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        {
+                            Decimal SumaIgv = 0; Decimal SumaSubTotal = 0;
+                            if (Convert.ToString(dataGridView1.Rows[i].Cells[2].Value) != "")
+                            {
+                                SumaIgv += Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value);
+                                SumaSubTotal += Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value);
+                                GuardarDetalleVenta(
+                                Convert.ToString(dataGridView1.Rows[i].Cells[2].Value),
+                                Convert.ToString(dataGridView1.Rows[i].Cells[0].Value),
+                                Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value),
+                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[8].Value),
+                                SumaIgv, SumaSubTotal
+                                );
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No Existe Ningún Elemento en la Lista.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Existe Ningún Elemento en la Lista.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void GuardarVenta()
+        {
+            var v = new Venta();
+            decimal Importe_total = 0;
+            if (Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value) != "")
+            {
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    Importe_total = Convert.ToDecimal(dataGridView1.Rows[i].Cells[9].Value);
+                }
+                string  cdp_tipo = "";
+                //TipoDocumento = rbnBoleta.Checked == true ? "Boleta" : "Factura";
+                cdp_tipo = cbxTipoDocumento.Text == "BOLETA" ? "01" : "02";
+                v.Code = VENTA.GenerarIdVenta(); //------------------------codigo de venta
+                v.Numero = Convert.ToInt32("0");
+                v.Fecha_emision = DateTime.Today; //Convert.ToDateTime(lblFechaEmision.Text);
+                v.Fecha_pago = Convert.ToDateTime(dtpFechaPago.Value);
+                v.Cdp_tipo = cdp_tipo;
+                v.Cdp_serie = lblSerie.Text;  ///--------------------4 digitos
+                v.Cdp_numero =Convert.ToInt32(lblNroCorrelativo.Text);
+                v.Proveedor_tipo = "";
+                v.Proveedor_numero = Program.Ruc_cliente;
+                v.Valor_exportacion = Convert.ToDecimal("0.0");
+                v.Base_imponible = Convert.ToDecimal("0.0");
+                v.Importe_total_exonerada = Convert.ToDecimal("0.0");
+                v.Importe_total_inafecta = Convert.ToDecimal("0.0");
+                v.Igv = Convert.ToDecimal("0.0");
+                v.Importe_total = Importe_total;
+                v.Dolares = Convert.ToDecimal("0.0");
+                v.Tipo_cambio = Convert.ToDecimal("0.0");
+                v.Igv_retencion = Convert.ToDecimal("0.0");
+                v.Detraccion_id = Convert.ToInt32("0");
+                v.Constancia_detraccion_numero = "";
+                v.Constancia_detraccion_fecha_pago = DateTime.Today;
+                v.Constancia_detraccion_monto = Convert.ToDecimal("0.0");
+                v.Constancia_detraccion_referencia_monto = Convert.ToDecimal("0.0");
+                v.Observacion = txtObservacion.Text;
+                v.created_at = DateTime.Today;
+                v.updated_at = DateTime.Today;
+                v.Company_ruc = lblRucUsuario.Text;
+                MessageBox.Show(VENTA.RegistrarVenta(v), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        int g = 4;
+        private void GuardarDetalleVenta(String objIdProducto, String objIdVenta, Int32 objCantidad, Decimal objPUnitario,
+            Decimal objIgv, Decimal objSubTotal)
+        {
+            var dv = new DetalleVenta();
+            g++;
+            dv.Code = Convert.ToString(g);
+            dv.Code_product = objIdProducto;
+            dv.Code_sales = objIdVenta;
+            dv.Cantidad = objCantidad;
+            dv.Precio = objPUnitario;
+            dv.Code_unit = "";
+            dv.Igv = objIgv;
+            dv.Base_imponible = objSubTotal;
+            dv.created_at = DateTime.Today;
+            dv.updated_at = DateTime.Today;
+
+            Dventa.RegistrarDetalleVenta(dv);
+            Limpiar1();
+        }
+        private void Limpiar1()
+        {
+            txtRucCliente.Text="";
+            txtNombreCliente.Text = "";
+            txtDireccionCliente.Text = "";
+            txtObservacion.Text = "";
+            dataGridView1.Rows.Clear();
+        }
+        private void txtDireccionCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                // registrar la direccion
+                var ct = new Cliente();
+                ct.Ruc_client = txtRucCliente.Text;
+                ct.Address = txtDireccionCliente.Text;
+                ct.updated_at = DateTime.Today;
+                MessageBox.Show(CL.ActualizarDireccionCliente(ct), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
         }
     }
 }

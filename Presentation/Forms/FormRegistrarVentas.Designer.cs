@@ -37,6 +37,16 @@
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.IdD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buscarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.V_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Igv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtDireccionCliente = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -51,7 +61,8 @@
             this.cbxTipoDocumento = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbl = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblRucUsuario = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNroCorrelativo = new System.Windows.Forms.Label();
             this.lblSerie = new System.Windows.Forms.Label();
@@ -92,16 +103,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.IdD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buscarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.V_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Igv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -141,6 +142,7 @@
             this.btnRegistrarVenta.TabIndex = 29;
             this.btnRegistrarVenta.Text = "&Registrar Venta";
             this.btnRegistrarVenta.UseVisualStyleBackColor = true;
+            this.btnRegistrarVenta.Click += new System.EventHandler(this.btnRegistrarVenta_Click);
             // 
             // btnSalir
             // 
@@ -178,6 +180,89 @@
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             // 
+            // IdD
+            // 
+            this.IdD.HeaderText = "IdV";
+            this.IdD.Name = "IdD";
+            this.IdD.ReadOnly = true;
+            this.IdD.Visible = false;
+            this.IdD.Width = 30;
+            // 
+            // buscarProducto
+            // 
+            this.buscarProducto.HeaderText = "...";
+            this.buscarProducto.Name = "buscarProducto";
+            this.buscarProducto.Width = 30;
+            // 
+            // code_product
+            // 
+            this.code_product.HeaderText = "COD. PRODUCTO";
+            this.code_product.Name = "code_product";
+            // 
+            // Cant
+            // 
+            this.Cant.HeaderText = "CANT.";
+            this.Cant.Name = "Cant";
+            this.Cant.Width = 50;
+            // 
+            // nombre
+            // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombre.HeaderText = "NOMBRE";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // DTO
+            // 
+            this.DTO.HeaderText = "DTO";
+            this.DTO.Name = "DTO";
+            this.DTO.ReadOnly = true;
+            this.DTO.Width = 70;
+            // 
+            // V_U
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle1;
+            this.V_U.HeaderText = "V/U";
+            this.V_U.Name = "V_U";
+            this.V_U.ReadOnly = true;
+            this.V_U.Width = 70;
+            // 
+            // Igv
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Igv.HeaderText = "IGV";
+            this.Igv.Name = "Igv";
+            this.Igv.ReadOnly = true;
+            this.Igv.Width = 70;
+            // 
+            // P_unidad
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle3;
+            this.P_unidad.HeaderText = "P. UNIDAD";
+            this.P_unidad.Name = "P_unidad";
+            this.P_unidad.ReadOnly = true;
+            this.P_unidad.Width = 70;
+            // 
+            // Importe
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Importe.HeaderText = "IMPORTE";
+            this.Importe.Name = "Importe";
+            this.Importe.ReadOnly = true;
+            this.Importe.Width = 90;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtDireccionCliente);
@@ -201,6 +286,7 @@
             this.txtDireccionCliente.Name = "txtDireccionCliente";
             this.txtDireccionCliente.Size = new System.Drawing.Size(525, 21);
             this.txtDireccionCliente.TabIndex = 8;
+            this.txtDireccionCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDireccionCliente_KeyPress);
             // 
             // label8
             // 
@@ -309,7 +395,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lbl);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.lblRucUsuario);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lblNroCorrelativo);
             this.panel1.Controls.Add(this.lblSerie);
@@ -319,16 +406,27 @@
             this.panel1.Size = new System.Drawing.Size(223, 141);
             this.panel1.TabIndex = 21;
             // 
-            // lbl
+            // label9
             // 
-            this.lbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl.Location = new System.Drawing.Point(0, 0);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(221, 55);
-            this.lbl.TabIndex = 3;
-            this.lbl.Text = "R.U.C. 20605971343";
-            this.lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(16, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 20);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "R.U.C. ";
+            // 
+            // lblRucUsuario
+            // 
+            this.lblRucUsuario.AutoSize = true;
+            this.lblRucUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRucUsuario.Location = new System.Drawing.Point(80, 20);
+            this.lblRucUsuario.Name = "lblRucUsuario";
+            this.lblRucUsuario.Size = new System.Drawing.Size(119, 20);
+            this.lblRucUsuario.TabIndex = 4;
+            this.lblRucUsuario.Text = "20605971343";
+            this.lblRucUsuario.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblRucUsuario.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -454,10 +552,12 @@
             // 
             // txtSubTotalVentas
             // 
+            this.txtSubTotalVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSubTotalVentas.Location = new System.Drawing.Point(98, 5);
             this.txtSubTotalVentas.Name = "txtSubTotalVentas";
             this.txtSubTotalVentas.Size = new System.Drawing.Size(77, 20);
             this.txtSubTotalVentas.TabIndex = 2;
+            this.txtSubTotalVentas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
             // 
@@ -480,10 +580,12 @@
             // 
             // txtAnticipos
             // 
+            this.txtAnticipos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnticipos.Location = new System.Drawing.Point(98, 3);
             this.txtAnticipos.Name = "txtAnticipos";
             this.txtAnticipos.Size = new System.Drawing.Size(77, 20);
             this.txtAnticipos.TabIndex = 2;
+            this.txtAnticipos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label11
             // 
@@ -506,10 +608,12 @@
             // 
             // txtDescuentos
             // 
+            this.txtDescuentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescuentos.Location = new System.Drawing.Point(98, 4);
             this.txtDescuentos.Name = "txtDescuentos";
             this.txtDescuentos.Size = new System.Drawing.Size(77, 20);
             this.txtDescuentos.TabIndex = 2;
+            this.txtDescuentos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label13
             // 
@@ -532,10 +636,12 @@
             // 
             // txtValorVenta
             // 
+            this.txtValorVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorVenta.Location = new System.Drawing.Point(98, 5);
             this.txtValorVenta.Name = "txtValorVenta";
             this.txtValorVenta.Size = new System.Drawing.Size(77, 20);
             this.txtValorVenta.TabIndex = 2;
+            this.txtValorVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label15
             // 
@@ -558,10 +664,12 @@
             // 
             // txtISC
             // 
+            this.txtISC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtISC.Location = new System.Drawing.Point(98, 4);
             this.txtISC.Name = "txtISC";
             this.txtISC.Size = new System.Drawing.Size(77, 20);
             this.txtISC.TabIndex = 2;
+            this.txtISC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label17
             // 
@@ -583,10 +691,12 @@
             // 
             // txtIGV
             // 
+            this.txtIGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIGV.Location = new System.Drawing.Point(98, 3);
             this.txtIGV.Name = "txtIGV";
             this.txtIGV.Size = new System.Drawing.Size(77, 20);
             this.txtIGV.TabIndex = 2;
+            this.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label19
             // 
@@ -609,10 +719,12 @@
             // 
             // txtOtrosCargos
             // 
+            this.txtOtrosCargos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOtrosCargos.Location = new System.Drawing.Point(98, 3);
             this.txtOtrosCargos.Name = "txtOtrosCargos";
             this.txtOtrosCargos.Size = new System.Drawing.Size(77, 20);
             this.txtOtrosCargos.TabIndex = 2;
+            this.txtOtrosCargos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label21
             // 
@@ -635,10 +747,12 @@
             // 
             // txtOtrosTributos
             // 
+            this.txtOtrosTributos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOtrosTributos.Location = new System.Drawing.Point(98, 3);
             this.txtOtrosTributos.Name = "txtOtrosTributos";
             this.txtOtrosTributos.Size = new System.Drawing.Size(77, 20);
             this.txtOtrosTributos.TabIndex = 2;
+            this.txtOtrosTributos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label23
             // 
@@ -660,10 +774,14 @@
             // 
             // txtImporteTotal
             // 
+            this.txtImporteTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtImporteTotal.Location = new System.Drawing.Point(98, 3);
             this.txtImporteTotal.Name = "txtImporteTotal";
+            this.txtImporteTotal.ReadOnly = true;
             this.txtImporteTotal.Size = new System.Drawing.Size(77, 20);
             this.txtImporteTotal.TabIndex = 2;
+            this.txtImporteTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtImporteTotal.Leave += new System.EventHandler(this.txtImporteTotal_Leave);
             // 
             // label25
             // 
@@ -690,85 +808,6 @@
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.Size = new System.Drawing.Size(625, 20);
             this.txtObservacion.TabIndex = 34;
-            // 
-            // IdD
-            // 
-            this.IdD.HeaderText = "IdV";
-            this.IdD.Name = "IdD";
-            this.IdD.ReadOnly = true;
-            this.IdD.Visible = false;
-            this.IdD.Width = 30;
-            // 
-            // buscarProducto
-            // 
-            this.buscarProducto.HeaderText = "...";
-            this.buscarProducto.Name = "buscarProducto";
-            this.buscarProducto.Width = 30;
-            // 
-            // code_product
-            // 
-            this.code_product.HeaderText = "COD. PRODUCTO";
-            this.code_product.Name = "code_product";
-            // 
-            // Cant
-            // 
-            this.Cant.HeaderText = "CANT.";
-            this.Cant.Name = "Cant";
-            this.Cant.Width = 50;
-            // 
-            // nombre
-            // 
-            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombre.HeaderText = "NOMBRE";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // DTO
-            // 
-            this.DTO.HeaderText = "DTO";
-            this.DTO.Name = "DTO";
-            this.DTO.ReadOnly = true;
-            this.DTO.Width = 70;
-            // 
-            // V_U
-            // 
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle1;
-            this.V_U.HeaderText = "V/U";
-            this.V_U.Name = "V_U";
-            this.V_U.ReadOnly = true;
-            this.V_U.Width = 70;
-            // 
-            // Igv
-            // 
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Igv.HeaderText = "IGV";
-            this.Igv.Name = "Igv";
-            this.Igv.ReadOnly = true;
-            this.Igv.Width = 70;
-            // 
-            // P_unidad
-            // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle3;
-            this.P_unidad.HeaderText = "P. UNIDAD";
-            this.P_unidad.Name = "P_unidad";
-            this.P_unidad.ReadOnly = true;
-            this.P_unidad.Width = 70;
-            // 
-            // Importe
-            // 
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Importe.HeaderText = "IMPORTE";
-            this.Importe.Name = "Importe";
-            this.Importe.ReadOnly = true;
-            this.Importe.Width = 90;
             // 
             // FormRegistrarVentas
             // 
@@ -843,7 +882,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbl;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNroCorrelativo;
         private System.Windows.Forms.Label lblSerie;
@@ -900,5 +938,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Igv;
         private System.Windows.Forms.DataGridViewTextBoxColumn P_unidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblRucUsuario;
     }
 }

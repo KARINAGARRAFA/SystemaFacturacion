@@ -82,7 +82,7 @@ namespace Business.Business.Venta
                 lst.Add(new ClsParameter("@Valor_exportacion", v.Valor_exportacion));
                 lst.Add(new ClsParameter("@Base_imponible", v.Base_imponible));
                 lst.Add(new ClsParameter("@Importe_total_exonerada", v.Importe_total_exonerada));
-                lst.Add(new ClsParameter("@Cdp_nuImporte_total_inafectamero", v.Importe_total_inafecta));
+                lst.Add(new ClsParameter("@Importe_total_inafecta", v.Importe_total_inafecta));
                 lst.Add(new ClsParameter("@Igv", v.Igv));
                 lst.Add(new ClsParameter("@Importe_total", v.Importe_total));
                 lst.Add(new ClsParameter("@Dolares", v.Dolares));
@@ -110,5 +110,6 @@ namespace Business.Business.Venta
         {
             return M.Listado("ListarTipoComprobante", null);
         }
+
     }
 }

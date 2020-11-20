@@ -99,5 +99,25 @@ namespace Business.Business.Cliente
             }
             return Mensaje;
         }
+        public String ActualizarDireccionCliente(Entity.Cliente cl)
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            String Mensaje = "";
+
+            try
+            {
+                lst.Add(new ClsParameter("@Ruc_client", cl.Ruc_client));
+                lst.Add(new ClsParameter("@Address", cl.Address));
+                lst.Add(new ClsParameter("@Updated_at", cl.updated_at));
+                lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
+                M.EjecutarSP("ActualizarDireccoinCliente", ref lst);
+                Mensaje = lst[3].Valor.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Mensaje;
+        }
     }
 }

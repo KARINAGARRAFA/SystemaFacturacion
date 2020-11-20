@@ -75,20 +75,20 @@ namespace Presentation.Forms
                     }
                     else
                     {
-                        MessageBox.Show("Por Favor Ingrese decripcion de la marca.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Por Favor Ingrese direccion del cliente.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtDireccion.Focus();
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Por Favor Ingrese decripcion de la marca.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Por Favor Ingrese nombre del cliente", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNombreEmpresa.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("Por Favor Ingrese Nombre de la marca.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Por Favor Ingrese Ruc del cliente", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRuc.Focus();
             }
             FormListarClientes Cliente = new FormListarClientes();
