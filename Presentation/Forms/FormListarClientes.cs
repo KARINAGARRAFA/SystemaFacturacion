@@ -205,6 +205,7 @@ namespace Presentation.Forms
             Program.Ruc_cliente = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             Program.Business_name = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             Program.Address = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            Program.foco = true;
             this.Close();
         }
     }

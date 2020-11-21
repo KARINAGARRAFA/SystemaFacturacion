@@ -19,37 +19,16 @@ namespace Presentation.Forms
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if(pnlProducto.Visible == true)
-            {
-                pnlProducto.Visible = false;
-            }
-            else
-            {
-                pnlProducto.Visible = true;
-            }
-            
-        }
+        
 
         private void button4_Click(object sender, EventArgs e)
         {
             FormListarCompras Cp = new FormListarCompras();
+            Cp.MdiParent = this;
             Cp.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (pnlUser.Visible == true)
-            {
-                pnlUser.Visible = false;
-            }
-            else
-            {
-                pnlUser.Visible = true;
-            }
-
-        }
+        
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
@@ -105,6 +84,88 @@ namespace Presentation.Forms
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cOMPRASToolStripMenuItem_DoubleClick(object sender, EventArgs e)
+        {
+            FormListarCompras Cp = new FormListarCompras();
+            Cp.MdiParent = this;
+            Cp.Show();
+        }
+
+        private void cOMPRASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarCompras Cp = new FormListarCompras();
+            Cp.MdiParent = this;
+            Cp.Show();
+        }
+
+        private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarVentas Vn = new FormListarVentas();
+            Vn.MdiParent = this;
+            Vn.Show();
+        }
+
+        private void pRODUCTOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormProduct P = new FormProduct();
+            P.MdiParent = this;
+            P.Show();
+        }
+
+        private void mARCAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarMarca M = new FormListarMarca();
+            M.MdiParent = this;
+            M.Show();
+        }
+
+        private void cATEGORIAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarCategoria C = new FormListarCategoria();
+            C.MdiParent = this;
+            C.Show();
+        }
+
+        private void mODELOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarModelo M = new FormListarModelo();
+            M.MdiParent = this;
+            M.Show();
+        }
+
+        private void uMEDIDAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarUM UM = new FormListarUM();
+            UM.MdiParent = this;
+            UM.Show();
+        }
+
+        private void eMPRESAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarUser USER = new FormListarUser();
+            USER.MdiParent = this;
+            USER.Show();
+        }
+
+        private void uSUARIOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarPersonal Pr = new FormListarPersonal();
+            Pr.MdiParent = this;
+            Pr.Show();
+        }
+
+        private void cLIENTESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListarClientes Ct = new FormListarClientes();
+            Ct.MdiParent = this;
+            Ct.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

@@ -112,3 +112,5 @@ C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Pres
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.csproj.CopyComplete
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.exe
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.pdb
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Newtonsoft.Json.xml

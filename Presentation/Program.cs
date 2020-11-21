@@ -30,6 +30,7 @@ namespace Presentation
         public static String Telephone;
         public static String Status;
         public static String Condition;
+        public static bool foco;
 
 
 

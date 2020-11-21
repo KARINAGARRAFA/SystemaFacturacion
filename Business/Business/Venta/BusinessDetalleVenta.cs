@@ -41,5 +41,21 @@ namespace Business.Business.Venta
             }
             return Mensaje;
         }
+        public String GenerarIdDetalleVenta()
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            int objIdVenta;
+            try
+            {
+                lst.Add(new ClsParameter("@CodeVenta", "", SqlDbType.Int, ParameterDirection.Output, 4));
+                M.EjecutarSP("GenerarIdDetalleVenta", ref lst);
+                objIdVenta = Convert.ToInt32(lst[0].Valor.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Convert.ToString(objIdVenta);
+        }
     }
 }

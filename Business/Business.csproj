@@ -54,10 +54,12 @@
     <Compile Include="Business\Venta\BusinessVenta.cs" />
     <Compile Include="Entity\Categoria.cs" />
     <Compile Include="Entity\Cliente.cs" />
+    <Compile Include="Entity\ClienteJSON.cs" />
     <Compile Include="Entity\ClsProduct.cs" />
     <Compile Include="Entity\Compra.cs" />
     <Compile Include="Entity\DetalleCompra.cs" />
     <Compile Include="Entity\DetalleVenta.cs" />
+    <Compile Include="Entity\JsonGeneric.cs" />
     <Compile Include="Entity\Marca.cs" />
     <Compile Include="Entity\Modelo.cs" />
     <Compile Include="Entity\UnidadMedida.cs" />

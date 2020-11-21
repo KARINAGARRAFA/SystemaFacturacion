@@ -13,6 +13,9 @@ using Business.Business.Venta;
 using Business.Business.Cliente;
 using Business.Business.Producto;
 using Business.Entity;
+using Newtonsoft.Json;
+using System.Net;
+using System.IO;
 
 namespace Presentation.Forms
 {
@@ -23,7 +26,7 @@ namespace Presentation.Forms
         BusinessCliente CL = new BusinessCliente();
         BusinessProducto P = new BusinessProducto();
         int n=0;
-        bool a = false;
+        bool a = false, b= true;
         public FormRegistrarVentas()
         {
             InitializeComponent();           
@@ -37,7 +40,6 @@ namespace Presentation.Forms
         private void FormRegistrarVentas_Load(object sender, EventArgs e)
         {
             LlenarCombox();
-            GenerarNumeroComprobante();
             
             
         }
@@ -106,11 +108,13 @@ namespace Presentation.Forms
             {
                 lblTipoComprobante.Text = "BOLETA ELECTRONICA";
                 lblSerie.Text = "B001";
+                GenerarNumeroComprobante();
             }
             else if (cbxTipoDocumento.Text == "FACTURA")
             {
                 lblTipoComprobante.Text = "FACTURA ELECTRONICA";
                 lblSerie.Text = "F001";
+                GenerarNumeroComprobante();
             }
         }
 
@@ -135,6 +139,19 @@ namespace Presentation.Forms
                     if (dt.Rows.Count == 0)
                     {
                         // buscar en la api y registrarlo en la BD
+                        string url = @"https://procontbusiness.com/sunat/sunat.php?ruc="+ruc;
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                        using (Stream stream = response.GetResponseStream())
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                            var json = reader.ReadToEnd();
+                            JsonGeneric cliente = JsonConvert.DeserializeObject<JsonGeneric>(json);
+
+                            txtRucCliente.Text = cliente.result.ruc;
+                            txtNombreCliente.Text = cliente.result.razon_social;
+                            txtDireccionCliente.Text = cliente.result.direccion;
+                        }
                     }
                     else
                     {
@@ -180,10 +197,14 @@ namespace Presentation.Forms
 
         private void FormRegistrarVentas_Activated(object sender, EventArgs e)
         {
-            txtRucCliente.Text = Program.Ruc_cliente;
-            txtNombreCliente.Text = Program.Business_name;
-            txtDireccionCliente.Text = Program.Address;
-
+            b = Program.foco;
+            if (b == true)
+            {
+                txtRucCliente.Text = Program.Ruc_cliente;
+                txtNombreCliente.Text = Program.Business_name;
+                txtDireccionCliente.Text = Program.Address;
+                Program.foco = false;
+            }
             if (a == true)
             {
                 dataGridView1.Rows[n].Cells[0].Value = VENTA.GenerarIdVenta();
@@ -231,10 +252,7 @@ namespace Presentation.Forms
                     n = dataGridView1.Rows.Add();
                     a = true;
                 }
-                else { }
-
             }
-            
         }
 
         private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
@@ -289,6 +307,7 @@ namespace Presentation.Forms
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+            a = false;
         }
 
         private void txtImporteTotal_Leave(object sender, EventArgs e)
@@ -325,6 +344,7 @@ namespace Presentation.Forms
                     {
                         MessageBox.Show(ex.Message);
                     }
+                    Limpiar1();
                 }
                 else
                 {
@@ -351,7 +371,7 @@ namespace Presentation.Forms
                 cdp_tipo = cbxTipoDocumento.Text == "BOLETA" ? "01" : "02";
                 v.Code = VENTA.GenerarIdVenta(); //------------------------codigo de venta
                 v.Numero = Convert.ToInt32("0");
-                v.Fecha_emision = DateTime.Today; //Convert.ToDateTime(lblFechaEmision.Text);
+                v.Fecha_emision = DateTime.Now; //Convert.ToDateTime(lblFechaEmision.Text);
                 v.Fecha_pago = Convert.ToDateTime(dtpFechaPago.Value);
                 v.Cdp_tipo = cdp_tipo;
                 v.Cdp_serie = lblSerie.Text;  ///--------------------4 digitos
@@ -373,19 +393,18 @@ namespace Presentation.Forms
                 v.Constancia_detraccion_monto = Convert.ToDecimal("0.0");
                 v.Constancia_detraccion_referencia_monto = Convert.ToDecimal("0.0");
                 v.Observacion = txtObservacion.Text;
-                v.created_at = DateTime.Today;
-                v.updated_at = DateTime.Today;
+                v.created_at = DateTime.Now;
+                v.updated_at = DateTime.Now;
                 v.Company_ruc = lblRucUsuario.Text;
                 MessageBox.Show(VENTA.RegistrarVenta(v), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        int g = 4;
         private void GuardarDetalleVenta(String objIdProducto, String objIdVenta, Int32 objCantidad, Decimal objPUnitario,
             Decimal objIgv, Decimal objSubTotal)
         {
             var dv = new DetalleVenta();
-            g++;
-            dv.Code = Convert.ToString(g);
+            
+            dv.Code = Dventa.GenerarIdDetalleVenta();
             dv.Code_product = objIdProducto;
             dv.Code_sales = objIdVenta;
             dv.Cantidad = objCantidad;
@@ -397,7 +416,7 @@ namespace Presentation.Forms
             dv.updated_at = DateTime.Today;
 
             Dventa.RegistrarDetalleVenta(dv);
-            Limpiar1();
+            //Limpiar1();
         }
         private void Limpiar1()
         {
