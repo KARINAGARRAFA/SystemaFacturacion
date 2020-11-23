@@ -50,7 +50,7 @@ namespace Business.Business.login
                 throw ex;
             }
         }
-
+        
         public DataTable DevolverDatosSesion(String objUser, String objPassword)
         {
             List<ClsParameter> lst = new List<ClsParameter>();

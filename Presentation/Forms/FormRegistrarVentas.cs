@@ -34,8 +34,7 @@ namespace Presentation.Forms
         
         private void btnBusqueda_Click(object sender, EventArgs e)
         {
-            FormListarClientes C = new FormListarClientes();
-            C.Show();
+            
         }
         private void FormRegistrarVentas_Load(object sender, EventArgs e)
         {
@@ -207,18 +206,22 @@ namespace Presentation.Forms
             }
             if (a == true)
             {
-                dataGridView1.Rows[n].Cells[0].Value = VENTA.GenerarIdVenta();
-                dataGridView1.Rows[n].Cells[2].Value = Program.code_product;
-                dataGridView1.Rows[n].Cells[4].Value = Program.Product_name;
-                dataGridView1.Rows[n].Cells[6].Value = Convert.ToDecimal(500.00);
-                dataGridView1.Rows[n].Cells[8].Value = Convert.ToDecimal(600.00);
-                dataGridView1.Rows[n].Cells[7].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[8].Value) * 0.18;
-                dataGridView1.Rows[n].Cells[9].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[7].Value) * Convert.ToDouble(dataGridView1.Rows[n].Cells[3].Value);
-
+                agregar2();
                 Program.code_product = "";
                 Program.Product_name = "";
                 a = false;
             }
+        }
+        public void agregar2()
+        {
+            dataGridView1.Rows[n].Cells[0].Value = VENTA.GenerarIdVenta();
+            dataGridView1.Rows[n].Cells[2].Value = Program.code_product;
+            dataGridView1.Rows[n].Cells[4].Value = Program.Product_name;
+            dataGridView1.Rows[n].Cells[6].Value = Convert.ToDecimal(500.00);
+            dataGridView1.Rows[n].Cells[8].Value = Convert.ToDecimal(600.00);
+            dataGridView1.Rows[n].Cells[7].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[8].Value) * 0.18;
+            dataGridView1.Rows[n].Cells[9].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[7].Value) * Convert.ToDouble(dataGridView1.Rows[n].Cells[3].Value);
+
         }
 
 
@@ -248,8 +251,7 @@ namespace Presentation.Forms
                 {
                     FormProduct P = new FormProduct();
                     P.Show();
-
-                    n = dataGridView1.Rows.Add();
+                    n = e.RowIndex;
                     a = true;
                 }
             }
@@ -270,15 +272,16 @@ namespace Presentation.Forms
                 dt = P.BuscarProducto(ruc);
                 try
                 {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        dgvRow.Cells["IdD"].Value = VENTA.GenerarIdVenta();
-                        dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();
-                        dgvRow.Cells["V_U"].Value = Convert.ToDecimal(500.00);
-                        dgvRow.Cells["P_unidad"].Value = Convert.ToDecimal(600.00);
-                        dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * 0.18;
-                        dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value);
-                    }
+                    agregar(dt, dgvRow);
+                    //for (int i = 0; i < dt.Rows.Count; i++)
+                    //{
+                    //    dgvRow.Cells["IdD"].Value = VENTA.GenerarIdVenta();
+                    //    dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();
+                    //    dgvRow.Cells["V_U"].Value = Convert.ToDecimal(500.00);
+                    //    dgvRow.Cells["P_unidad"].Value = Convert.ToDecimal(600.00);
+                    //    dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * 0.18;
+                    //    dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value);
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -287,6 +290,20 @@ namespace Presentation.Forms
                 
             }  
         }
+        
+        public void agregar(DataTable dt, DataGridViewRow dgvRow)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                dgvRow.Cells["IdD"].Value = VENTA.GenerarIdVenta();
+                dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();
+                dgvRow.Cells["V_U"].Value = Convert.ToDecimal(500.00);
+                dgvRow.Cells["P_unidad"].Value = Convert.ToDecimal(600.00);
+                dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * 0.18;
+                dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value);
+            }
+        }
+
         private void btnEliminarItem_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
@@ -318,7 +335,7 @@ namespace Presentation.Forms
         {
             if (dataGridView1.Rows.Count > 0)
             {
-                if (Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value) != "")
+                if (Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value) != "")
                 {
                     GuardarVenta();
                     try
@@ -348,7 +365,7 @@ namespace Presentation.Forms
                 }
                 else
                 {
-                    MessageBox.Show("No Existe Ningún Elemento en la Lista.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ingrese la cantidad del producto.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -437,6 +454,12 @@ namespace Presentation.Forms
                 ct.updated_at = DateTime.Today;
                 MessageBox.Show(CL.ActualizarDireccionCliente(ct), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormListarClientes C = new FormListarClientes();
+            C.Show();
         }
 
         private void label3_Click(object sender, EventArgs e)

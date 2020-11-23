@@ -47,7 +47,7 @@ namespace Business.Business.Venta
             int objIdVenta;
             try
             {
-                lst.Add(new ClsParameter("@CodeVenta", "", SqlDbType.Int, ParameterDirection.Output, 4));
+                lst.Add(new ClsParameter("@CodeDetalleVenta", "", SqlDbType.Int, ParameterDirection.Output, 4));
                 M.EjecutarSP("GenerarIdDetalleVenta", ref lst);
                 objIdVenta = Convert.ToInt32(lst[0].Valor.ToString());
             }
