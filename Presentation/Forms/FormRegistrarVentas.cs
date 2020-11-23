@@ -33,8 +33,51 @@ namespace Presentation.Forms
         }
         
         private void btnBusqueda_Click(object sender, EventArgs e)
+        {            
+            if (txtRucCliente.Text != null)
+            {
+                buscarCliente();
+            }
+        }
+        public void buscarCliente()
         {
-            
+            var ruc = "";
+            DataTable dt = new DataTable();
+            ruc = txtRucCliente.Text;
+            dt = CL.BuscarCliente(ruc);
+            try
+            {
+                if (dt.Rows.Count == 0)
+                {
+                    // buscar en la api y registrarlo en la BD
+                    string url = @"https://procontbusiness.com/sunat/sunat.php?ruc=" + ruc;
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    using (Stream stream = response.GetResponseStream())
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        var json = reader.ReadToEnd();
+                        JsonGeneric cliente = JsonConvert.DeserializeObject<JsonGeneric>(json);
+
+                        txtRucCliente.Text = cliente.result.ruc;
+                        txtNombreCliente.Text = cliente.result.razon_social;
+                        txtDireccionCliente.Text = cliente.result.direccion;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        txtNombreCliente.Text = dt.Rows[i][1].ToString();
+                        txtDireccionCliente.Text = dt.Rows[i][3].ToString();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void FormRegistrarVentas_Load(object sender, EventArgs e)
         {
@@ -127,45 +170,9 @@ namespace Presentation.Forms
 
         private void txtRucCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            var ruc = "";
             if (e.KeyChar == 13)
             {
-                DataTable dt = new DataTable();
-                ruc = txtRucCliente.Text;
-                dt = CL.BuscarCliente(ruc);
-                try
-                {
-                    if (dt.Rows.Count == 0)
-                    {
-                        // buscar en la api y registrarlo en la BD
-                        string url = @"https://procontbusiness.com/sunat/sunat.php?ruc="+ruc;
-                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                        using (Stream stream = response.GetResponseStream())
-                        using (StreamReader reader = new StreamReader(stream))
-                        {
-                            var json = reader.ReadToEnd();
-                            JsonGeneric cliente = JsonConvert.DeserializeObject<JsonGeneric>(json);
-
-                            txtRucCliente.Text = cliente.result.ruc;
-                            txtNombreCliente.Text = cliente.result.razon_social;
-                            txtDireccionCliente.Text = cliente.result.direccion;
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < dt.Rows.Count; i++)
-                        {
-                            txtNombreCliente.Text = dt.Rows[i][1].ToString();
-                            txtDireccionCliente.Text = dt.Rows[i][3].ToString();
-                        }
-                    }
-                    
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                buscarCliente();
             }
         }
 

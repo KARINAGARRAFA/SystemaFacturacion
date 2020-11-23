@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEliminarItem = new System.Windows.Forms.Button();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -202,16 +202,16 @@
             // 
             // txtDireccionCliente
             // 
-            this.txtDireccionCliente.Location = new System.Drawing.Point(79, 61);
+            this.txtDireccionCliente.Location = new System.Drawing.Point(88, 61);
             this.txtDireccionCliente.Name = "txtDireccionCliente";
-            this.txtDireccionCliente.Size = new System.Drawing.Size(499, 21);
+            this.txtDireccionCliente.Size = new System.Drawing.Size(531, 21);
             this.txtDireccionCliente.TabIndex = 8;
             this.txtDireccionCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDireccionCliente_KeyPress);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 61);
+            this.label8.Location = new System.Drawing.Point(14, 61);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 16);
             this.label8.TabIndex = 7;
@@ -219,14 +219,14 @@
             // 
             // txtNombreCliente
             // 
-            this.txtNombreCliente.Location = new System.Drawing.Point(206, 24);
+            this.txtNombreCliente.Location = new System.Drawing.Point(247, 23);
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(372, 21);
             this.txtNombreCliente.TabIndex = 6;
             // 
             // txtRucCliente
             // 
-            this.txtRucCliente.Location = new System.Drawing.Point(49, 24);
+            this.txtRucCliente.Location = new System.Drawing.Point(88, 24);
             this.txtRucCliente.Name = "txtRucCliente";
             this.txtRucCliente.Size = new System.Drawing.Size(106, 21);
             this.txtRucCliente.TabIndex = 5;
@@ -234,21 +234,21 @@
             // 
             // btnBusquedaCliente
             // 
-            this.btnBusquedaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBusquedaCliente.Location = new System.Drawing.Point(584, 20);
+            this.btnBusquedaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBusquedaCliente.Location = new System.Drawing.Point(623, 20);
             this.btnBusquedaCliente.Margin = new System.Windows.Forms.Padding(10);
             this.btnBusquedaCliente.Name = "btnBusquedaCliente";
-            this.btnBusquedaCliente.Size = new System.Drawing.Size(35, 30);
+            this.btnBusquedaCliente.Size = new System.Drawing.Size(74, 24);
             this.btnBusquedaCliente.TabIndex = 4;
-            this.btnBusquedaCliente.Text = "...";
-            this.btnBusquedaCliente.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnBusquedaCliente.Text = "BUSCAR";
+            this.btnBusquedaCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBusquedaCliente.UseVisualStyleBackColor = false;
             this.btnBusquedaCliente.Click += new System.EventHandler(this.btnBusqueda_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 23);
+            this.label5.Location = new System.Drawing.Point(44, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 16);
             this.label5.TabIndex = 2;
@@ -257,7 +257,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(167, 23);
+            this.label1.Location = new System.Drawing.Point(204, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 16);
             this.label1.TabIndex = 0;
@@ -727,9 +727,9 @@
             // 
             // txtObservacion
             // 
-            this.txtObservacion.Location = new System.Drawing.Point(117, 159);
+            this.txtObservacion.Location = new System.Drawing.Point(118, 159);
             this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(625, 20);
+            this.txtObservacion.Size = new System.Drawing.Size(624, 20);
             this.txtObservacion.TabIndex = 34;
             // 
             // IdD
@@ -753,9 +753,9 @@
             // 
             // Cant
             // 
-            dataGridViewCellStyle31.Format = "N0";
-            dataGridViewCellStyle31.NullValue = null;
-            this.Cant.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle41.Format = "N0";
+            dataGridViewCellStyle41.NullValue = null;
+            this.Cant.DefaultCellStyle = dataGridViewCellStyle41;
             this.Cant.HeaderText = "CANT.";
             this.Cant.Name = "Cant";
             this.Cant.ToolTipText = "int";
@@ -777,10 +777,10 @@
             // 
             // V_U
             // 
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle32.Format = "N2";
-            dataGridViewCellStyle32.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle42.Format = "N2";
+            dataGridViewCellStyle42.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle42;
             this.V_U.HeaderText = "V/U";
             this.V_U.Name = "V_U";
             this.V_U.ReadOnly = true;
@@ -788,10 +788,10 @@
             // 
             // Igv
             // 
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle33.Format = "N2";
-            dataGridViewCellStyle33.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle43.Format = "N2";
+            dataGridViewCellStyle43.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle43;
             this.Igv.HeaderText = "IGV";
             this.Igv.Name = "Igv";
             this.Igv.ReadOnly = true;
@@ -799,10 +799,10 @@
             // 
             // P_unidad
             // 
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle34.Format = "N2";
-            dataGridViewCellStyle34.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle44.Format = "N2";
+            dataGridViewCellStyle44.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle44;
             this.P_unidad.HeaderText = "P. UNIDAD";
             this.P_unidad.Name = "P_unidad";
             this.P_unidad.ReadOnly = true;
@@ -810,10 +810,10 @@
             // 
             // Importe
             // 
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle35.Format = "N2";
-            dataGridViewCellStyle35.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle45.Format = "N2";
+            dataGridViewCellStyle45.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle45;
             this.Importe.HeaderText = "IMPORTE";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
@@ -821,7 +821,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(631, 27);
+            this.button1.Location = new System.Drawing.Point(13, 20);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(26, 23);
             this.button1.TabIndex = 9;
