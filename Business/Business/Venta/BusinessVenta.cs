@@ -64,6 +64,46 @@ namespace Business.Business.Venta
             }
             return Convert.ToString(objIdVenta);
         }
+        public String GenerarIdVentas(string ruc,string cdp_tipo, string cdp_serie,int cdp_numero)
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            String idVentas = "";
+            try
+            {
+                lst.Add(new ClsParameter("@Ruc", ruc));
+                lst.Add(new ClsParameter("@Cdp_tipo", cdp_tipo));
+                lst.Add(new ClsParameter("@Cdp_serie", cdp_serie));
+                lst.Add(new ClsParameter("@Cdp_numero", cdp_numero));
+                lst.Add(new ClsParameter("@CodeVenta", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
+                M.EjecutarSP("GenerarIdVentas", ref lst);
+
+                idVentas = lst[4].Valor.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return idVentas;
+        }
+        public String GEnerarIDVENTAAA(string ruc, string cdp_tipo, string cdp_serie, int cdp_numero)
+        {
+            String Mensaje = "";
+            List<ClsParameter> lst = new List<ClsParameter>();
+            try
+            {
+                lst.Add(new ClsParameter("@ruc", ruc));
+                lst.Add(new ClsParameter("@Cdp_tipo", cdp_tipo));
+                lst.Add(new ClsParameter("@Cdp_serie", cdp_serie));
+                lst.Add(new ClsParameter("@Cdp_numero", cdp_numero));
+                lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
+                M.EjecutarSP("RegistrarVenta", ref lst);
+                return Mensaje = lst[27].Valor.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public String RegistrarVenta(Entity.Venta v)
         {
             String Mensaje = "";

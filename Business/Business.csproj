@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,12 +57,12 @@
     <Compile Include="Business\Venta\BusinessVenta.cs" />
     <Compile Include="Entity\Categoria.cs" />
     <Compile Include="Entity\Cliente.cs" />
-    <Compile Include="Entity\ClienteJSON.cs" />
+    <Compile Include="Json\ClienteJSON.cs" />
     <Compile Include="Entity\ClsProduct.cs" />
     <Compile Include="Entity\Compra.cs" />
     <Compile Include="Entity\DetalleCompra.cs" />
     <Compile Include="Entity\DetalleVenta.cs" />
-    <Compile Include="Entity\JsonGeneric.cs" />
+    <Compile Include="Json\JsonGeneric.cs" />
     <Compile Include="Entity\Marca.cs" />
     <Compile Include="Entity\Modelo.cs" />
     <Compile Include="Entity\UnidadMedida.cs" />
@@ -75,6 +78,8 @@
       <Name>DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

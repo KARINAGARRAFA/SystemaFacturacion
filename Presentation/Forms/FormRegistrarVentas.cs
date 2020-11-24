@@ -27,6 +27,7 @@ namespace Presentation.Forms
         BusinessProducto P = new BusinessProducto();
         int n=0;
         bool a = false, b= true;
+        string IDVenta;
         public FormRegistrarVentas()
         {
             InitializeComponent();           
@@ -41,49 +42,50 @@ namespace Presentation.Forms
         }
         public void buscarCliente()
         {
-            var ruc = "";
-            DataTable dt = new DataTable();
-            ruc = txtRucCliente.Text;
-            dt = CL.BuscarCliente(ruc);
-            try
+            if (txtRucCliente.Text != "")
             {
-                if (dt.Rows.Count == 0)
+                var ruc = "";
+                DataTable dt = new DataTable();
+                ruc = txtRucCliente.Text;
+                dt = CL.BuscarCliente(ruc);
+                try
                 {
-                    // buscar en la api y registrarlo en la BD
-                    string url = @"https://procontbusiness.com/sunat/sunat.php?ruc=" + ruc;
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                    using (Stream stream = response.GetResponseStream())
-                    using (StreamReader reader = new StreamReader(stream))
+                    if (dt.Rows.Count == 0)
                     {
-                        var json = reader.ReadToEnd();
-                        JsonGeneric cliente = JsonConvert.DeserializeObject<JsonGeneric>(json);
+                        List<string> cli = new List<string>();
+                        cli= CL.BuscarClienteAPIReniec(ruc);
 
-                        txtRucCliente.Text = cliente.result.ruc;
-                        txtNombreCliente.Text = cliente.result.razon_social;
-                        txtDireccionCliente.Text = cliente.result.direccion;
+                        txtRucCliente.Text = cli[0];
+                        txtNombreCliente.Text = cli[1];
+                        txtDireccionCliente.Text = cli[7];
+                        CL.RegistrarClienteRenic(cli);
                     }
+                    else
+                    {
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            txtNombreCliente.Text = dt.Rows[i][1].ToString();
+                            txtDireccionCliente.Text = dt.Rows[i][3].ToString();
+                        }
+                    }
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        txtNombreCliente.Text = dt.Rows[i][1].ToString();
-                        txtDireccionCliente.Text = dt.Rows[i][3].ToString();
-                    }
+                    MessageBox.Show(ex.Message);
                 }
-
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ingrese RUC del cliente", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRucCliente.Focus();
             }
+            
         }
         private void FormRegistrarVentas_Load(object sender, EventArgs e)
         {
             LlenarCombox();
-            
-            
+
         }
         private void LlenarCombox()
         {
@@ -221,7 +223,6 @@ namespace Presentation.Forms
         }
         public void agregar2()
         {
-            dataGridView1.Rows[n].Cells[0].Value = VENTA.GenerarIdVenta();
             dataGridView1.Rows[n].Cells[2].Value = Program.code_product;
             dataGridView1.Rows[n].Cells[4].Value = Program.Product_name;
             dataGridView1.Rows[n].Cells[6].Value = Convert.ToDecimal(500.00);
@@ -230,29 +231,9 @@ namespace Presentation.Forms
             dataGridView1.Rows[n].Cells[9].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[7].Value) * Convert.ToDouble(dataGridView1.Rows[n].Cells[3].Value);
 
         }
-
-
-        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if(e.ColumnIndex >= 0 && this.dataGridView1.Columns[e.ColumnIndex].Name == "buscarProducto" && e.RowIndex >= 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                DataGridViewButtonCell celBoton = this.dataGridView1.Rows[e.RowIndex].Cells["buscarProducto"] as DataGridViewButtonCell;
-                Icon icoBuscar = new Icon(Environment.CurrentDirectory + @"\\img\\lupa.ico");
-                
-                e.Graphics.DrawIcon(icoBuscar, e.CellBounds.Left, e.CellBounds.Top);
-
-                this.dataGridView1.Rows[e.RowIndex].Height = icoBuscar.Height;
-                this.dataGridView1.Columns[e.ColumnIndex].Width = icoBuscar.Width;
-
-                e.Handled = true;
-            }
-        }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex >=0)
+            if (e.ColumnIndex >= 0)
             {
                 if (this.dataGridView1.Columns[e.ColumnIndex].Name == "buscarProducto")
                 {
@@ -264,14 +245,10 @@ namespace Presentation.Forms
             }
         }
 
-        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        }
-
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow dgvRow = dataGridView1.CurrentRow;
-            if (dataGridView1.CurrentRow != null && dgvRow.Cells["code_product"].Value != null )
+            if (dataGridView1.CurrentRow != null && dgvRow.Cells["code_product"].Value != null)
             {
                 var ruc = "";
                 DataTable dt = new DataTable();
@@ -280,29 +257,19 @@ namespace Presentation.Forms
                 try
                 {
                     agregar(dt, dgvRow);
-                    //for (int i = 0; i < dt.Rows.Count; i++)
-                    //{
-                    //    dgvRow.Cells["IdD"].Value = VENTA.GenerarIdVenta();
-                    //    dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();
-                    //    dgvRow.Cells["V_U"].Value = Convert.ToDecimal(500.00);
-                    //    dgvRow.Cells["P_unidad"].Value = Convert.ToDecimal(600.00);
-                    //    dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * 0.18;
-                    //    dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value);
-                    //}
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-                
-            }  
+
+            }
         }
         
         public void agregar(DataTable dt, DataGridViewRow dgvRow)
         {
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                dgvRow.Cells["IdD"].Value = VENTA.GenerarIdVenta();
                 dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();
                 dgvRow.Cells["V_U"].Value = Convert.ToDecimal(500.00);
                 dgvRow.Cells["P_unidad"].Value = Convert.ToDecimal(600.00);
@@ -340,7 +307,7 @@ namespace Presentation.Forms
 
         private void btnRegistrarVenta_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count > 0)
+            if (dataGridView1.Rows.Count > 1)
             {
                 if (Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value) != "")
                 {
@@ -356,7 +323,6 @@ namespace Presentation.Forms
                                 SumaSubTotal += Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value);
                                 GuardarDetalleVenta(
                                 Convert.ToString(dataGridView1.Rows[i].Cells[2].Value),
-                                Convert.ToString(dataGridView1.Rows[i].Cells[0].Value),
                                 Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value),
                                 Convert.ToDecimal(dataGridView1.Rows[i].Cells[8].Value),
                                 SumaIgv, SumaSubTotal
@@ -369,15 +335,17 @@ namespace Presentation.Forms
                         MessageBox.Show(ex.Message);
                     }
                     Limpiar1();
+                    GenerarNumeroComprobante();
                 }
                 else
                 {
-                    MessageBox.Show("ingrese la cantidad del producto.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ingrese la cantidad del producto.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dataGridView1.CurrentCell = dataGridView1.CurrentRow.Cells[3];
                 }
             }
             else
             {
-                MessageBox.Show("No Existe Ningún Elemento en la Lista.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No Existe Ningún Producto en la Lista.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void GuardarVenta()
@@ -392,8 +360,11 @@ namespace Presentation.Forms
                 }
                 string  cdp_tipo = "";
                 //TipoDocumento = rbnBoleta.Checked == true ? "Boleta" : "Factura";
-                cdp_tipo = cbxTipoDocumento.Text == "BOLETA" ? "01" : "02";
-                v.Code = VENTA.GenerarIdVenta(); //------------------------codigo de venta
+                cdp_tipo = Convert.ToString(cbxTipoDocumento.AccessibilityObject); //== "BOLETA" ? "01" : "02";965
+                //v.Code = VENTA.GenerarIdVenta(); //------------------------codigo de venta
+
+                IDVenta = VENTA.GenerarIdVentas(lblRucUsuario.Text, cbxTipoDocumento.Text, lblSerie.Text, Convert.ToInt32(lblNroCorrelativo.Text));
+                v.Code = IDVenta;//------------------------codigo de venta
                 v.Numero = Convert.ToInt32("0");
                 v.Fecha_emision = DateTime.Now; //Convert.ToDateTime(lblFechaEmision.Text);
                 v.Fecha_pago = Convert.ToDateTime(dtpFechaPago.Value);
@@ -423,14 +394,14 @@ namespace Presentation.Forms
                 MessageBox.Show(VENTA.RegistrarVenta(v), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void GuardarDetalleVenta(String objIdProducto, String objIdVenta, Int32 objCantidad, Decimal objPUnitario,
+        private void GuardarDetalleVenta(String objIdProducto, Int32 objCantidad, Decimal objPUnitario,
             Decimal objIgv, Decimal objSubTotal)
         {
             var dv = new DetalleVenta();
             
             dv.Code = Dventa.GenerarIdDetalleVenta();
             dv.Code_product = objIdProducto;
-            dv.Code_sales = objIdVenta;
+            dv.Code_sales = IDVenta;
             dv.Cantidad = objCantidad;
             dv.Precio = objPUnitario;
             dv.Code_unit = "";
@@ -467,6 +438,11 @@ namespace Presentation.Forms
         {
             FormListarClientes C = new FormListarClientes();
             C.Show();
+        }
+
+        private void txtRucCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            //buscarCliente();
         }
 
         private void label3_Click(object sender, EventArgs e)

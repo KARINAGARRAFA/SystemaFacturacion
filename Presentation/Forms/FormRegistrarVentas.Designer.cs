@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEliminarItem = new System.Windows.Forms.Button();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.txtDireccionCliente = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtNombreCliente = new System.Windows.Forms.TextBox();
@@ -104,7 +106,6 @@
             this.Igv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -178,9 +179,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(945, 233);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridView1_CellPainting);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-            this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
             // 
             // groupBox3
             // 
@@ -199,6 +198,17 @@
             this.groupBox3.TabIndex = 25;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Cliente";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 16);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "\'\'\'";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtDireccionCliente
             // 
@@ -230,6 +240,7 @@
             this.txtRucCliente.Name = "txtRucCliente";
             this.txtRucCliente.Size = new System.Drawing.Size(106, 21);
             this.txtRucCliente.TabIndex = 5;
+            this.txtRucCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRucCliente_KeyDown);
             this.txtRucCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRucCliente_KeyPress);
             // 
             // btnBusquedaCliente
@@ -238,7 +249,7 @@
             this.btnBusquedaCliente.Location = new System.Drawing.Point(623, 20);
             this.btnBusquedaCliente.Margin = new System.Windows.Forms.Padding(10);
             this.btnBusquedaCliente.Name = "btnBusquedaCliente";
-            this.btnBusquedaCliente.Size = new System.Drawing.Size(74, 24);
+            this.btnBusquedaCliente.Size = new System.Drawing.Size(66, 24);
             this.btnBusquedaCliente.TabIndex = 4;
             this.btnBusquedaCliente.Text = "BUSCAR";
             this.btnBusquedaCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -478,6 +489,7 @@
             this.txtSubTotalVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSubTotalVentas.Location = new System.Drawing.Point(98, 5);
             this.txtSubTotalVentas.Name = "txtSubTotalVentas";
+            this.txtSubTotalVentas.ReadOnly = true;
             this.txtSubTotalVentas.Size = new System.Drawing.Size(77, 20);
             this.txtSubTotalVentas.TabIndex = 2;
             this.txtSubTotalVentas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -506,6 +518,7 @@
             this.txtAnticipos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnticipos.Location = new System.Drawing.Point(98, 3);
             this.txtAnticipos.Name = "txtAnticipos";
+            this.txtAnticipos.ReadOnly = true;
             this.txtAnticipos.Size = new System.Drawing.Size(77, 20);
             this.txtAnticipos.TabIndex = 2;
             this.txtAnticipos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -534,6 +547,7 @@
             this.txtDescuentos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescuentos.Location = new System.Drawing.Point(98, 4);
             this.txtDescuentos.Name = "txtDescuentos";
+            this.txtDescuentos.ReadOnly = true;
             this.txtDescuentos.Size = new System.Drawing.Size(77, 20);
             this.txtDescuentos.TabIndex = 2;
             this.txtDescuentos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -562,6 +576,7 @@
             this.txtValorVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValorVenta.Location = new System.Drawing.Point(98, 5);
             this.txtValorVenta.Name = "txtValorVenta";
+            this.txtValorVenta.ReadOnly = true;
             this.txtValorVenta.Size = new System.Drawing.Size(77, 20);
             this.txtValorVenta.TabIndex = 2;
             this.txtValorVenta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -590,6 +605,7 @@
             this.txtISC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtISC.Location = new System.Drawing.Point(98, 4);
             this.txtISC.Name = "txtISC";
+            this.txtISC.ReadOnly = true;
             this.txtISC.Size = new System.Drawing.Size(77, 20);
             this.txtISC.TabIndex = 2;
             this.txtISC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -617,6 +633,7 @@
             this.txtIGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIGV.Location = new System.Drawing.Point(98, 3);
             this.txtIGV.Name = "txtIGV";
+            this.txtIGV.ReadOnly = true;
             this.txtIGV.Size = new System.Drawing.Size(77, 20);
             this.txtIGV.TabIndex = 2;
             this.txtIGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -645,6 +662,7 @@
             this.txtOtrosCargos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOtrosCargos.Location = new System.Drawing.Point(98, 3);
             this.txtOtrosCargos.Name = "txtOtrosCargos";
+            this.txtOtrosCargos.ReadOnly = true;
             this.txtOtrosCargos.Size = new System.Drawing.Size(77, 20);
             this.txtOtrosCargos.TabIndex = 2;
             this.txtOtrosCargos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -673,6 +691,7 @@
             this.txtOtrosTributos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOtrosTributos.Location = new System.Drawing.Point(98, 3);
             this.txtOtrosTributos.Name = "txtOtrosTributos";
+            this.txtOtrosTributos.ReadOnly = true;
             this.txtOtrosTributos.Size = new System.Drawing.Size(77, 20);
             this.txtOtrosTributos.TabIndex = 2;
             this.txtOtrosTributos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -738,13 +757,16 @@
             this.IdD.Name = "IdD";
             this.IdD.ReadOnly = true;
             this.IdD.Visible = false;
-            this.IdD.Width = 30;
+            this.IdD.Width = 20;
             // 
             // buscarProducto
             // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.NullValue = "...";
+            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle7;
             this.buscarProducto.HeaderText = "...";
             this.buscarProducto.Name = "buscarProducto";
-            this.buscarProducto.Width = 30;
+            this.buscarProducto.Width = 25;
             // 
             // code_product
             // 
@@ -753,9 +775,9 @@
             // 
             // Cant
             // 
-            dataGridViewCellStyle41.Format = "N0";
-            dataGridViewCellStyle41.NullValue = null;
-            this.Cant.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = null;
+            this.Cant.DefaultCellStyle = dataGridViewCellStyle8;
             this.Cant.HeaderText = "CANT.";
             this.Cant.Name = "Cant";
             this.Cant.ToolTipText = "int";
@@ -777,10 +799,10 @@
             // 
             // V_U
             // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle42.Format = "N2";
-            dataGridViewCellStyle42.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle9.Format = "N2";
+            dataGridViewCellStyle9.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle9;
             this.V_U.HeaderText = "V/U";
             this.V_U.Name = "V_U";
             this.V_U.ReadOnly = true;
@@ -788,10 +810,10 @@
             // 
             // Igv
             // 
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle43.Format = "N2";
-            dataGridViewCellStyle43.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle10;
             this.Igv.HeaderText = "IGV";
             this.Igv.Name = "Igv";
             this.Igv.ReadOnly = true;
@@ -799,10 +821,10 @@
             // 
             // P_unidad
             // 
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle44.Format = "N2";
-            dataGridViewCellStyle44.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle11;
             this.P_unidad.HeaderText = "P. UNIDAD";
             this.P_unidad.Name = "P_unidad";
             this.P_unidad.ReadOnly = true;
@@ -810,25 +832,14 @@
             // 
             // Importe
             // 
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle45.Format = "N2";
-            dataGridViewCellStyle45.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle12;
             this.Importe.HeaderText = "IMPORTE";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
             this.Importe.Width = 90;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(13, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "...";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormRegistrarVentas
             // 
@@ -951,6 +962,7 @@
         public System.Windows.Forms.TextBox txtDireccionCliente;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblRucUsuario;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdD;
         private System.Windows.Forms.DataGridViewButtonColumn buscarProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn code_product;
@@ -961,6 +973,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Igv;
         private System.Windows.Forms.DataGridViewTextBoxColumn P_unidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
-        private System.Windows.Forms.Button button1;
     }
 }
