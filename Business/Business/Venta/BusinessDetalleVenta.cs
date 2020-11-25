@@ -21,7 +21,6 @@ namespace Business.Business.Venta
             String Mensaje = "";
             try
             {
-                lst.Add(new ClsParameter("@Code", dv.Code));
                 lst.Add(new ClsParameter("@Code_sales", dv.Code_sales));
                 lst.Add(new ClsParameter("@Code_product", dv.Code_product));
                 lst.Add(new ClsParameter("@Cantidad", dv.Cantidad));
@@ -33,7 +32,7 @@ namespace Business.Business.Venta
                 lst.Add(new ClsParameter("@Updated_at", dv.updated_at));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
                 M.EjecutarSP("RegistrarDetalleVenta", ref lst);
-                Mensaje = lst[10].Valor.ToString();
+                Mensaje = lst[9].Valor.ToString();
             }
             catch (Exception ex)
             {

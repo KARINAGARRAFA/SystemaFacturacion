@@ -30,15 +30,15 @@ namespace Business.Business.Venta
             }
             return Convert.ToString(Serie);
         }
-        public String NumeroComprobante(String objTipoDocumento)
+        public String NumeroComprobante(String serieDocumento)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
             String NroCorrelativo = "";
             try
             {
-                lst.Add(new ClsParameter("@TipoDocumento", objTipoDocumento));
+                lst.Add(new ClsParameter("@serie", serieDocumento));
                 lst.Add(new ClsParameter("@NroCorrelativo", "", SqlDbType.VarChar, ParameterDirection.Output, 7));
-                M.EjecutarSP("[Numero Correlativo]", ref lst);
+                M.EjecutarSP("consecutive_number", ref lst);
                 NroCorrelativo = Convert.ToString(lst[1].Valor.ToString());
             }
             catch (Exception ex)
@@ -48,22 +48,27 @@ namespace Business.Business.Venta
             return Convert.ToString(NroCorrelativo);
         }
 
-        public String GenerarIdVenta()
+        public String ActualizarNumeroCorrelativo(string serie, int numero)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
-            int objIdVenta;
+            String Mensaje = "";
+
             try
             {
-                lst.Add(new ClsParameter("@CodeVenta", "", SqlDbType.Int, ParameterDirection.Output, 4));
-                M.EjecutarSP("GenerarIdVenta", ref lst);
-                objIdVenta = Convert.ToInt32(lst[0].Valor.ToString());
+                lst.Add(new ClsParameter("@serie", serie));
+                lst.Add(new ClsParameter("@numero", numero));
+                lst.Add(new ClsParameter("@Updated_at", DateTime.Now));
+                lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
+                M.EjecutarSP("Update_sfe_consecutive_number", ref lst);
+                Mensaje = lst[3].Valor.ToString();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return Convert.ToString(objIdVenta);
+            return Mensaje;
         }
+
         public String GenerarIdVentas(string ruc,string cdp_tipo, string cdp_serie,int cdp_numero)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -84,25 +89,6 @@ namespace Business.Business.Venta
                 throw ex;
             }
             return idVentas;
-        }
-        public String GEnerarIDVENTAAA(string ruc, string cdp_tipo, string cdp_serie, int cdp_numero)
-        {
-            String Mensaje = "";
-            List<ClsParameter> lst = new List<ClsParameter>();
-            try
-            {
-                lst.Add(new ClsParameter("@ruc", ruc));
-                lst.Add(new ClsParameter("@Cdp_tipo", cdp_tipo));
-                lst.Add(new ClsParameter("@Cdp_serie", cdp_serie));
-                lst.Add(new ClsParameter("@Cdp_numero", cdp_numero));
-                lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
-                M.EjecutarSP("RegistrarVenta", ref lst);
-                return Mensaje = lst[27].Valor.ToString();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
         public String RegistrarVenta(Entity.Venta v)
         {
@@ -126,7 +112,7 @@ namespace Business.Business.Venta
                 lst.Add(new ClsParameter("@Igv", v.Igv));
                 lst.Add(new ClsParameter("@Importe_total", v.Importe_total));
                 lst.Add(new ClsParameter("@Dolares", v.Dolares));
-                lst.Add(new ClsParameter("@Tipo_cambio", v.Tipo_cambio));
+                //lst.Add(new ClsParameter("@Tipo_cambio", v.Tipo_cambio));
                 lst.Add(new ClsParameter("@Igv_retencion", v.Igv_retencion));
                 lst.Add(new ClsParameter("@Detraccion_id", v.Detraccion_id));
                 lst.Add(new ClsParameter("@Constancia_detraccion_numero", v.Constancia_detraccion_numero));
@@ -139,7 +125,7 @@ namespace Business.Business.Venta
                 lst.Add(new ClsParameter("@Company_ruc", v.Company_ruc));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
                 M.EjecutarSP("RegistrarVenta", ref lst);
-                return Mensaje = lst[27].Valor.ToString();
+                return Mensaje = lst[26].Valor.ToString();
             }
             catch (Exception ex)
             {

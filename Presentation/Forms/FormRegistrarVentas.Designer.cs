@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEliminarItem = new System.Windows.Forms.Button();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -102,9 +102,9 @@
             this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.V_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Igv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -169,9 +169,9 @@
             this.Cant,
             this.nombre,
             this.DTO,
+            this.P_unidad,
             this.V_U,
             this.Igv,
-            this.P_unidad,
             this.Importe});
             this.dataGridView1.GridColor = System.Drawing.Color.DimGray;
             this.dataGridView1.Location = new System.Drawing.Point(29, 185);
@@ -761,9 +761,9 @@
             // 
             // buscarProducto
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.NullValue = "...";
-            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "...";
+            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle1;
             this.buscarProducto.HeaderText = "...";
             this.buscarProducto.Name = "buscarProducto";
             this.buscarProducto.Width = 25;
@@ -775,9 +775,9 @@
             // 
             // Cant
             // 
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = null;
-            this.Cant.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Cant.DefaultCellStyle = dataGridViewCellStyle2;
             this.Cant.HeaderText = "CANT.";
             this.Cant.Name = "Cant";
             this.Cant.ToolTipText = "int";
@@ -797,12 +797,23 @@
             this.DTO.ReadOnly = true;
             this.DTO.Width = 70;
             // 
+            // P_unidad
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle3;
+            this.P_unidad.HeaderText = "P. UNIDAD";
+            this.P_unidad.Name = "P_unidad";
+            this.P_unidad.ReadOnly = true;
+            this.P_unidad.Width = 70;
+            // 
             // V_U
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle4;
             this.V_U.HeaderText = "V/U";
             this.V_U.Name = "V_U";
             this.V_U.ReadOnly = true;
@@ -810,32 +821,21 @@
             // 
             // Igv
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle5;
             this.Igv.HeaderText = "IGV";
             this.Igv.Name = "Igv";
             this.Igv.ReadOnly = true;
             this.Igv.Width = 70;
             // 
-            // P_unidad
-            // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle11;
-            this.P_unidad.HeaderText = "P. UNIDAD";
-            this.P_unidad.Name = "P_unidad";
-            this.P_unidad.ReadOnly = true;
-            this.P_unidad.Width = 70;
-            // 
             // Importe
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle6;
             this.Importe.HeaderText = "IMPORTE";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
@@ -969,9 +969,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn DTO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn P_unidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn V_U;
         private System.Windows.Forms.DataGridViewTextBoxColumn Igv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn P_unidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
     }
 }

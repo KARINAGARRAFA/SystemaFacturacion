@@ -152,22 +152,14 @@ namespace Presentation.Forms
             {
                 lblTipoComprobante.Text = "BOLETA ELECTRONICA";
                 lblSerie.Text = "B001";
-                GenerarNumeroComprobante();
+                lblNroCorrelativo.Text = VENTA.NumeroComprobante(lblSerie.Text);
             }
             else if (cbxTipoDocumento.Text == "FACTURA")
             {
                 lblTipoComprobante.Text = "FACTURA ELECTRONICA";
                 lblSerie.Text = "F001";
-                GenerarNumeroComprobante();
+                lblNroCorrelativo.Text = VENTA.NumeroComprobante(lblSerie.Text);
             }
-        }
-
-        private void GenerarNumeroComprobante()
-        {
-            if (cbxTipoDocumento.Text == "BOLETA")
-                lblNroCorrelativo.Text = VENTA.NumeroComprobante("BOLETA");
-            else if (cbxTipoDocumento.Text == "FACTURA")
-                lblNroCorrelativo.Text = VENTA.NumeroComprobante("FACTURA");
         }
 
         private void txtRucCliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -182,7 +174,7 @@ namespace Presentation.Forms
         {
             decimal ImporteTotal=0;
             decimal IGV=0;
-            decimal SubTotal=0;
+            decimal Base_imponible=0;
 
             foreach(DataGridViewRow row in dataGridView1.Rows)
             {
@@ -198,9 +190,9 @@ namespace Presentation.Forms
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                SubTotal += Convert.ToDecimal(row.Cells["V_U"].Value);
+                Base_imponible += Convert.ToDecimal(row.Cells["V_U"].Value);
             }
-            txtSubTotalVentas.Text = SubTotal.ToString("N2");
+            txtSubTotalVentas.Text = Base_imponible.ToString("N2");
         }
 
         private void FormRegistrarVentas_Activated(object sender, EventArgs e)
@@ -225,10 +217,10 @@ namespace Presentation.Forms
         {
             dataGridView1.Rows[n].Cells[2].Value = Program.code_product;
             dataGridView1.Rows[n].Cells[4].Value = Program.Product_name;
-            dataGridView1.Rows[n].Cells[6].Value = Convert.ToDecimal(500.00);
-            dataGridView1.Rows[n].Cells[8].Value = Convert.ToDecimal(600.00);
-            dataGridView1.Rows[n].Cells[7].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[8].Value) * 0.18;
-            dataGridView1.Rows[n].Cells[9].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[7].Value) * Convert.ToDouble(dataGridView1.Rows[n].Cells[3].Value);
+            dataGridView1.Rows[n].Cells[6].Value = Convert.ToDecimal(600.00);
+            dataGridView1.Rows[n].Cells[9].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[6].Value) * Convert.ToDouble(dataGridView1.Rows[n].Cells[3].Value);
+            dataGridView1.Rows[n].Cells[7].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[9].Value) / 1.18;
+            dataGridView1.Rows[n].Cells[8].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[9].Value) - Convert.ToDouble(dataGridView1.Rows[n].Cells[7].Value);
 
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -270,11 +262,11 @@ namespace Presentation.Forms
         {
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();
-                dgvRow.Cells["V_U"].Value = Convert.ToDecimal(500.00);
+                dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();                
                 dgvRow.Cells["P_unidad"].Value = Convert.ToDecimal(600.00);
-                dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * 0.18;
                 dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value);
+                dgvRow.Cells["V_U"].Value = Convert.ToDouble(dgvRow.Cells["Importe"].Value) / 1.18;
+                dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["Importe"].Value) - Convert.ToDouble(dgvRow.Cells["V_U"].Value);
             }
         }
 
@@ -316,16 +308,14 @@ namespace Presentation.Forms
                     {
                         for (int i = 0; i < dataGridView1.Rows.Count; i++)
                         {
-                            Decimal SumaIgv = 0; Decimal SumaSubTotal = 0;
                             if (Convert.ToString(dataGridView1.Rows[i].Cells[2].Value) != "")
                             {
-                                SumaIgv += Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value);
-                                SumaSubTotal += Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value);
                                 GuardarDetalleVenta(
                                 Convert.ToString(dataGridView1.Rows[i].Cells[2].Value),
                                 Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value),
+                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value),
                                 Convert.ToDecimal(dataGridView1.Rows[i].Cells[8].Value),
-                                SumaIgv, SumaSubTotal
+                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value)
                                 );
                             }
                         }
@@ -335,7 +325,7 @@ namespace Presentation.Forms
                         MessageBox.Show(ex.Message);
                     }
                     Limpiar1();
-                    GenerarNumeroComprobante();
+                    lblNroCorrelativo.Text = VENTA.NumeroComprobante(lblSerie.Text);
                 }
                 else
                 {
@@ -351,36 +341,27 @@ namespace Presentation.Forms
         private void GuardarVenta()
         {
             var v = new Venta();
-            decimal Importe_total = 0;
             if (Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value) != "")
             {
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    Importe_total = Convert.ToDecimal(dataGridView1.Rows[i].Cells[9].Value);
-                }
-                string  cdp_tipo = "";
-                //TipoDocumento = rbnBoleta.Checked == true ? "Boleta" : "Factura";
-                cdp_tipo = Convert.ToString(cbxTipoDocumento.AccessibilityObject); //== "BOLETA" ? "01" : "02";965
-                //v.Code = VENTA.GenerarIdVenta(); //------------------------codigo de venta
+                //string cdp_tipo = cbxTipoDocumento.SelectedValue.ToString(); //Convert.ToString(cbxTipoDocumento.AccessibilityObject); //== "BOLETA" ? "01" : "02";965
 
-                IDVenta = VENTA.GenerarIdVentas(lblRucUsuario.Text, cbxTipoDocumento.Text, lblSerie.Text, Convert.ToInt32(lblNroCorrelativo.Text));
-                v.Code = IDVenta;//------------------------codigo de venta
+                IDVenta = VENTA.GenerarIdVentas(lblRucUsuario.Text, cbxTipoDocumento.SelectedValue.ToString(), lblSerie.Text, Convert.ToInt32(lblNroCorrelativo.Text));
+                v.Code = IDVenta;
                 v.Numero = Convert.ToInt32("0");
                 v.Fecha_emision = DateTime.Now; //Convert.ToDateTime(lblFechaEmision.Text);
                 v.Fecha_pago = Convert.ToDateTime(dtpFechaPago.Value);
-                v.Cdp_tipo = cdp_tipo;
+                v.Cdp_tipo = cbxTipoDocumento.SelectedValue.ToString();
                 v.Cdp_serie = lblSerie.Text;  ///--------------------4 digitos
                 v.Cdp_numero =Convert.ToInt32(lblNroCorrelativo.Text);
                 v.Proveedor_tipo = "";
                 v.Proveedor_numero = Program.Ruc_cliente;
                 v.Valor_exportacion = Convert.ToDecimal("0.0");
-                v.Base_imponible = Convert.ToDecimal("0.0");
+                v.Base_imponible = Convert.ToDecimal(txtSubTotalVentas.Text); 
                 v.Importe_total_exonerada = Convert.ToDecimal("0.0");
                 v.Importe_total_inafecta = Convert.ToDecimal("0.0");
-                v.Igv = Convert.ToDecimal("0.0");
-                v.Importe_total = Importe_total;
+                v.Igv = Convert.ToDecimal(txtIGV.Text);
+                v.Importe_total = Convert.ToDecimal(txtImporteTotal.Text); 
                 v.Dolares = Convert.ToDecimal("0.0");
-                v.Tipo_cambio = Convert.ToDecimal("0.0");
                 v.Igv_retencion = Convert.ToDecimal("0.0");
                 v.Detraccion_id = Convert.ToInt32("0");
                 v.Constancia_detraccion_numero = "";
@@ -392,6 +373,7 @@ namespace Presentation.Forms
                 v.updated_at = DateTime.Now;
                 v.Company_ruc = lblRucUsuario.Text;
                 MessageBox.Show(VENTA.RegistrarVenta(v), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                VENTA.ActualizarNumeroCorrelativo(v.Cdp_serie, v.Cdp_numero);
             }
         }
         private void GuardarDetalleVenta(String objIdProducto, Int32 objCantidad, Decimal objPUnitario,
@@ -399,7 +381,7 @@ namespace Presentation.Forms
         {
             var dv = new DetalleVenta();
             
-            dv.Code = Dventa.GenerarIdDetalleVenta();
+            //dv.Code = Dventa.GenerarIdDetalleVenta();
             dv.Code_product = objIdProducto;
             dv.Code_sales = IDVenta;
             dv.Cantidad = objCantidad;
@@ -411,7 +393,6 @@ namespace Presentation.Forms
             dv.updated_at = DateTime.Today;
 
             Dventa.RegistrarDetalleVenta(dv);
-            //Limpiar1();
         }
         private void Limpiar1()
         {

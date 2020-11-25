@@ -25,7 +25,6 @@ namespace Business.Entity
         private Decimal m_igv;
         private Decimal m_importe_total;
         private Decimal m_dolares;
-        private Decimal m_tipo_cambio;
         private Decimal m_igv_retencion;
         private int m_detraccion_id;
         private String m_constancia_detraccion_numero;
@@ -115,11 +114,6 @@ namespace Business.Entity
         {
             get { return m_dolares; }
             set { m_dolares = value; }
-        }
-        public Decimal Tipo_cambio
-        {
-            get { return m_tipo_cambio; }
-            set { m_tipo_cambio = value; }
         }
         public Decimal Igv_retencion
         {
