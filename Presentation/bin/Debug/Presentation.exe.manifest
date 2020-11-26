@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Business.dll" size="36864">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Business.dll" size="37888">
       <assemblyIdentity name="Business" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ZTDC91GRNXPyiWxed1LAyFP3D2v0erRLNV3oOaBFcOs=</dsig:DigestValue>
+        <dsig:DigestValue>ScPnNsaFoQ3SLUWv/EM3b7KX094G89n2qAWvrei6j9U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Presentation.exe" size="118792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Presentation.exe" size="133128">
       <assemblyIdentity name="Presentation" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TikXaRAtr6qnF5V24uI9rSq+ri38u2r9M8d8tFIYCc8=</dsig:DigestValue>
+        <dsig:DigestValue>OY7tkt2QCIgLq90HckQ4xoOGCb+9aQK+2YCcUzgRc0o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

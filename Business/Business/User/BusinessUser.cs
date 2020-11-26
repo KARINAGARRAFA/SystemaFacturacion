@@ -14,7 +14,11 @@ namespace Business.Business.User
 {
     public class BusinessUser
     {
+        #region Inicializar
+
         private ClsManejador M = new ClsManejador();
+        #endregion
+        #region CRUD
         public String RegistrarUsuario(Entity.User U)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -61,11 +65,6 @@ namespace Business.Business.User
             }
             return Mensaje;
         }
-
-        public DataTable ListarUsuario()
-        {
-            return M.Listado("ListarUsuario", null);
-        }
         public String ActualizarUsuario(Entity.User U)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -92,6 +91,19 @@ namespace Business.Business.User
                 throw ex;
             }
             return Mensaje;
+        }
+        public DataTable BuscarUsuario(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("FiltrarDatosUsuario", lst);
+        }
+        #endregion
+
+        public DataTable ListarUsuario()
+        {
+            return M.Listado("ListarUsuario", null);
         }
     }
 }

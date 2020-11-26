@@ -12,8 +12,14 @@ using System.Data;
 namespace Business.Business.Producto
 {
     public class BusinessProducto
-    {       
+    {
+        #region Inicializar
+
         private ClsManejador M = new ClsManejador();
+        #endregion
+
+
+        #region CRUD
         public String RegistrarProducto(Entity.ClsProduct p)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -56,11 +62,6 @@ namespace Business.Business.Producto
             }
             return Mensaje;
         }
-
-        public DataTable Listado()
-        {
-            return M.Listado("Listarproducto", null);
-        }
         public String ActualizarProductos(Entity.ClsProduct p)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -85,12 +86,28 @@ namespace Business.Business.Producto
             }
             return Mensaje;
         }
+
         public DataTable BuscarProducto(String objDatos)
         {
             DataTable dt = new DataTable();
             List<ClsParameter> lst = new List<ClsParameter>();
             lst.Add(new ClsParameter("@Datos", objDatos));
             return dt = M.Listado("BuscarProducto", lst);
+        }
+        public DataTable BuscarProducto2(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("FiltrarDatosProducto", lst);
+        }
+
+        #endregion
+
+
+        public DataTable Listado()
+        {
+            return M.Listado("Listarproducto", null);
         }
     }
 }

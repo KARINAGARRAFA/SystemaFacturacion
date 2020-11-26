@@ -13,7 +13,12 @@ namespace Business.Business.Categoria
 {
     public class BusinessCategoria
     {
+        #region Inicializar
+
         private ClsManejador M = new ClsManejador();
+        #endregion
+
+        #region CRUD
         public String RegistrarCategoria(Entity.Categoria c)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -35,7 +40,6 @@ namespace Business.Business.Categoria
             }
             return Mensaje;
         }
-
         public String DeleteCategoria(Entity.Categoria c)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -53,11 +57,6 @@ namespace Business.Business.Categoria
                 throw ex;
             }
             return Mensaje;
-        }
-
-        public DataTable ListarCategoria()
-        {
-            return M.Listado("ListarCategoria", null);
         }
         public String ActualizarCategoria(Entity.Categoria c)
         {
@@ -80,5 +79,20 @@ namespace Business.Business.Categoria
             }
             return Mensaje;
         }
+
+        #endregion
+
+        public DataTable ListarCategoria()
+        {
+            return M.Listado("ListarCategoria", null);
+        }
+        public DataTable BuscarCategoria(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("BuscarCategoria", lst);
+        }
+        
     }
 }

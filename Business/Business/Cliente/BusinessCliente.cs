@@ -17,7 +17,12 @@ namespace Business.Business.Cliente
 {
     public class BusinessCliente
     {
+        #region Inicializar
+
         private ClsManejador M = new ClsManejador();
+        #endregion
+
+        #region CRUD
         public String RegistrarCliente(Entity.Cliente cl)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -45,35 +50,6 @@ namespace Business.Business.Cliente
             }
             return Mensaje;
         }
-
-        public String RegistrarClienteRenic(List<string> cl)
-        {
-            List<ClsParameter> lst = new List<ClsParameter>();
-            String Mensaje = "";
-            try
-            {
-                lst.Add(new ClsParameter("@Ruc_client", cl[0]));
-                lst.Add(new ClsParameter("@Business_name", cl[1]));
-                lst.Add(new ClsParameter("@Brand", cl[3]));
-                lst.Add(new ClsParameter("@Address", cl[7]));
-                lst.Add(new ClsParameter("@Email", cl[12]));
-                lst.Add(new ClsParameter("@Telephone", ""));
-                lst.Add(new ClsParameter("@Status", cl[6]));
-                lst.Add(new ClsParameter("@Condition", cl[2]));
-                lst.Add(new ClsParameter("@Created_at", DateTime.Today));
-                lst.Add(new ClsParameter("@Updated_at", DateTime.Today));
-                lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
-
-                M.EjecutarSP("RegistrarCliente", ref lst);
-                Mensaje = lst[10].Valor.ToString();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return Mensaje;
-        }
-
         public String DeleteCliente(Entity.Cliente cl)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -92,7 +68,35 @@ namespace Business.Business.Cliente
             }
             return Mensaje;
         }
+        public String ActualizarCliente(Entity.Cliente cl)
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            String Mensaje = "";
 
+            try
+            {
+                lst.Add(new ClsParameter("@Ruc_client", cl.Ruc_client));
+                lst.Add(new ClsParameter("@Business_name", cl.Business_name));
+                lst.Add(new ClsParameter("@Brand", cl.Brand));
+                lst.Add(new ClsParameter("@Address", cl.Address));
+                lst.Add(new ClsParameter("@Email", cl.Email));
+                lst.Add(new ClsParameter("@Telephone", cl.Telephone));
+                lst.Add(new ClsParameter("@Status", cl.Status));
+                lst.Add(new ClsParameter("@Condition", cl.Condition));
+                lst.Add(new ClsParameter("@Updated_at", cl.updated_at));
+                lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
+                M.EjecutarSP("ActualizarCliente", ref lst);
+                Mensaje = lst[9].Valor.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Mensaje;
+        }
+        #endregion
+
+        #region BUSCAR
         public DataTable BuscarCliente(String objDatos)
         {
             DataTable dt = new DataTable();
@@ -132,30 +136,29 @@ namespace Business.Business.Cliente
             }
             return C;
         }
+        #endregion
 
-        public DataTable ListarCliente()
-        {
-            return M.Listado("ListarCliente", null);
-        }
-        public String ActualizarCliente(Entity.Cliente cl)
+        #region HELP
+        public String RegistrarClienteRenic(List<string> cl)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
             String Mensaje = "";
-
             try
             {
-                lst.Add(new ClsParameter("@Ruc_client", cl.Ruc_client));
-                lst.Add(new ClsParameter("@Business_name", cl.Business_name));
-                lst.Add(new ClsParameter("@Brand", cl.Brand));
-                lst.Add(new ClsParameter("@Address", cl.Address));
-                lst.Add(new ClsParameter("@Email", cl.Email));
-                lst.Add(new ClsParameter("@Telephone", cl.Telephone));
-                lst.Add(new ClsParameter("@Status", cl.Status));
-                lst.Add(new ClsParameter("@Condition", cl.Condition));
-                lst.Add(new ClsParameter("@Updated_at", cl.updated_at));
+                lst.Add(new ClsParameter("@Ruc_client", cl[0]));
+                lst.Add(new ClsParameter("@Business_name", cl[1]));
+                lst.Add(new ClsParameter("@Brand", cl[3]));
+                lst.Add(new ClsParameter("@Address", cl[7]));
+                lst.Add(new ClsParameter("@Email", cl[12]));
+                lst.Add(new ClsParameter("@Telephone", ""));
+                lst.Add(new ClsParameter("@Status", cl[6]));
+                lst.Add(new ClsParameter("@Condition", cl[2]));
+                lst.Add(new ClsParameter("@Created_at", DateTime.Today));
+                lst.Add(new ClsParameter("@Updated_at", DateTime.Today));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
-                M.EjecutarSP("ActualizarCliente", ref lst);
-                Mensaje = lst[9].Valor.ToString();
+
+                M.EjecutarSP("RegistrarCliente", ref lst);
+                Mensaje = lst[10].Valor.ToString();
             }
             catch (Exception ex)
             {
@@ -183,5 +186,11 @@ namespace Business.Business.Cliente
             }
             return Mensaje;
         }
+        #endregion
+
+        public DataTable ListarCliente()
+        {
+            return M.Listado("ListarCliente", null);
+        }        
     }
 }

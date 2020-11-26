@@ -43,7 +43,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(722, 336);
+            this.btnNuevo.Location = new System.Drawing.Point(688, 445);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 23);
             this.btnNuevo.TabIndex = 16;
@@ -54,7 +54,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(96, 25);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(720, 20);
+            this.textBox1.Size = new System.Drawing.Size(734, 20);
             this.textBox1.TabIndex = 15;
             // 
             // label1
@@ -72,7 +72,7 @@
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Location = new System.Drawing.Point(29, 51);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(787, 258);
+            this.panel1.Size = new System.Drawing.Size(804, 366);
             this.panel1.TabIndex = 13;
             // 
             // dataGridView1
@@ -86,7 +86,7 @@
             this.description});
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(781, 252);
+            this.dataGridView1.Size = new System.Drawing.Size(798, 360);
             this.dataGridView1.TabIndex = 0;
             // 
             // Code_marca
@@ -111,7 +111,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 375);
+            this.ClientSize = new System.Drawing.Size(856, 495);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
@@ -119,6 +119,7 @@
             this.Name = "FormListarCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormListarCompras";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

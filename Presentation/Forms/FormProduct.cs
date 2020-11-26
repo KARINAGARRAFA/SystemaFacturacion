@@ -66,11 +66,7 @@ namespace Presentation.Forms
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.Rows.Count > 0)
-            {
-                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
-                timer1.Stop();
-            }
+
         }
 
 
@@ -82,7 +78,7 @@ namespace Presentation.Forms
             else
                 Program.Evento = 0;
             dataGridView1.ClearSelection();
-            fr.Show();
+            fr.ShowDialog();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -96,13 +92,16 @@ namespace Presentation.Forms
                 producto.txtCode_trademark.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 producto.txtCode_category.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
                 producto.txtDescription.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-                producto.Show();
+               
                 
 
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
                 else
                     Program.Evento = 0;
+
+                producto.ShowDialog();
+                timer1.Start();
                 dataGridView1.ClearSelection();
             }
             else
@@ -122,11 +121,6 @@ namespace Presentation.Forms
         }
 
        
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -149,6 +143,7 @@ namespace Presentation.Forms
                     else
                         Program.Evento = 0;
                     dataGridView1.ClearSelection();
+                    timer1.Start();
                 }
                 else
                 {
@@ -166,6 +161,51 @@ namespace Presentation.Forms
             Program.Code_category = dataGridView1.CurrentRow.Cells[3].Value.ToString();
             Program.Description = dataGridView1.CurrentRow.Cells[4].Value.ToString();
             this.Close();
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
+                timer1.Stop();
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            string date;
+            if (e.KeyChar == 13)
+            {
+                DataTable dt = new DataTable();
+                date = textBox1.Text;
+                dt = p.BuscarProducto2(date);
+                try
+                {
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(dt.Rows[i][0]);
+                        dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                        dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
+                        dataGridView1.Rows[i].Cells[3].Value = dt.Rows[i][3].ToString();
+                        dataGridView1.Rows[i].Cells[4].Value = dt.Rows[i][4].ToString();
+                    }
+                    dataGridView1.ClearSelection();
+                    timer1.Stop();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                //CargarListado();
+                //timer1.Start();
+            }
         }
     }
 }

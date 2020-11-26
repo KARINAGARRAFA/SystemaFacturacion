@@ -13,7 +13,13 @@ namespace Business.Business.Marca
 {
     public class BusinessMarca
     {
+        #region Inicializar
+
         private ClsManejador M = new ClsManejador();
+        #endregion
+
+
+        #region CRUD
         public String RegistrarMarca(Entity.Marca m)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -54,11 +60,6 @@ namespace Business.Business.Marca
             }
             return Mensaje;
         }
-
-        public DataTable ListarMarca()
-        {
-            return M.Listado("ListarMarca", null);
-        }
         public String ActualizarMarca(Entity.Marca m)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -80,5 +81,21 @@ namespace Business.Business.Marca
             }
             return Mensaje;
         }
+
+        #endregion
+
+
+        public DataTable ListarMarca()
+        {
+            return M.Listado("ListarMarca", null);
+        }
+        public DataTable BuscarMarca(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("BuscarMarca", lst);
+        }
+       
     }
 }

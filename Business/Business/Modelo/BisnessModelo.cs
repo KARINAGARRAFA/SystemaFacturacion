@@ -12,7 +12,13 @@ namespace Business.Business.Modelo
 {
     public class BisnessModelo
     {
+        #region Inicializar
+
         private ClsManejador M = new ClsManejador();
+        #endregion
+
+
+        #region CRUD
         public String RegistrarModelo(Entity.Modelo md)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -52,11 +58,6 @@ namespace Business.Business.Modelo
             }
             return Mensaje;
         }
-
-        public DataTable ListarModelo()
-        {
-            return M.Listado("ListarModelo", null);
-        }
         public String ActualizarModelo(Entity.Modelo md)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -78,5 +79,21 @@ namespace Business.Business.Modelo
             }
             return Mensaje;
         }
+
+        #endregion
+
+
+        public DataTable ListarModelo()
+        {
+            return M.Listado("ListarModelo", null);
+        }
+        public DataTable BuscarModelo(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("BuscarModelo", lst);
+        }
+       
     }
 }

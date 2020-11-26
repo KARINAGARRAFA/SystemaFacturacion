@@ -70,8 +70,10 @@ namespace Presentation.Forms
                 Program.Evento = 1;
             else
                 Program.Evento = 0;
+
+            um.ShowDialog();
             dataGridView1.ClearSelection();
-            um.Show();
+            timer1.Start();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -82,13 +84,16 @@ namespace Presentation.Forms
                 um.txtCodigoUM.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 um.txtNombreUM.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 um.txtDescriptionUM.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                um.Show();
+                
 
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
                 else
                     Program.Evento = 0;
+
+                um.ShowDialog();
                 dataGridView1.ClearSelection();
+                timer1.Start();
             }
             else
             {
@@ -115,10 +120,54 @@ namespace Presentation.Forms
                 else
                     Program.Evento = 0;
                 dataGridView1.ClearSelection();
+                timer1.Start();
             }
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Eliminar.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
+                timer1.Stop();
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            string date;
+            if (e.KeyChar == 13)
+            {
+                DataTable dt = new DataTable();
+                date = textBox1.Text;
+                dt = UM.BuscarUM(date); 
+                try
+                {
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(dt.Rows[i][0]);
+                        dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                        dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
+                    }
+                    dataGridView1.ClearSelection();
+                    timer1.Stop();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                CargarListado();
+                timer1.Start();
             }
         }
     }

@@ -31,6 +31,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCondicion = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.TextBox();
@@ -48,8 +50,6 @@
             this.txtRuc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtCondicion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             this.btnCancelar.TabIndex = 16;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -98,6 +99,22 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Empresa";
+            // 
+            // txtCondicion
+            // 
+            this.txtCondicion.Location = new System.Drawing.Point(78, 132);
+            this.txtCondicion.Name = "txtCondicion";
+            this.txtCondicion.Size = new System.Drawing.Size(118, 20);
+            this.txtCondicion.TabIndex = 17;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(10, 135);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 13);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Condicion:";
             // 
             // txtEmail
             // 
@@ -236,22 +253,6 @@
             this.label6.Size = new System.Drawing.Size(136, 13);
             this.label6.TabIndex = 13;
             this.label6.Text = "REGISTRO DE EMPRESA";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 135);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 13);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "Condicion:";
-            // 
-            // txtCondicion
-            // 
-            this.txtCondicion.Location = new System.Drawing.Point(78, 132);
-            this.txtCondicion.Name = "txtCondicion";
-            this.txtCondicion.Size = new System.Drawing.Size(118, 20);
-            this.txtCondicion.TabIndex = 17;
             // 
             // FormRegistroUsuario
             // 

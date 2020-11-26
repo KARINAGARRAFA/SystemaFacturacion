@@ -12,84 +12,12 @@ namespace Business.Business.Venta
 {
     public class BusinessVenta
     {
+        #region Inicializar
+
         private ClsManejador M = new ClsManejador();
+        #endregion
 
-        public String GenerarSerieDocumento()
-        {
-            List<ClsParameter> lst = new List<ClsParameter>();
-            String Serie = "";
-            try
-            {
-                lst.Add(new ClsParameter("@Serie", "", SqlDbType.VarChar, ParameterDirection.Output, 5));
-                M.EjecutarSP("[Serie Documento]", ref lst);
-                Serie = Convert.ToString(lst[0].Valor.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return Convert.ToString(Serie);
-        }
-        public String NumeroComprobante(String serieDocumento)
-        {
-            List<ClsParameter> lst = new List<ClsParameter>();
-            String NroCorrelativo = "";
-            try
-            {
-                lst.Add(new ClsParameter("@serie", serieDocumento));
-                lst.Add(new ClsParameter("@NroCorrelativo", "", SqlDbType.VarChar, ParameterDirection.Output, 7));
-                M.EjecutarSP("consecutive_number", ref lst);
-                NroCorrelativo = Convert.ToString(lst[1].Valor.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return Convert.ToString(NroCorrelativo);
-        }
-
-        public String ActualizarNumeroCorrelativo(string serie, int numero)
-        {
-            List<ClsParameter> lst = new List<ClsParameter>();
-            String Mensaje = "";
-
-            try
-            {
-                lst.Add(new ClsParameter("@serie", serie));
-                lst.Add(new ClsParameter("@numero", numero));
-                lst.Add(new ClsParameter("@Updated_at", DateTime.Now));
-                lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
-                M.EjecutarSP("Update_sfe_consecutive_number", ref lst);
-                Mensaje = lst[3].Valor.ToString();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return Mensaje;
-        }
-
-        public String GenerarIdVentas(string ruc,string cdp_tipo, string cdp_serie,int cdp_numero)
-        {
-            List<ClsParameter> lst = new List<ClsParameter>();
-            String idVentas = "";
-            try
-            {
-                lst.Add(new ClsParameter("@Ruc", ruc));
-                lst.Add(new ClsParameter("@Cdp_tipo", cdp_tipo));
-                lst.Add(new ClsParameter("@Cdp_serie", cdp_serie));
-                lst.Add(new ClsParameter("@Cdp_numero", cdp_numero));
-                lst.Add(new ClsParameter("@CodeVenta", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
-                M.EjecutarSP("GenerarIdVentas", ref lst);
-
-                idVentas = lst[4].Valor.ToString();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return idVentas;
-        }
+        #region CRUD
         public String RegistrarVenta(Entity.Venta v)
         {
             String Mensaje = "";
@@ -132,10 +60,103 @@ namespace Business.Business.Venta
                 throw ex;
             }
         }
+        public DataTable BuscarVenta(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("BuscarVenta", lst);
+        }
+
+        #endregion
+
+        #region HELP
+        public String NumeroComprobante(String serieDocumento)
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            String NroCorrelativo = "";
+            try
+            {
+                lst.Add(new ClsParameter("@serie", serieDocumento));
+                lst.Add(new ClsParameter("@NroCorrelativo", "", SqlDbType.VarChar, ParameterDirection.Output, 7));
+                M.EjecutarSP("consecutive_number", ref lst);
+                NroCorrelativo = Convert.ToString(lst[1].Valor.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Convert.ToString(NroCorrelativo);
+        }
+        public String ActualizarNumeroCorrelativo(string serie, int numero)
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            String Mensaje = "";
+
+            try
+            {
+                lst.Add(new ClsParameter("@serie", serie));
+                lst.Add(new ClsParameter("@numero", numero));
+                lst.Add(new ClsParameter("@Updated_at", DateTime.Now));
+                lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
+                M.EjecutarSP("Update_sfe_consecutive_number", ref lst);
+                Mensaje = lst[3].Valor.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Mensaje;
+        }
+        public String GenerarIdVentas(string ruc, string cdp_tipo, string cdp_serie, int cdp_numero)
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            String idVentas = "";
+            try
+            {
+                lst.Add(new ClsParameter("@Ruc", ruc));
+                lst.Add(new ClsParameter("@Cdp_tipo", cdp_tipo));
+                lst.Add(new ClsParameter("@Cdp_serie", cdp_serie));
+                lst.Add(new ClsParameter("@Cdp_numero", cdp_numero));
+                lst.Add(new ClsParameter("@CodeVenta", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
+                M.EjecutarSP("GenerarIdVentas", ref lst);
+
+                idVentas = lst[4].Valor.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return idVentas;
+        }
+
+        // TABLA : VOUCHER TIPO
         public DataTable ListarTipoDocumento()
         {
             return M.Listado("ListarTipoComprobante", null);
         }
+        #endregion
 
+        public DataTable ListarVenta()
+        {
+            return M.Listado("ListarVentas", null);
+        }
+        // NO USADO
+        public String GenerarSerieDocumento()
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            String Serie = "";
+            try
+            {
+                lst.Add(new ClsParameter("@Serie", "", SqlDbType.VarChar, ParameterDirection.Output, 5));
+                M.EjecutarSP("[Serie Documento]", ref lst);
+                Serie = Convert.ToString(lst[0].Valor.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Convert.ToString(Serie);
+        }
     }
 }

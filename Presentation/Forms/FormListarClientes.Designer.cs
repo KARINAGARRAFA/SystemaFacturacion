@@ -45,13 +45,14 @@
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(697, 343);
+            this.btnEliminar.Location = new System.Drawing.Point(480, 440);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 18;
@@ -62,7 +63,7 @@
             // btnEditar
             // 
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(597, 343);
+            this.btnEditar.Location = new System.Drawing.Point(380, 440);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 17;
@@ -73,7 +74,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(489, 343);
+            this.btnNuevo.Location = new System.Drawing.Point(272, 440);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 23);
             this.btnNuevo.TabIndex = 16;
@@ -83,9 +84,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(97, 26);
+            this.textBox1.Location = new System.Drawing.Point(97, 88);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(678, 20);
+            this.textBox1.Size = new System.Drawing.Size(726, 20);
             this.textBox1.TabIndex = 15;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -93,7 +94,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(30, 26);
+            this.label1.Location = new System.Drawing.Point(30, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 16);
             this.label1.TabIndex = 14;
@@ -102,9 +103,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(30, 52);
+            this.panel1.Location = new System.Drawing.Point(30, 124);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(745, 258);
+            this.panel1.Size = new System.Drawing.Size(801, 294);
             this.panel1.TabIndex = 13;
             // 
             // dataGridView1
@@ -123,7 +124,7 @@
             this.condicion});
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(739, 252);
+            this.dataGridView1.Size = new System.Drawing.Size(790, 288);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
@@ -137,9 +138,9 @@
             // 
             // business_name
             // 
+            this.business_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.business_name.HeaderText = "Nombre de la Empresa";
             this.business_name.Name = "business_name";
-            this.business_name.Width = 150;
             // 
             // brand
             // 
@@ -181,17 +182,30 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl.Location = new System.Drawing.Point(328, 27);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(126, 38);
+            this.lbl.TabIndex = 20;
+            this.lbl.Text = "CLIENTES";
+            // 
             // FormListarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 377);
+            this.ClientSize = new System.Drawing.Size(843, 494);
+            this.Controls.Add(this.lbl);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormListarClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormListarClientes";
@@ -213,6 +227,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ruc;
         private System.Windows.Forms.DataGridViewTextBoxColumn business_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn brand;
@@ -221,6 +236,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.DataGridViewTextBoxColumn condicion;
-        public System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lbl;
     }
 }

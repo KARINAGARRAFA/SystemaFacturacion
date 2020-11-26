@@ -77,7 +77,7 @@ namespace Presentation.Forms
             else
                 Program.Evento = 0;
             dataGridView1.ClearSelection();
-            cl.Show();
+            cl.ShowDialog();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -93,13 +93,16 @@ namespace Presentation.Forms
                 ct.txtTelefono.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
                 ct.txtStatus.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
                 ct.txtCondicion.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
-                ct.Show();
+                
 
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
                 else
                     Program.Evento = 0;
+
+                ct.ShowDialog();
                 dataGridView1.ClearSelection();
+                timer1.Start();
             }
             else
             {
@@ -130,6 +133,7 @@ namespace Presentation.Forms
                 else
                     Program.Evento = 0;
                 dataGridView1.ClearSelection();
+                timer1.Start();
             }
             else
             {
@@ -198,10 +202,6 @@ namespace Presentation.Forms
         
         private void dataGridView1_DoubleClick_1(object sender, EventArgs e)
         {
-            //FormRegistrarVentas ven = new FormRegistrarVentas();
-            //ven.txtRucCliente.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            //ven.txtNombreCliente.Text =  dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            //ven.txtDireccionCliente.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
             Program.Ruc_cliente = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             Program.Business_name = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             Program.Address = dataGridView1.CurrentRow.Cells[3].Value.ToString();

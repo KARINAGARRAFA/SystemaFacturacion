@@ -78,7 +78,7 @@ namespace Presentation.Forms
             else
                 Program.Evento = 0;
             dataGridView1.ClearSelection();
-            Us.Show();
+            Us.ShowDialog();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -95,13 +95,15 @@ namespace Presentation.Forms
                 Us.txtTelefono.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
                 Us.txtStatus.Text = dataGridView1.CurrentRow.Cells[7].Value.ToString();
                 Us.txtCondicion.Text = dataGridView1.CurrentRow.Cells[8].Value.ToString();
-                Us.Show();
+                
 
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
                 else
                     Program.Evento = 0;
+                Us.ShowDialog();
                 dataGridView1.ClearSelection();
+                timer1.Start();
             }
             else
             {
@@ -126,6 +128,7 @@ namespace Presentation.Forms
                 {
                     msj = USER.DeleteUsuario(Us);
                     MessageBox.Show(msj, "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    timer1.Start();
                 }
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
@@ -136,6 +139,54 @@ namespace Presentation.Forms
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Eliminar.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            string date;
+            if (e.KeyChar == 13)
+            {
+                DataTable dt = new DataTable();
+                date = textBox1.Text;
+                dt = USER.BuscarUsuario(date);
+                try
+                {
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(dt.Rows[i][0]);
+                        dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                        dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
+                        dataGridView1.Rows[i].Cells[3].Value = dt.Rows[i][3].ToString();
+                        dataGridView1.Rows[i].Cells[4].Value = dt.Rows[i][4].ToString();
+                        dataGridView1.Rows[i].Cells[5].Value = dt.Rows[i][5].ToString();
+                        dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
+                        dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
+                    }
+                    dataGridView1.ClearSelection();
+                    timer1.Stop();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                CargarListado();
+                timer1.Start();
+            }
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
+                timer1.Stop();
             }
         }
     }

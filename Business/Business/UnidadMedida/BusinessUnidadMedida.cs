@@ -13,7 +13,11 @@ namespace Business.Business.UnidadMedida
 {
     public class BusinessUnidadMedida
     {
+        #region Inicializar
+
         private ClsManejador M = new ClsManejador();
+        #endregion
+        #region CRUD
         public String RegistrarUnidadMedida(Entity.UnidadMedida um)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -54,11 +58,6 @@ namespace Business.Business.UnidadMedida
             }
             return Mensaje;
         }
-
-        public DataTable ListarUnidaMedida()
-        {
-            return M.Listado("ListarUMedida", null);
-        }
         public String ActualizarUnidadMedida(Entity.UnidadMedida um)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -79,6 +78,19 @@ namespace Business.Business.UnidadMedida
                 throw ex;
             }
             return Mensaje;
+        }
+        public DataTable BuscarUM(String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("BuscarUM", lst);
+        }
+        #endregion
+
+        public DataTable ListarUnidaMedida()
+        {
+            return M.Listado("ListarUMedida", null);
         }
     }
 }

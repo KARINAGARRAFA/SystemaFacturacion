@@ -13,8 +13,12 @@ namespace Business.Business.Venta
 {
     public class BusinessDetalleVenta
     {
-        private ClsManejador M = new ClsManejador();
+        #region Inicializar
 
+        private ClsManejador M = new ClsManejador();
+        #endregion
+
+        #region CRUD
         public String RegistrarDetalleVenta(Entity.DetalleVenta dv)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
@@ -40,6 +44,9 @@ namespace Business.Business.Venta
             }
             return Mensaje;
         }
+        #endregion
+
+        // NO USADO 
         public String GenerarIdDetalleVenta()
         {
             List<ClsParameter> lst = new List<ClsParameter>();

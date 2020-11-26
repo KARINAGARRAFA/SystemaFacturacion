@@ -71,7 +71,7 @@ namespace Presentation.Forms
             else
                 Program.Evento = 0;
             dataGridView1.ClearSelection();
-            C.Show();
+            C.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -109,19 +109,64 @@ namespace Presentation.Forms
                 ct.txtCodigoCategoria.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 ct.txtNombreCategoria.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 ct.txtDescriptionCategoria.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                ct.Show();
 
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
                 else
                     Program.Evento = 0;
+
+                ct.ShowDialog();
                 dataGridView1.ClearSelection();
+                timer1.Start();
             }
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
                 //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            string date;
+            if (e.KeyChar == 13)
+            {
+                DataTable dt = new DataTable();
+                date = textBox1.Text;
+                dt = CT.BuscarCategoria(date); 
+                try
+                {
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(dt.Rows[i][0]);
+                        dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                        dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
+                    }
+                    dataGridView1.ClearSelection();
+                    timer1.Stop();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                CargarListado();
+                timer1.Start();
+            }
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
+                timer1.Stop();
             }
         }
     }

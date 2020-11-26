@@ -164,10 +164,5 @@ namespace Presentation.Forms
             Ct.MdiParent = this;
             Ct.Show();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

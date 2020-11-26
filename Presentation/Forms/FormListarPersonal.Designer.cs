@@ -44,7 +44,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(425, 332);
+            this.button1.Location = new System.Drawing.Point(512, 443);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 24;
@@ -54,7 +54,7 @@
             // btnEditar
             // 
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(296, 332);
+            this.btnEditar.Location = new System.Drawing.Point(383, 443);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 23;
@@ -64,7 +64,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(165, 332);
+            this.btnNuevo.Location = new System.Drawing.Point(252, 443);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 23);
             this.btnNuevo.TabIndex = 22;
@@ -75,7 +75,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(100, 25);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(411, 20);
+            this.textBox1.Size = new System.Drawing.Size(712, 20);
             this.textBox1.TabIndex = 21;
             // 
             // label1
@@ -93,7 +93,7 @@
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Location = new System.Drawing.Point(33, 51);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(478, 258);
+            this.panel1.Size = new System.Drawing.Size(782, 376);
             this.panel1.TabIndex = 19;
             // 
             // dataGridView1
@@ -107,7 +107,7 @@
             this.description});
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(475, 252);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 370);
             this.dataGridView1.TabIndex = 0;
             // 
             // Code_product
@@ -118,9 +118,9 @@
             // 
             // product_name
             // 
+            this.product_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.product_name.HeaderText = "Nombre ";
             this.product_name.Name = "product_name";
-            this.product_name.Width = 150;
             // 
             // description
             // 
@@ -132,7 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 369);
+            this.ClientSize = new System.Drawing.Size(849, 488);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNuevo);
@@ -142,6 +142,7 @@
             this.Name = "FormListarPersonal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormListarPersonal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
