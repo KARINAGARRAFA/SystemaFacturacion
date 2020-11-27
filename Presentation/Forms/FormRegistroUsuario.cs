@@ -98,8 +98,6 @@ namespace Presentation.Forms
                 MessageBox.Show("Por Favor Ingrese RUC de la empresa.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRuc.Focus();
             }
-            FormListarUser U = new FormListarUser();
-            U.timer1.Start();
         }
         private void Limpiar()
         {

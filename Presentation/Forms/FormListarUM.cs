@@ -16,7 +16,6 @@ namespace Presentation.Forms
 {
     public partial class FormListarUM : Form
     {
-        int listado = 0;
         BusinessUnidadMedida UM = new BusinessUnidadMedida();
 
         public FormListarUM()
@@ -24,19 +23,8 @@ namespace Presentation.Forms
             InitializeComponent();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            switch (listado)
-            {
-                case 0: CargarListado(); break;
-            }
-        }
-
         private void FormListarUM_Load(object sender, EventArgs e)
         {
-            timer1.Start();
-            timer1.Interval = 5000;
-
             CargarListado();
             dataGridView1.ClearSelection();
         }
@@ -73,7 +61,7 @@ namespace Presentation.Forms
 
             um.ShowDialog();
             dataGridView1.ClearSelection();
-            timer1.Start();
+            CargarListado();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -93,7 +81,7 @@ namespace Presentation.Forms
 
                 um.ShowDialog();
                 dataGridView1.ClearSelection();
-                timer1.Start();
+                CargarListado();
             }
             else
             {
@@ -114,13 +102,13 @@ namespace Presentation.Forms
                 {
                     msj = UM.DeleteUnidadMedida(um);
                     MessageBox.Show(msj, "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    CargarListado();
                 }
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
                 else
                     Program.Evento = 0;
                 dataGridView1.ClearSelection();
-                timer1.Start();
             }
             else
             {
@@ -133,7 +121,6 @@ namespace Presentation.Forms
             if (dataGridView1.RowCount > 0)
             {
                 dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
-                timer1.Stop();
             }
         }
 
@@ -157,17 +144,11 @@ namespace Presentation.Forms
                         dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
                     }
                     dataGridView1.ClearSelection();
-                    timer1.Stop();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                CargarListado();
-                timer1.Start();
             }
         }
     }

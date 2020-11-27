@@ -30,13 +30,7 @@ namespace Presentation.Forms
 
         private void FormProduct_Load(object sender, EventArgs e)
         {
-            timer1.Start();
-            timer1.Interval = 5000;
-
             CargarListado();
-
-            //DataTable dt = p.Listado();
-            //dataGridView1.DataSource = dt;
             dataGridView1.ClearSelection();
         }
         private void CargarListado()
@@ -63,12 +57,6 @@ namespace Presentation.Forms
             }
             dataGridView1.ClearSelection();
         }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -101,7 +89,6 @@ namespace Presentation.Forms
                     Program.Evento = 0;
 
                 producto.ShowDialog();
-                timer1.Start();
                 dataGridView1.ClearSelection();
             }
             else
@@ -119,9 +106,6 @@ namespace Presentation.Forms
                 case 0: CargarListado(); break;
             }
         }
-
-       
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             var product = new ClsProduct();
@@ -143,7 +127,6 @@ namespace Presentation.Forms
                     else
                         Program.Evento = 0;
                     dataGridView1.ClearSelection();
-                    timer1.Start();
                 }
                 else
                 {
@@ -168,7 +151,6 @@ namespace Presentation.Forms
             if (dataGridView1.RowCount > 0)
             {
                 dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
-                timer1.Stop();
             }
         }
 
@@ -194,17 +176,11 @@ namespace Presentation.Forms
                         dataGridView1.Rows[i].Cells[4].Value = dt.Rows[i][4].ToString();
                     }
                     dataGridView1.ClearSelection();
-                    timer1.Stop();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                //CargarListado();
-                //timer1.Start();
             }
         }
     }

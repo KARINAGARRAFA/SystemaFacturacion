@@ -73,8 +73,6 @@ namespace Presentation.Forms
                 MessageBox.Show("Por Favor Ingrese Nombre de la categoria.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNombreCategoria.Focus();
             }
-            FormListarCategoria categoria = new FormListarCategoria();
-            categoria.timer1.Start();
         }
         private void Limpiar()
         {

@@ -8,7 +8,6 @@ using DataAccess.Connection;
 using DataAccess.Entity;
 using System.Data;
 
-
 namespace Business.Business.login
 {
     public class BusinessUserLogin
@@ -32,17 +31,17 @@ namespace Business.Business.login
                 throw ex;
             }
         }
-
         public String IniciarSesion(Entity.User_Login U)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
             String Mensaje = "";
+            string pas = Encrypt.GetSHA1(Convert.ToString(U.Password));
             try
             {
                 lst.Add(new ClsParameter("@Usuario", U.User));
-                lst.Add(new ClsParameter("@Password", U.Password));
+                lst.Add(new ClsParameter("@Password", pas));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
-                M.EjecutarSP("IniciarSesion", ref lst);
+                M.EjecutarSP("IniciarSesion3", ref lst);
                 return Mensaje = lst[2].Valor.ToString();
             }
             catch (Exception ex)

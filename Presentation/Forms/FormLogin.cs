@@ -17,7 +17,7 @@ namespace Presentation.Forms
 {
     public partial class FormLogin : Form
     {
-        BusinessUserLogin UL = new BusinessUserLogin();
+        BusinessCompanyUser UL = new BusinessCompanyUser();
            //BusinessProducto p = new BusinessProducto();
         public FormLogin()
         {
@@ -35,14 +35,23 @@ namespace Presentation.Forms
                     U.User = txtUser.Text;
                     U.Password = txtPasword.Text;
                     Mensaje = UL.IniciarSesion(U);
-                    if (Mensaje == "Su Contraseña es Incorrecta.")
+                    if (Mensaje == "Su ContraseñaADMIN es Incorrecta.")
                     {
                         MessageBox.Show(Mensaje, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                         txtPasword.Clear();
                         txtPasword.Focus();
                     }
-                    else
-                        if (Mensaje == "El Nombre de Usuario no Existe.")
+                    else if (Mensaje == "Bienvenido ADMIN")
+                    {
+                        Program.Even_sesion = 1;
+                        RecuperarDatosSesion();
+                        MessageBox.Show(Mensaje, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        FormPrincipal fr = new FormPrincipal();                        
+                        fr.Show();
+                        this.Hide();
+                        return;
+                    }
+                    else if (Mensaje == "El Nombre de Usuario no Existe.")
                     {
                         MessageBox.Show(Mensaje, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                         txtUser.Clear();
@@ -50,12 +59,21 @@ namespace Presentation.Forms
                         txtUser.Focus();
                     }
                     else
+                        if (Mensaje == "Su Contraseña es Incorrecta.")
                     {
+                        MessageBox.Show(Mensaje, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        txtPasword.Clear();
+                        txtPasword.Focus();
+                    }
+                    else if (Mensaje == "Bienvenido")
+                    {
+                        Program.Even_sesion = 0;
+                        RecuperarDatosSesion();
                         MessageBox.Show(Mensaje, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         FormPrincipal fr = new FormPrincipal();
-                        //RecuperarDatosSesion();
                         fr.Show();
                         this.Hide();
+                        return;
                     }
                 }
                 else
@@ -68,6 +86,19 @@ namespace Presentation.Forms
             {
                 MessageBox.Show("Por Favor Ingrese Nombre de Usuario.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUser.Focus();
+            }
+        }
+        private void RecuperarDatosSesion()
+        {
+            DataRow row;
+            DataTable dt = new DataTable();
+            string pas = Encrypt.GetSHA1(Convert.ToString(txtPasword.Text));
+            dt = UL.DevolverDatosSesion(txtUser.Text, pas);
+            if (dt.Rows.Count == 1)
+            {
+                row = dt.Rows[0];
+                Program.ruc_login = row[0].ToString();
+                Program.state = row[1].ToString();
             }
         }
     }

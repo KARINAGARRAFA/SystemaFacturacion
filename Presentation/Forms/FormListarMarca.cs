@@ -18,18 +18,11 @@ namespace Presentation.Forms
 {
     public partial class FormListarMarca : Form
     {
-        int listado = 0;
-
         BusinessMarca M = new BusinessMarca();
-
-        //BusinessProducto p = new BusinessProducto();
         public FormListarMarca()
         {
             InitializeComponent();
         }
-        
-        
-
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             FormRegistroMarca mr = new FormRegistroMarca();
@@ -44,9 +37,6 @@ namespace Presentation.Forms
 
         private void FormListarMarca_Load(object sender, EventArgs e)
         {
-            timer1.Start();
-            timer1.Interval = 5000;
-
             CargarListado();
             dataGridView1.ClearSelection();
         }
@@ -90,21 +80,12 @@ namespace Presentation.Forms
 
 
                 m.ShowDialog();
-                timer1.Start();
+                CargarListado();
                 dataGridView1.ClearSelection();
             }
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            switch (listado)
-            {
-                case 0: CargarListado(); break;
             }
         }
 
@@ -115,8 +96,6 @@ namespace Presentation.Forms
 
             if (dataGridView1.SelectedRows.Count > 0)
             {
-
-                //FrmRegistroProductos P = new FrmRegistroProductos();
                 mr.Code_trademark  = dataGridView1.CurrentRow.Cells[0].Value.ToString();
 
                 if (MessageBox.Show("¿Está Seguro que Desea Eliminar.?", "Sistema de Facturacion.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
@@ -129,20 +108,11 @@ namespace Presentation.Forms
                 else
                     Program.Evento = 0;
                 dataGridView1.ClearSelection();
-                timer1.Start();
+                CargarListado();
             }
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Eliminar.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
-        private void timer1_Tick_1(object sender, EventArgs e)
-        {
-            switch (listado)
-            {
-                case 0: CargarListado(); break;
             }
         }
 
@@ -151,7 +121,6 @@ namespace Presentation.Forms
             if (dataGridView1.RowCount > 0)
             {
                 dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
-                timer1.Stop();
             }
         }
 
@@ -175,17 +144,11 @@ namespace Presentation.Forms
                         dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
                     }
                     dataGridView1.ClearSelection();
-                    timer1.Stop();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                CargarListado();
-                timer1.Start();
             }
         }
     }

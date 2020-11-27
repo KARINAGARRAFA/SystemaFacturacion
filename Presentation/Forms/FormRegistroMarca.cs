@@ -78,8 +78,6 @@ namespace Presentation.Forms
                 MessageBox.Show("Por Favor Ingrese Nombre de la marca.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNombreMarca.Focus();
             }
-            FormProduct LP = new FormProduct();
-            LP.timer1.Start();
         }
         private void Limpiar()
         {

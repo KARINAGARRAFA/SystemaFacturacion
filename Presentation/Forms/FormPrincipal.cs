@@ -85,7 +85,10 @@ namespace Presentation.Forms
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-
+            if (Program.Even_sesion == 0)
+            {
+                pRODUCTOSToolStripMenuItem.Visible = false;
+            }
         }
 
         private void cOMPRASToolStripMenuItem_DoubleClick(object sender, EventArgs e)

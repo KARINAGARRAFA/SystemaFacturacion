@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
@@ -45,7 +44,6 @@
             this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -184,10 +182,6 @@
             this.condicion.Name = "condicion";
             this.condicion.Width = 70;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // lbl
             // 
             this.lbl.AutoSize = true;
@@ -233,7 +227,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ruc;
         private System.Windows.Forms.DataGridViewTextBoxColumn business_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn brand;

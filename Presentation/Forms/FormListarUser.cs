@@ -27,13 +27,10 @@ namespace Presentation.Forms
 
         private void FormListarUser_Load(object sender, EventArgs e)
         {
-            timer1.Start();
-            timer1.Interval = 5000;
-
             CargarListado();
             dataGridView1.ClearSelection();
         }
-        private void CargarListado()
+        public void CargarListado()
         {
 
             DataTable dt = new DataTable();
@@ -62,14 +59,6 @@ namespace Presentation.Forms
             dataGridView1.ClearSelection();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            switch (listado)
-            {
-                case 0: CargarListado(); break;
-            }
-        }
-
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             FormRegistroUsuario Us = new FormRegistroUsuario();
@@ -79,6 +68,7 @@ namespace Presentation.Forms
                 Program.Evento = 0;
             dataGridView1.ClearSelection();
             Us.ShowDialog();
+            CargarListado();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -103,13 +93,11 @@ namespace Presentation.Forms
                     Program.Evento = 0;
                 Us.ShowDialog();
                 dataGridView1.ClearSelection();
-                timer1.Start();
+                CargarListado();
             }
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -120,15 +108,13 @@ namespace Presentation.Forms
 
             if (dataGridView1.SelectedRows.Count > 0)
             {
-
-                //FrmRegistroProductos P = new FrmRegistroProductos();
                 Us.Code_ruc = dataGridView1.CurrentRow.Cells[0].Value.ToString();
 
                 if (MessageBox.Show("¿Está Seguro que Desea Eliminar.?", "Sistema de Facturacion.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                 {
                     msj = USER.DeleteUsuario(Us);
                     MessageBox.Show(msj, "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    timer1.Start();
+                    CargarListado();
                 }
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
@@ -167,17 +153,11 @@ namespace Presentation.Forms
                         dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
                     }
                     dataGridView1.ClearSelection();
-                    timer1.Stop();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                CargarListado();
-                timer1.Start();
             }
         }
 
@@ -186,7 +166,6 @@ namespace Presentation.Forms
             if (dataGridView1.RowCount > 0)
             {
                 dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
-                timer1.Stop();
             }
         }
     }

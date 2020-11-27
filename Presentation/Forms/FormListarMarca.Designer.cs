@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
@@ -39,7 +38,6 @@
             this.Code_marca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -136,10 +134,6 @@
             this.description.Name = "description";
             this.description.Width = 200;
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
-            // 
             // lbl
             // 
             this.lbl.AutoSize = true;
@@ -185,7 +179,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code_marca;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn description;

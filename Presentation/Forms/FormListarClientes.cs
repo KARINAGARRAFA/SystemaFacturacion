@@ -27,9 +27,6 @@ namespace Presentation.Forms
 
         private void FormListarClientes_Load(object sender, EventArgs e)
         {
-            timer1.Start();
-            timer1.Interval = 5000;
-
             CargarListado();
             dataGridView1.ClearSelection();
         }
@@ -61,14 +58,6 @@ namespace Presentation.Forms
             dataGridView1.ClearSelection();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            switch (listado)
-            {
-                case 0: CargarListado(); break;
-            }
-        }
-
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             FormRegistrarClientes cl = new FormRegistrarClientes();
@@ -76,8 +65,10 @@ namespace Presentation.Forms
                 Program.Evento = 1;
             else
                 Program.Evento = 0;
-            dataGridView1.ClearSelection();
+            
             cl.ShowDialog();
+            dataGridView1.ClearSelection();
+            CargarListado();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -102,13 +93,11 @@ namespace Presentation.Forms
 
                 ct.ShowDialog();
                 dataGridView1.ClearSelection();
-                timer1.Start();
+                CargarListado();
             }
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -119,8 +108,6 @@ namespace Presentation.Forms
 
             if (dataGridView1.SelectedRows.Count > 0)
             {
-
-                //FrmRegistroProductos P = new FrmRegistroProductos();
                 ct.Ruc_client = dataGridView1.CurrentRow.Cells[0].Value.ToString();
 
                 if (MessageBox.Show("¿Está Seguro que Desea Eliminar.?", "Sistema de Facturacion.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
@@ -133,29 +120,19 @@ namespace Presentation.Forms
                 else
                     Program.Evento = 0;
                 dataGridView1.ClearSelection();
-                timer1.Start();
+                CargarListado();
             }
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Eliminar.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //FormRegistrarVentas V = new FormRegistrarVentas();
-            //V.txtDocIdentidad.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            //V.txtDatos.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-        }
-
         private void dataGridView1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount > 0)
             {
                 dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
-                timer1.Stop();
             }
         }
 
@@ -167,9 +144,7 @@ namespace Presentation.Forms
             {
                 DataTable dt = new DataTable();
                 ct.Ruc_client = textBox1.Text;
-                //C.Dni = txtBuscarCliente.Text;
                 dt = CL.BuscarCliente(ct.Ruc_client);
-                    //C.BuscarCliente(C.Dni);
                 try
                 {
                     dataGridView1.Rows.Clear();
@@ -186,17 +161,11 @@ namespace Presentation.Forms
                         dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
                     }
                     dataGridView1.ClearSelection();
-                    timer1.Stop();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                CargarListado();
-                timer1.Start();
             }
         }
         

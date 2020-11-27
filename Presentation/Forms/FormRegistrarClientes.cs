@@ -91,8 +91,6 @@ namespace Presentation.Forms
                 MessageBox.Show("Por Favor Ingrese Ruc del cliente", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtRuc.Focus();
             }
-            FormListarClientes Cliente = new FormListarClientes();
-            Cliente.timer1.Start();
         }
         private void Limpiar()
         {

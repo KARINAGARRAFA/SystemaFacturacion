@@ -13,6 +13,11 @@ namespace Presentation
         /// 
         /// </summary>
         public static int Evento;
+        public static int Even_sesion;
+
+        //datoslogin
+        public static string ruc_login;
+        public static String state;
 
         //Datos del Producto
         public static string code_product;
@@ -39,7 +44,7 @@ namespace Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.FormPrincipal());
+            Application.Run(new Forms.FormLogin());
         }
     }
 }
