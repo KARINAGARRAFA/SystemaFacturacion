@@ -32,6 +32,17 @@ CREATE TABLE sfe_product(
    description varchar(1000) NULL,
    created_at datetime NULL,
 	updated_at datetime NULL,
+)select * from sfe_product
+CREATE TABLE sfe_company_products(
+   code_product varchar(50) primary key NOT NULL,
+   name_product varchar (1000)not NULL,
+   code_brand varchar (50) NULL,
+   code_category varchar (50) NULL,
+   precio decimal(18, 2) not NULL,
+   unidad_medida varchar(20) not null,
+   ruc_empresa varchar(11)not null,
+   created_at datetime NULL,
+	updated_at datetime NULL,
 )
 CREATE TABLE sfe_trademark(
 	code_trademark varchar(10) primary key NOT NULL,
@@ -232,7 +243,7 @@ select * from sfe_voucher_type
 INSERT INTO sfe_voucher_type VALUES ('01','FACTURA','2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 INSERT INTO sfe_voucher_type VALUES ('03','BOLETA','2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 
-DROP TABLE sfe_product
+DROP TABLE sfe_company_products
 
 
 DELETE FROM sfe_sales_detail

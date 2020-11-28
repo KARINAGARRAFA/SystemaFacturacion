@@ -17,8 +17,6 @@ namespace Presentation.Forms
 {
     public partial class FormListarClientes : Form
     {
-        int listado = 0;
-
         BusinessCliente CL = new BusinessCliente();
         public FormListarClientes()
         {
@@ -27,6 +25,10 @@ namespace Presentation.Forms
 
         private void FormListarClientes_Load(object sender, EventArgs e)
         {
+            if (Program.Even_listar_Cliente == 1)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
             CargarListado();
             dataGridView1.ClearSelection();
         }

@@ -14,17 +14,22 @@ namespace Presentation
         /// </summary>
         public static int Evento;
         public static int Even_sesion;
+        public static int Even_listar_producto;
+        public static int Even_listar_Cliente;
 
         //datoslogin
         public static string ruc_login;
         public static String state;
+        public static String ruc_empresa;
 
-        //Datos del Producto
+        //Datos del Producto Compania
         public static string code_product;
-        public static String Product_name;
-        public static String Code_trademark;
+        public static String name_product;
+        public static String Code_brand;
         public static String Code_category;
-        public static String Description;
+        public static Decimal precio;
+        public static String unidad_medida;
+        public static String ruc_Pcompany;
 
         //Datos del Cliente
         public static String Ruc_cliente;

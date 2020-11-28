@@ -97,8 +97,18 @@ namespace Presentation.Forms
             if (dt.Rows.Count == 1)
             {
                 row = dt.Rows[0];
-                Program.ruc_login = row[0].ToString();
-                Program.state = row[1].ToString();
+                if(Program.Even_sesion == 0)
+                {
+                    Program.ruc_login = row[0].ToString();
+                    Program.state = row[1].ToString();
+                    Program.ruc_empresa = row[2].ToString();
+                }
+                else
+                {
+                    Program.ruc_login = row[0].ToString();
+                    Program.state = row[1].ToString();
+                    Program.ruc_empresa = Program.ruc_login;
+                }
             }
         }
     }

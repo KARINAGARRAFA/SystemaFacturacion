@@ -29,16 +29,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEliminarItem = new System.Windows.Forms.Button();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.IdD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buscarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.V_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Igv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txtDireccionCliente = new System.Windows.Forms.TextBox();
@@ -96,16 +106,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtObservacion = new System.Windows.Forms.TextBox();
-            this.IdD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buscarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.V_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Igv = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -180,6 +180,96 @@
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            // 
+            // IdD
+            // 
+            this.IdD.HeaderText = "IdV";
+            this.IdD.Name = "IdD";
+            this.IdD.ReadOnly = true;
+            this.IdD.Visible = false;
+            this.IdD.Width = 20;
+            // 
+            // buscarProducto
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.NullValue = "...";
+            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle7;
+            this.buscarProducto.HeaderText = "...";
+            this.buscarProducto.Name = "buscarProducto";
+            this.buscarProducto.Width = 25;
+            // 
+            // code_product
+            // 
+            this.code_product.HeaderText = "COD. PRODUCTO";
+            this.code_product.Name = "code_product";
+            // 
+            // Cant
+            // 
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = null;
+            this.Cant.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Cant.HeaderText = "CANT.";
+            this.Cant.Name = "Cant";
+            this.Cant.ToolTipText = "int";
+            this.Cant.Width = 50;
+            // 
+            // nombre
+            // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombre.HeaderText = "NOMBRE";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // DTO
+            // 
+            this.DTO.HeaderText = "DTO";
+            this.DTO.Name = "DTO";
+            this.DTO.ReadOnly = true;
+            this.DTO.Width = 70;
+            // 
+            // P_unidad
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle9.Format = "N2";
+            dataGridViewCellStyle9.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle9;
+            this.P_unidad.HeaderText = "P. UNIDAD";
+            this.P_unidad.Name = "P_unidad";
+            this.P_unidad.ReadOnly = true;
+            this.P_unidad.Width = 70;
+            // 
+            // V_U
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle10;
+            this.V_U.HeaderText = "V/U";
+            this.V_U.Name = "V_U";
+            this.V_U.ReadOnly = true;
+            this.V_U.Width = 70;
+            // 
+            // Igv
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle11;
+            this.Igv.HeaderText = "IGV";
+            this.Igv.Name = "Igv";
+            this.Igv.ReadOnly = true;
+            this.Igv.Width = 70;
+            // 
+            // Importe
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle12;
+            this.Importe.HeaderText = "IMPORTE";
+            this.Importe.Name = "Importe";
+            this.Importe.ReadOnly = true;
+            this.Importe.Width = 90;
             // 
             // groupBox3
             // 
@@ -750,96 +840,6 @@
             this.txtObservacion.Name = "txtObservacion";
             this.txtObservacion.Size = new System.Drawing.Size(624, 20);
             this.txtObservacion.TabIndex = 34;
-            // 
-            // IdD
-            // 
-            this.IdD.HeaderText = "IdV";
-            this.IdD.Name = "IdD";
-            this.IdD.ReadOnly = true;
-            this.IdD.Visible = false;
-            this.IdD.Width = 20;
-            // 
-            // buscarProducto
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "...";
-            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle1;
-            this.buscarProducto.HeaderText = "...";
-            this.buscarProducto.Name = "buscarProducto";
-            this.buscarProducto.Width = 25;
-            // 
-            // code_product
-            // 
-            this.code_product.HeaderText = "COD. PRODUCTO";
-            this.code_product.Name = "code_product";
-            // 
-            // Cant
-            // 
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Cant.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Cant.HeaderText = "CANT.";
-            this.Cant.Name = "Cant";
-            this.Cant.ToolTipText = "int";
-            this.Cant.Width = 50;
-            // 
-            // nombre
-            // 
-            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombre.HeaderText = "NOMBRE";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // DTO
-            // 
-            this.DTO.HeaderText = "DTO";
-            this.DTO.Name = "DTO";
-            this.DTO.ReadOnly = true;
-            this.DTO.Width = 70;
-            // 
-            // P_unidad
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle3;
-            this.P_unidad.HeaderText = "P. UNIDAD";
-            this.P_unidad.Name = "P_unidad";
-            this.P_unidad.ReadOnly = true;
-            this.P_unidad.Width = 70;
-            // 
-            // V_U
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle4;
-            this.V_U.HeaderText = "V/U";
-            this.V_U.Name = "V_U";
-            this.V_U.ReadOnly = true;
-            this.V_U.Width = 70;
-            // 
-            // Igv
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Igv.HeaderText = "IGV";
-            this.Igv.Name = "Igv";
-            this.Igv.ReadOnly = true;
-            this.Igv.Width = 70;
-            // 
-            // Importe
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Importe.HeaderText = "IMPORTE";
-            this.Importe.Name = "Importe";
-            this.Importe.ReadOnly = true;
-            this.Importe.Width = 90;
             // 
             // FormRegistrarVentas
             // 

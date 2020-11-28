@@ -17,8 +17,8 @@ namespace Presentation.Forms
 {
     public partial class FormRegistroProducto : Form
     {
-        
-        BusinessProducto p = new BusinessProducto();
+
+        BusimessCompanyProduct CProduct = new BusimessCompanyProduct();
         
 
         public FormRegistroProducto()
@@ -28,73 +28,62 @@ namespace Presentation.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var product = new ClsProduct();
+            var product = new CompanyProduct();
             String msj = "";
-            /*try
-            {
-                
-
-                product.Code_product = txtCode_product.Text;
-                product.Product_name = txtProduct_name.Text;
-                product.Code_trademark = txtCode_trademark.Text;
-                product.Code_category = txtCode_category.Text;
-                product.Description = txtDescription.Text;
-                product.created_at = DateTime.Today;
-                product.updated_at = DateTime.Today;
-
-                msj = p.RegistrarProducto(product);
-                Limpiar();
-                MessageBox.Show(msj);
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
             if (txtProduct_name.Text.Trim() != "")
             {
-                if (txtDescription.Text.Trim() !="")
+                if (txtPrecio.Text.Trim() !="")
                 {
-                    if (Program.Evento == 0)
+                    if (txtUM.Text.Trim() != "")
                     {
-                        product.Code_product = txtCode_product.Text;
-                        product.Product_name = txtProduct_name.Text;
-                        product.Code_trademark = txtCode_trademark.Text;
-                        product.Code_category = txtCode_category.Text;
-                        product.Description = txtDescription.Text;
-                        product.created_at = DateTime.Today;
-                        product.updated_at = DateTime.Today;
-
-                        msj = p.RegistrarProducto(product);
-                        if (msj == "Este Producto ya ha sido Registrado.")
+                        if (Program.Evento == 0)
                         {
-                            MessageBox.Show(msj, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            product.Code_product = txtCode_product.Text;
+                            product.Product_name = txtProduct_name.Text;
+                            product.Code_brand = txtCode_brand.Text;
+                            product.Code_category = txtCode_category.Text;
+                            product.Precio = Convert.ToDecimal(txtPrecio.Text);
+                            product.Unidad_medida = txtUM.Text;
+                            product.Ruc_empresa = Program.ruc_empresa;
+                            product.created_at = DateTime.Today;
+                            product.updated_at = DateTime.Today;
+
+                            msj = CProduct.RegistrarCompanyProduct(product);
+                            if (msj == "Este Producto ya ha sido Registrado.")
+                            {
+                                MessageBox.Show(msj, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+                                MessageBox.Show(msj, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Limpiar();
+                            }
                         }
                         else
                         {
-                            MessageBox.Show(msj, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            product.Code_product = txtCode_product.Text;
+                            product.Product_name = txtProduct_name.Text;
+                            product.Code_brand = txtCode_brand.Text;
+                            product.Code_category = txtCode_category.Text;
+                            product.Precio = Convert.ToDecimal(txtPrecio.Text);
+                            product.Unidad_medida = txtUM.Text;
+                            product.Ruc_empresa = txtRuc_Pcomopany.Text;
+                            product.updated_at = DateTime.Today;
+                            MessageBox.Show(CProduct.ActualizarCompanyProduct(product), "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             Limpiar();
+                            Close();
                         }
                     }
-                     else
-                     {
-                        product.Code_product = txtCode_product.Text;
-                        product.Product_name = txtProduct_name.Text;
-                        product.Code_trademark = txtCode_trademark.Text;
-                        product.Code_category = txtCode_category.Text;
-                        product.Description = txtDescription.Text;
-                        product.created_at = DateTime.Today;
-                        product.updated_at = DateTime.Today;
-                        MessageBox.Show(p.ActualizarProductos(product), "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Limpiar();
-                        Close();
-                    }
-                            
+                    else
+                    {
+                        MessageBox.Show("Por Favor Ingrese la unidad de medida.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtUM.Focus();
+                    }                           
                 }
                 else
                 {
                     MessageBox.Show("Por Favor Ingrese Marca del Producto.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtDescription.Focus();
+                    txtPrecio.Focus();
                 }
             }
             else
@@ -102,45 +91,102 @@ namespace Presentation.Forms
                 MessageBox.Show("Por Favor Ingrese Nombre del Producto.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtProduct_name.Focus();
             }
-            FormProduct LP = new FormProduct();
-            LP.timer1.Start();
-
-
         }
         private void Limpiar()
         {
             txtCode_product.Text = "";
             txtProduct_name.Clear();
-            txtCode_trademark.Clear();
+            txtCode_brand.Clear();
             txtCode_category.Clear();
-            txtDescription.Clear();
-
-        }
-
-        private void txtProduct_name_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtProduct_name_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            FormProduct fr = new FormProduct();
-            fr.ShowDialog();
-        }
-
-        private void FormRegistroProducto_Load(object sender, EventArgs e)
-        {
-
+            txtPrecio.Clear();
+            txtUM.Clear();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+
+
+        private void activar()
+        {
+            if (Program.Evento != 0)
+            {
+                gbProductos.Visible = false;
+            }
+        }
+
+
+        BusinessProducto P = new BusinessProducto();
+        private void txtBuscarProduct_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            string date;
+            if (e.KeyChar == 13)
+            {
+                DataTable dt = new DataTable();
+                date = txtBuscarProduct.Text;
+                dt = P.BuscarProducto(date);
+                try
+                {
+                    dataGridView1.Rows.Clear();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(dt.Rows[i][0]);
+                        dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                        dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
+                        dataGridView1.Rows[i].Cells[3].Value = dt.Rows[i][3].ToString();
+                    }
+                    dataGridView1.ClearSelection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+        private void FormRegistroProducto_Load(object sender, EventArgs e)
+        {
+            if (Program.Evento == 0)
+            {
+                gbProductos.Visible = true;
+                CargarListado();
+                dataGridView1.ClearSelection();
+            }            
+        }
+        private void CargarListado()
+        {
+
+            DataTable dt = new DataTable();
+            dt = P.Listado();
+            try
+            {
+                dataGridView1.Rows.Clear();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dataGridView1.Rows.Add(dt.Rows[i][0]);
+                    dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
+                    dataGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                    dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
+                    dataGridView1.Rows[i].Cells[3].Value = dt.Rows[i][3].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dataGridView1.ClearSelection();
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            txtCode_product.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            txtProduct_name.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            txtCode_brand.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            txtCode_category.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
         }
     }
 }

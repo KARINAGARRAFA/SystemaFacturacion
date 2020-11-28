@@ -52,6 +52,7 @@
     <Compile Include="Business\Help\Encrypt.cs" />
     <Compile Include="Business\Marca\BusinessMarca.cs" />
     <Compile Include="Business\Modelo\BisnessModelo.cs" />
+    <Compile Include="Business\Producto\BusimessCompanyProduct.cs" />
     <Compile Include="Business\Producto\BusinessProducto.cs" />
     <Compile Include="Business\UnidadMedida\BusinessUnidadMedida.cs" />
     <Compile Include="Business\User\BusinessUser.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Business\Venta\BusinessVenta.cs" />
     <Compile Include="Entity\Categoria.cs" />
     <Compile Include="Entity\Cliente.cs" />
+    <Compile Include="Entity\CompanyProduct.cs" />
     <Compile Include="Entity\CompanyUser.cs" />
     <Compile Include="Json\ClienteJSON.cs" />
     <Compile Include="Entity\ClsProduct.cs" />

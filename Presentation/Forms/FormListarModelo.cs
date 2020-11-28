@@ -16,7 +16,6 @@ namespace Presentation.Forms
 {
     public partial class FormListarModelo : Form
     {
-        int listado = 0;
         BisnessModelo MD = new BisnessModelo();
         
         public FormListarModelo()

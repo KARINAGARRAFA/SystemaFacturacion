@@ -53,7 +53,7 @@ BEGIN  -- TABLA CATEGORIA PROC sfe_category
 	@Datos Varchar(80)
 	As Begin
 		Select code_category,category_name,description
-		From sfe_category Where code_category=@Datos or category_name=@Datos
+		From sfe_category Where code_category like '%'+@Datos+'%' or category_name like '%'+@Datos+'%'
 	End
 END
 GO
@@ -115,7 +115,7 @@ Create Proc FiltrarDatosCliente
 @Datos Varchar(80)
 As Begin
 	Select ruc,business_name,brand,address,email,telephone,status,condition 
-	From gen_vendors Where ruc=@Datos or business_name=@Datos
+	From gen_vendors Where ruc like '%'+@Datos+'%' or business_name like '%'+@Datos+'%'
 End
 --------------
 CREATE Proc ActualizarDireccoinCliente
@@ -192,11 +192,10 @@ Create Proc BuscarMarca
 @Datos Varchar(80)
 As Begin
 	Select code_trademark,trademark_name,description
-	From sfe_trademark Where code_trademark=@Datos or trademark_name=@Datos
+	From sfe_trademark Where code_trademark like '%'+@Datos+'%' or trademark_name like '%'+@Datos+'%'
 End
 ----------------
 END
-
 GO
 
 BEGIN  -- MODELO PROC sfe_model
@@ -250,10 +249,9 @@ Create Proc BuscarModelo
 @Datos Varchar(80)
 As Begin
 	Select code_model,model_name,description
-	From sfe_model Where code_model=@Datos or model_name=@Datos
+	From sfe_model Where code_model like '%'+@Datos+'%' or model_name like '%'+@Datos+'%'
 End
 -----------
-
 END 
 GO
 
@@ -276,34 +274,6 @@ As Begin
 		Set @Mensaje='Registrado Correctamente.'
 	End
 End
-------------------
-Create Proc EliminarProducto
-	@code_product varchar(10),
-	@Mensaje varchar(50) Out
-As Begin
-	DELETE FROM sfe_product WHERE code_product=@code_product
-	set @Mensaje='Producto eliminado.'
-End
--------------------
-Create Proc ActualizarProducto
-	@code_product varchar(10),
-	@product_name varchar (1000),
-	@code_trademark varchar (10),
-	@code_category varchar (10),
-	@description varchar(1000),
-	@created_at datetime,
-	@updated_at datetime,
-	@Mensaje varchar(50) Out
-As Begin
-	If(Not Exists(Select * From sfe_product Where code_product=@code_product))
-		Set @Mensaje='Producto no se encuentra Registrado.'
-	Else Begin
-		Update sfe_product Set product_name=@product_name,code_trademark=@code_trademark,code_category=@code_category,description=@description,
-		updated_at=@updated_at
-		Where code_product=@code_product
-	Set @Mensaje='Registro Actualizado Correctamente.'
-	End
-End
 ---------------------
 Create Proc BuscarProducto
 @Datos Varchar(80)
@@ -311,9 +281,6 @@ As Begin
 	Select code_product,product_name,code_trademark,code_category,description 
 	From sfe_product Where product_name=@Datos
 End
-
-
-select * from sfe_product
 -----------------
 Create Proc FiltrarDatosProducto
 @Datos Varchar(80)
@@ -331,6 +298,80 @@ End
 END
 go
 
+BEGIN  -- PRODUCTO COMPAÑIA PROC sfe_company_products
+
+Create Proc RegistrarCompanyProducts
+	@code_product varchar(50),
+	@name_product varchar (1000),
+	@code_brand varchar (50),
+	@code_category varchar (50),
+	@precio decimal(18, 2),
+	@unidad_medida varchar(20),
+    @ruc_empresa varchar(11),
+	@created_at datetime,
+	@updated_at datetime,
+	@Mensaje varchar(50) Out
+As Begin
+		If(Exists(Select * From sfe_company_products Where name_product=@name_product))
+			Set @Mensaje='Este Producto ya ha sido Registrado.'
+		Else Begin
+			Insert sfe_company_products Values(@code_product,@name_product,@code_brand,@code_category,@precio,@unidad_medida,@ruc_empresa,@created_at,@updated_at)
+			Set @Mensaje='Registrado Correctamente.'
+		End
+End
+------------------------------------------------------------
+Create Proc EliminarCompanyProducts
+	@code_product varchar(50),
+	@Mensaje varchar(50) Out
+As Begin
+	DELETE FROM sfe_company_products WHERE code_product=@code_product
+	set @Mensaje='Producto eliminado.'
+End
+---------------------------------------------------------------
+Create Proc ActualizarCompanyProducts
+	@code_product varchar(50),
+	@name_product varchar (1000),
+	@code_brand varchar (50),
+	@code_category varchar (50),
+	@precio decimal(18, 2),
+	@unidad_medida varchar(20),
+    @ruc_empresa varchar(11),
+	@updated_at datetime,
+	@Mensaje varchar(50) Out
+As Begin
+	If(Not Exists(Select * From sfe_company_products Where code_product=@code_product and ruc_empresa=@ruc_empresa))
+		Set @Mensaje='Producto no se encuentra Registrado.'
+	Else Begin
+		Update sfe_company_products Set name_product=@name_product,code_brand=@code_brand,code_category=@code_category,precio=@precio,unidad_medida=@unidad_medida,
+		updated_at=@updated_at
+		Where code_product=@code_product
+	Set @Mensaje='Registro Actualizado Correctamente.'
+	End
+End
+---------------------------------------------------------------------------
+Create Proc BuscarCompanyProducts_codigo
+@Datos Varchar(80)
+As Begin
+	Select code_product,name_product,code_brand,code_category,precio,unidad_medida,ruc_empresa 
+	From sfe_company_products Where code_product=@Datos
+End
+---------------------------------------
+Create Proc BuscarCompanyProducts
+@Datos Varchar(80)
+As Begin
+	Select code_product,name_product,code_brand,code_category,precio,unidad_medida,ruc_empresa
+	From sfe_company_products Where code_product like '%'+@Datos+'%' or name_product like '%'+@Datos+'%'
+End 
+-------------------------------
+Create Proc ListarCompanyProducts
+As Begin
+	Select * From sfe_company_products
+End
+---------------------------------
+
+end
+select * from sfe_company_products
+go
 BEGIN  -- UNIDAD MEDIDA PROC sfe_unit_measurement
 Create Proc RegistrarUMedida
 	@Code_unit varchar(10),
@@ -376,7 +417,7 @@ Create Proc BuscarUM
 @Datos Varchar(80)
 As Begin
 	Select code_unit,unit_name,description
-	From sfe_unit_measurement Where code_unit=@Datos or unit_name=@Datos
+	From sfe_unit_measurement Where code_unit like '%'+@Datos+'%' or unit_name like '%'+@Datos+'%'
 End
 ------------------------------
 Create Proc ListarUMedida
@@ -445,7 +486,7 @@ Create Proc FiltrarDatosUsuario
 @Datos Varchar(80)
 As Begin
 	Select ruc,business_name,brand,cod_sector,address,email,telephone,status,condition 
-	From sfe_users Where ruc=@Datos or business_name=@Datos
+	From sfe_users Where ruc like '%'+@Datos+'%' or business_name like '%'+@Datos+'%'
 End
 ----------------------------
 Create Proc ListarUsuario
@@ -609,7 +650,7 @@ Create Proc DevolverDatosSesion
 @Contraseña Varchar(255)
 As Begin
      If(Exists(Select * From sfe_company_users Where username=@Usuario and password=@Contraseña))
-	 Select username,state From sfe_company_users Where username=@Usuario And password=@Contraseña
+	 Select username,state,ruc_company From sfe_company_users Where username=@Usuario And password=@Contraseña
 	 Else Begin
 		If(Exists(Select * From gen_users Where username=@Usuario and password=@Contraseña))
 			Select username,state From gen_users Where username=@Usuario And password=@Contraseña

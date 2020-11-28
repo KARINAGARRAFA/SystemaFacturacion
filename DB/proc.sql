@@ -21,7 +21,7 @@ As Begin
 				  End
 		   End
    End
-Go
+Go select * from gen_users Select * From sfe_user_login Select * From sfe_users Select * From gen_vendors select * from gen_company_users
 Create Proc IniciarSesion2
 @Usuario Varchar(20),
 @Password Varchar(20),
@@ -39,6 +39,77 @@ As Begin
 		   End
    End
 Go
+
+
+
+Create Proc IniciarSesion3
+@Usuario Varchar(20),
+@Password Varchar(50),
+@Mensaje Varchar(50) Out
+As Begin
+	If(Not Exists(Select username From gen_users Where username=@Usuario))
+		
+		Set @Mensaje='El Nombre de UsuarioADMIN no Existe.'
+		Else Begin
+			If(Not Exists(Select password From gen_users Where password=@Password))
+				Set @Mensaje='Su ContraseñaADMIN es Incorrecta.'
+				Else Begin
+				  if(Exists(Select username,password From gen_users Where username=@Usuario And password=@Password))
+						Set @Mensaje='Bienvenido ADMIN'
+					ELSE begin
+					 If(Not Exists(Select username from sfe_company_users Where username=@Usuario))
+						Set @Mensaje='El Nombre de Usuario no Existe.'
+						Else Begin
+							If(Not Exists(Select password From sfe_company_users Where password=@Password))
+								Set @Mensaje='Su Contraseña es Incorrecta.'
+								Else Begin
+									if(Exists(Select username,password From sfe_company_users Where username=@Usuario And password=@Password))
+											Set @Mensaje='Bienvenido'
+								  End
+						   End
+				  End
+		   End
+   End
+end
+
+go
+
+
+Create Proc IniciarSesion4
+@Usuario Varchar(20),
+@Password Varchar(50),
+@Mensaje Varchar(50) Out
+As Begin
+	If(Not Exists(Select username From gen_users Where username=@Usuario))
+		begin
+			If(Not Exists(Select username from sfe_company_users Where username=@Usuario))
+			Set @Mensaje='El Nombre de Usuario no Existe.'
+			Else Begin
+				If(Not Exists(Select password From sfe_company_users Where password=@Password))
+					Set @Mensaje='Su Contraseña es Incorrecta.'
+				Else Begin
+					if(Exists(Select username,password From sfe_company_users Where username=@Usuario And password=@Password))
+						Set @Mensaje='Bienvenido'
+				 End
+			End
+		End
+		Else Begin
+			If(Not Exists(Select password From gen_users Where password=@Password))
+				Set @Mensaje='Su ContraseñaADMIN es Incorrecta.'
+				Else Begin
+				  if(Exists(Select username,password From gen_users Where username=@Usuario And password=@Password))
+						Set @Mensaje='Bienvenido ADMIN'					
+		        end
+			end
+   end
+
+go
+
+   select * from gen_users Select * From sfe_company_users
+
+exec IniciarSesion3 '20363916008','5BAA61E4C9B93F3F0682250B6CF8331B7EE68FD8',''
+exec IniciarSesion3 'admin','123',''
+DROP PROC IniciarSesion3
 
 Create Proc [Serie Documento]
 @Serie char(5) out
@@ -103,7 +174,6 @@ As Begin
 	End
 Go
 
-
 Create Procedure [Correlativo]
 @TipoDocumento Varchar(7),
 @NroCorrelativo Char(7)Out
@@ -116,8 +186,6 @@ As Begin
 End
 Go
 
-select * from sfe_consecutive_number
-
 Create Proc GenerarIdDetalleVenta
 @CodeDetalleVenta Int Out
 As Begin
@@ -128,7 +196,6 @@ As Begin
 		End
 	End
 Go
-
 
 Create Proc GenerarIdVenta
 @CodeVenta varchar(100) Out
@@ -180,3 +247,36 @@ As Begin
 		End
 	End
 Go
+--ELIMINADOS
+begin
+------------------
+Create Proc EliminarProducto
+	@code_product varchar(10),
+	@Mensaje varchar(50) Out
+As Begin
+	DELETE FROM sfe_product WHERE code_product=@code_product
+	set @Mensaje='Producto eliminado.'
+End
+-----------------------------------
+Create Proc ActualizarProducto
+	@code_product varchar(10),
+	@product_name varchar (1000),
+	@code_trademark varchar (10),
+	@code_category varchar (10),
+	@description varchar(1000),
+	@created_at datetime,
+	@updated_at datetime,
+	@Mensaje varchar(50) Out
+As Begin
+	If(Not Exists(Select * From sfe_product Where code_product=@code_product))
+		Set @Mensaje='Producto no se encuentra Registrado.'
+	Else Begin
+		Update sfe_product Set product_name=@product_name,code_trademark=@code_trademark,code_category=@code_category,description=@description,
+		updated_at=@updated_at
+		Where code_product=@code_product
+	Set @Mensaje='Registro Actualizado Correctamente.'
+	End
+End
+-----------------------------------------
+end
+go

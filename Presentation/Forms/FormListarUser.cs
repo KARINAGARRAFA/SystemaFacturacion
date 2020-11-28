@@ -17,8 +17,6 @@ namespace Presentation.Forms
 {
     public partial class FormListarUser : Form
     {
-        int listado = 0;
-
         BusinessUser USER = new BusinessUser();
         public FormListarUser()
         {

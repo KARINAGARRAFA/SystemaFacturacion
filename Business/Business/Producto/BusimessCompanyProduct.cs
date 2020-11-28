@@ -1,18 +1,17 @@
-﻿using System;
+﻿using DataAccess.Connection;
+using DataAccess.Entity;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Business.Entity;
-using DataAccess;
-using DataAccess.Connection;
-using DataAccess.Entity;
-using System.Data;
 
 namespace Business.Business.Producto
 {
-    public class BusinessProducto
+    public class BusimessCompanyProduct
     {
+
         #region Inicializar
 
         private ClsManejador M = new ClsManejador();
@@ -20,22 +19,24 @@ namespace Business.Business.Producto
 
 
         #region CRUD
-        public String RegistrarProducto(Entity.ClsProduct p)
+        public String RegistrarCompanyProduct(Entity.CompanyProduct p)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
             String Mensaje = "";
             try
             {
-                lst.Add(new ClsParameter("@Code_product", p.Code_product));
-                lst.Add(new ClsParameter("@Product_name", p.Product_name));
-                lst.Add(new ClsParameter("@Code_trademark", p.Code_trademark));
+                lst.Add(new ClsParameter("@code_product", p.Code_product));
+                lst.Add(new ClsParameter("@name_product", p.Product_name));
+                lst.Add(new ClsParameter("@code_brand", p.Code_brand));
                 lst.Add(new ClsParameter("@Code_category", p.Code_category));
-                lst.Add(new ClsParameter("@Description", p.Description));
-                lst.Add(new ClsParameter("@Created_at", p.created_at));
-                lst.Add(new ClsParameter("@Updated_at", p.updated_at));
+                lst.Add(new ClsParameter("@precio", p.Precio));
+                lst.Add(new ClsParameter("@unidad_medida", p.Unidad_medida));
+                lst.Add(new ClsParameter("@ruc_empresa", p.Ruc_empresa));
+                lst.Add(new ClsParameter("@created_at", p.created_at));
+                lst.Add(new ClsParameter("@updated_at", p.updated_at));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
-                M.EjecutarSP("RegistrarProducto", ref lst);
-                Mensaje = lst[7].Valor.ToString();
+                M.EjecutarSP("RegistrarCompanyProducts", ref lst);
+                Mensaje = lst[9].Valor.ToString();
             }
             catch (Exception ex)
             {
@@ -44,7 +45,7 @@ namespace Business.Business.Producto
             return Mensaje;
         }
 
-        public String Delete(Entity.ClsProduct p)
+        public String DeleteCompanyProduct(Entity.CompanyProduct p)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
             String Mensaje = "";
@@ -53,7 +54,7 @@ namespace Business.Business.Producto
             {
                 lst.Add(new ClsParameter("@Code_product", p.Code_product));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
-                M.EjecutarSP("EliminarProducto", ref lst);
+                M.EjecutarSP("EliminarCompanyProducts", ref lst);
                 Mensaje = lst[1].Valor.ToString();
             }
             catch (Exception ex)
@@ -62,23 +63,24 @@ namespace Business.Business.Producto
             }
             return Mensaje;
         }
-        public String ActualizarProductos(Entity.ClsProduct p)
+        public String ActualizarCompanyProduct(Entity.CompanyProduct p)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
             String Mensaje = "";
 
             try
             {
-                lst.Add(new ClsParameter("@Code_product", p.Code_product));
-                lst.Add(new ClsParameter("@Product_name", p.Product_name));
-                lst.Add(new ClsParameter("@Code_trademark", p.Code_trademark));
+                lst.Add(new ClsParameter("@code_product", p.Code_product));
+                lst.Add(new ClsParameter("@name_product", p.Product_name));
+                lst.Add(new ClsParameter("@code_brand", p.Code_brand));
                 lst.Add(new ClsParameter("@Code_category", p.Code_category));
-                lst.Add(new ClsParameter("@Description", p.Description));
-                lst.Add(new ClsParameter("@Created_at", p.created_at));
-                lst.Add(new ClsParameter("@Updated_at", p.updated_at));
+                lst.Add(new ClsParameter("@precio", p.Precio));
+                lst.Add(new ClsParameter("@unidad_medida", p.Unidad_medida));
+                lst.Add(new ClsParameter("@ruc_empresa", p.Ruc_empresa));
+                lst.Add(new ClsParameter("@updated_at", p.updated_at));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
-                M.EjecutarSP("ActualizarProducto", ref lst);
-                Mensaje = lst[7].Valor.ToString();
+                M.EjecutarSP("ActualizarCompanyProducts", ref lst);
+                Mensaje = lst[8].Valor.ToString();
             }
             catch (Exception ex)
             {
@@ -87,27 +89,26 @@ namespace Business.Business.Producto
             return Mensaje;
         }
 
-        public DataTable BuscarProducto8(String objDatos)
+        public DataTable BuscarCompanyProduct_codigo(String objDatos)
         {
             DataTable dt = new DataTable();
             List<ClsParameter> lst = new List<ClsParameter>();
             lst.Add(new ClsParameter("@Datos", objDatos));
-            return dt = M.Listado("BuscarProducto", lst);
+            return dt = M.Listado("BuscarCompanyProducts_codigo", lst);
         }
-        public DataTable BuscarProducto(String objDatos)
+        public DataTable BuscarCompanyProduct(String objDatos)
         {
             DataTable dt = new DataTable();
             List<ClsParameter> lst = new List<ClsParameter>();
             lst.Add(new ClsParameter("@Datos", objDatos));
-            return dt = M.Listado("FiltrarDatosProducto", lst);
+            return dt = M.Listado("BuscarCompanyProducts", lst);
         }
 
         #endregion
 
-
         public DataTable Listado()
         {
-            return M.Listado("Listarproducto", null);
+            return M.Listado("ListarCompanyProducts", null);
         }
     }
 }

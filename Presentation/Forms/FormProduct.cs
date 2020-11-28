@@ -19,9 +19,7 @@ namespace Presentation.Forms
 {
     public partial class FormProduct : Form
     {
-        int listado = 0;
-
-        BusinessProducto p = new BusinessProducto();
+        BusimessCompanyProduct CProduct = new BusimessCompanyProduct();
 
         public FormProduct()
         {
@@ -30,14 +28,18 @@ namespace Presentation.Forms
 
         private void FormProduct_Load(object sender, EventArgs e)
         {
+            if (Program.Even_listar_producto == 1)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
             CargarListado();
-            dataGridView1.ClearSelection();
+            dataGridView1.ClearSelection();            
         }
         private void CargarListado()
         {
 
             DataTable dt = new DataTable();
-            dt = p.Listado();
+            dt = CProduct.Listado();
             try
             {
                 dataGridView1.Rows.Clear();
@@ -49,6 +51,8 @@ namespace Presentation.Forms
                     dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
                     dataGridView1.Rows[i].Cells[3].Value = dt.Rows[i][3].ToString();
                     dataGridView1.Rows[i].Cells[4].Value = dt.Rows[i][4].ToString();
+                    dataGridView1.Rows[i].Cells[5].Value = dt.Rows[i][5].ToString();
+                    dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
                 }
             }
             catch (Exception ex)
@@ -61,12 +65,10 @@ namespace Presentation.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             FormRegistroProducto fr = new FormRegistroProducto();
-            if (dataGridView1.SelectedRows.Count > 0)
-                Program.Evento = 1;
-            else
-                Program.Evento = 0;
+            Program.Evento = 0;
             dataGridView1.ClearSelection();
             fr.ShowDialog();
+            CargarListado();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -74,15 +76,14 @@ namespace Presentation.Forms
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 FormRegistroProducto producto = new FormRegistroProducto();
-                //FrmRegistroProductos P = new FrmRegistroProductos();
                 producto.txtCode_product.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 producto.txtProduct_name.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                producto.txtCode_trademark.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                producto.txtCode_brand.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 producto.txtCode_category.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-                producto.txtDescription.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                producto.txtPrecio.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                producto.txtUM.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                producto.txtRuc_Pcomopany.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
                
-                
-
                 if (dataGridView1.SelectedRows.Count > 0)
                     Program.Evento = 1;
                 else
@@ -90,37 +91,27 @@ namespace Presentation.Forms
 
                 producto.ShowDialog();
                 dataGridView1.ClearSelection();
+                CargarListado();
             }
             else
             {
                 MessageBox.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            switch (listado)
-            {
-                case 0: CargarListado(); break;
             }
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
-            var product = new ClsProduct();
+            var product = new CompanyProduct();
             String msj = "";
             
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    
-                    //FrmRegistroProductos P = new FrmRegistroProductos();
                     product.Code_product = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                     
                     if (MessageBox.Show("¿Está Seguro que Desea Eliminar.?", "Sistema de Ventas.", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                     {
-                        msj = p.Delete(product);
+                        msj = CProduct.DeleteCompanyProduct(product);
                         MessageBox.Show(msj, "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        CargarListado();
                     }
                     if (dataGridView1.SelectedRows.Count > 0)
                         Program.Evento = 1;
@@ -131,18 +122,18 @@ namespace Presentation.Forms
                 else
                 {
                     MessageBox.Show("Debe Seleccionar la Fila a Eliminar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    //  DevComponents.DotNetBar.MessageBoxEx.Show("Debe Seleccionar la Fila a Editar.", "Sistema de Ventas.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                //Close();            
+                }    
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             Program.code_product = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            Program.Product_name = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            Program.Code_trademark = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            Program.name_product = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            Program.Code_brand = dataGridView1.CurrentRow.Cells[2].Value.ToString();
             Program.Code_category = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            Program.Description = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            Program.precio = Convert.ToDecimal(dataGridView1.CurrentRow.Cells[4].Value.ToString());
+            Program.unidad_medida = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+            Program.ruc_Pcompany = dataGridView1.CurrentRow.Cells[6].Value.ToString();
             this.Close();
         }
 
@@ -162,7 +153,7 @@ namespace Presentation.Forms
             {
                 DataTable dt = new DataTable();
                 date = textBox1.Text;
-                dt = p.BuscarProducto2(date);
+                dt = CProduct.BuscarCompanyProduct(date);
                 try
                 {
                     dataGridView1.Rows.Clear();
@@ -174,6 +165,8 @@ namespace Presentation.Forms
                         dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
                         dataGridView1.Rows[i].Cells[3].Value = dt.Rows[i][3].ToString();
                         dataGridView1.Rows[i].Cells[4].Value = dt.Rows[i][4].ToString();
+                        dataGridView1.Rows[i].Cells[5].Value = dt.Rows[i][5].ToString();
+                        dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
                     }
                     dataGridView1.ClearSelection();
                 }

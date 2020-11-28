@@ -24,7 +24,8 @@ namespace Presentation.Forms
         BusinessVenta VENTA = new BusinessVenta();
         BusinessDetalleVenta Dventa = new BusinessDetalleVenta();
         BusinessCliente CL = new BusinessCliente();
-        BusinessProducto P = new BusinessProducto();
+        //BusinessProducto P = new BusinessProducto();
+        BusimessCompanyProduct P = new BusimessCompanyProduct();
         int n=0;
         bool a = false, b= true;
         string IDVenta;
@@ -209,15 +210,17 @@ namespace Presentation.Forms
             {
                 agregar2();
                 Program.code_product = "";
-                Program.Product_name = "";
+                Program.name_product = "";
+                Program.precio = 0;
                 a = false;
             }
         }
         public void agregar2()
         {
+            // AGREGAR CONDICION CUANDO NO SE SELECCIONA NADA
             dataGridView1.Rows[n].Cells[2].Value = Program.code_product;
-            dataGridView1.Rows[n].Cells[4].Value = Program.Product_name;
-            dataGridView1.Rows[n].Cells[6].Value = Convert.ToDecimal(600.00);
+            dataGridView1.Rows[n].Cells[4].Value = Program.name_product;
+            dataGridView1.Rows[n].Cells[6].Value = Program.precio;
             dataGridView1.Rows[n].Cells[9].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[6].Value) * Convert.ToDouble(dataGridView1.Rows[n].Cells[3].Value);
             dataGridView1.Rows[n].Cells[7].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[9].Value) / 1.18;
             dataGridView1.Rows[n].Cells[8].Value = Convert.ToDouble(dataGridView1.Rows[n].Cells[9].Value) - Convert.ToDouble(dataGridView1.Rows[n].Cells[7].Value);
@@ -230,7 +233,8 @@ namespace Presentation.Forms
                 if (this.dataGridView1.Columns[e.ColumnIndex].Name == "buscarProducto")
                 {
                     FormProduct P = new FormProduct();
-                    P.Show();
+                    Program.Even_listar_producto = 1;
+                    P.ShowDialog();
                     n = e.RowIndex;
                     a = true;
                 }
@@ -242,10 +246,12 @@ namespace Presentation.Forms
             DataGridViewRow dgvRow = dataGridView1.CurrentRow;
             if (dataGridView1.CurrentRow != null && dgvRow.Cells["code_product"].Value != null)
             {
+                // AGREGAR CONDICION PARA CUANDO EL PRODUCTO NO EXISTE
+
                 var ruc = "";
                 DataTable dt = new DataTable();
                 ruc = dgvRow.Cells["code_product"].Value.ToString();
-                dt = P.BuscarProducto(ruc);
+                dt = P.BuscarCompanyProduct_codigo(ruc);
                 try
                 {
                     agregar(dt, dgvRow);
@@ -263,7 +269,7 @@ namespace Presentation.Forms
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();                
-                dgvRow.Cells["P_unidad"].Value = Convert.ToDecimal(600.00);
+                dgvRow.Cells["P_unidad"].Value = dt.Rows[i][4].ToString();
                 dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value);
                 dgvRow.Cells["V_U"].Value = Convert.ToDouble(dgvRow.Cells["Importe"].Value) / 1.18;
                 dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["Importe"].Value) - Convert.ToDouble(dgvRow.Cells["V_U"].Value);
@@ -418,7 +424,8 @@ namespace Presentation.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             FormListarClientes C = new FormListarClientes();
-            C.Show();
+            Program.Even_listar_Cliente = 1;
+            C.ShowDialog();
         }
 
         private void txtRucCliente_KeyDown(object sender, KeyEventArgs e)

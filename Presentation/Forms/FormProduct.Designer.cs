@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.code_trademark = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.code_category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.lbl = new System.Windows.Forms.Label();
+            this.Code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.code_trademark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.code_category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unida_medida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ruc_Pcompany = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -57,43 +59,15 @@
             this.product_name,
             this.code_trademark,
             this.code_category,
-            this.description});
+            this.precio,
+            this.unida_medida,
+            this.ruc_Pcompany});
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(800, 329);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
-            // 
-            // Code_product
-            // 
-            this.Code_product.HeaderText = "Codigo Producto";
-            this.Code_product.Name = "Code_product";
-            this.Code_product.Width = 70;
-            // 
-            // product_name
-            // 
-            this.product_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.product_name.HeaderText = "Nombre ";
-            this.product_name.Name = "product_name";
-            // 
-            // code_trademark
-            // 
-            this.code_trademark.HeaderText = "Marca";
-            this.code_trademark.Name = "code_trademark";
-            this.code_trademark.Width = 70;
-            // 
-            // code_category
-            // 
-            this.code_category.HeaderText = "Categoria";
-            this.code_category.Name = "code_category";
-            this.code_category.Width = 70;
-            // 
-            // description
-            // 
-            this.description.HeaderText = "Descripcion";
-            this.description.Name = "description";
-            this.description.Width = 200;
             // 
             // panel1
             // 
@@ -143,10 +117,6 @@
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(497, 451);
@@ -166,6 +136,60 @@
             this.lbl.Size = new System.Drawing.Size(159, 38);
             this.lbl.TabIndex = 22;
             this.lbl.Text = "PRODUCTOS";
+            // 
+            // Code_product
+            // 
+            this.Code_product.HeaderText = "Codigo Producto";
+            this.Code_product.Name = "Code_product";
+            this.Code_product.ReadOnly = true;
+            this.Code_product.Width = 70;
+            // 
+            // product_name
+            // 
+            this.product_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.product_name.HeaderText = "Nombre ";
+            this.product_name.Name = "product_name";
+            this.product_name.ReadOnly = true;
+            // 
+            // code_trademark
+            // 
+            this.code_trademark.HeaderText = "Marca";
+            this.code_trademark.Name = "code_trademark";
+            this.code_trademark.ReadOnly = true;
+            this.code_trademark.Width = 70;
+            // 
+            // code_category
+            // 
+            this.code_category.HeaderText = "Categoria";
+            this.code_category.Name = "code_category";
+            this.code_category.ReadOnly = true;
+            this.code_category.Width = 70;
+            // 
+            // precio
+            // 
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.precio.DefaultCellStyle = dataGridViewCellStyle1;
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.Width = 70;
+            // 
+            // unida_medida
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            this.unida_medida.DefaultCellStyle = dataGridViewCellStyle2;
+            this.unida_medida.HeaderText = "Unidad Medida";
+            this.unida_medida.Name = "unida_medida";
+            this.unida_medida.ReadOnly = true;
+            this.unida_medida.Width = 70;
+            // 
+            // ruc_Pcompany
+            // 
+            this.ruc_Pcompany.HeaderText = "ruc_Pcompany";
+            this.ruc_Pcompany.Name = "ruc_Pcompany";
+            this.ruc_Pcompany.ReadOnly = true;
+            this.ruc_Pcompany.Visible = false;
             // 
             // FormProduct
             // 
@@ -201,13 +225,14 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnEditar;
-        public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lbl;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code_product;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn code_trademark;
         private System.Windows.Forms.DataGridViewTextBoxColumn code_category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn description;
-        private System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unida_medida;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ruc_Pcompany;
     }
 }
