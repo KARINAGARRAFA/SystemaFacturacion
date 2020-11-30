@@ -101,9 +101,11 @@ namespace Business.Business.User
         }
         #endregion
 
-        public DataTable ListarUsuario()
+        public DataTable ListarUsuario(String ruc)
         {
-            return M.Listado("ListarUsuario", null);
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
+            return M.Listado("ListarUsuario", lst);
         }
     }
 }

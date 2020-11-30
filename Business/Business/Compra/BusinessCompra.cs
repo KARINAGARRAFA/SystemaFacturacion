@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Business.Business.Compra
 {
-    class BusinessCompra
+     public class BusinessCompra
     {
+
     }
 }

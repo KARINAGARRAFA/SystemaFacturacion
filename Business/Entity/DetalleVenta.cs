@@ -17,6 +17,7 @@ namespace Business.Entity
         private String m_code_unit;
         private Decimal m_base_imponible;
         private Decimal m_igv;
+        private Decimal m_importe;
 
         public String Code
         {
@@ -57,6 +58,10 @@ namespace Business.Entity
         {
             get { return m_igv; }
             set { m_igv = value; }
+        }public Decimal Importe
+        {
+            get { return m_importe; }
+            set { m_importe = value; }
         }
     }
 }

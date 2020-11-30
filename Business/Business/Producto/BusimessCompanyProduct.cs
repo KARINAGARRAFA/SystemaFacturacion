@@ -106,9 +106,11 @@ namespace Business.Business.Producto
 
         #endregion
 
-        public DataTable Listado()
+        public DataTable Listado(String ruc)
         {
-            return M.Listado("ListarCompanyProducts", null);
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
+            return M.Listado("ListarCompanyProducts", lst);
         }
     }
 }

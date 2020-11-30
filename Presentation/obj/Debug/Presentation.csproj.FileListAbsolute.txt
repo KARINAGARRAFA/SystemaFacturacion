@@ -115,3 +115,4 @@ C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Pres
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistrarCompanyUser.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarDetalleVenta.resources

@@ -31,6 +31,7 @@ namespace Presentation.Forms
             if (Program.Even_listar_producto == 1)
             {
                 this.WindowState = FormWindowState.Normal;
+                Program.Even_listar_producto = 0;
             }
             CargarListado();
             dataGridView1.ClearSelection();            
@@ -39,7 +40,7 @@ namespace Presentation.Forms
         {
 
             DataTable dt = new DataTable();
-            dt = CProduct.Listado();
+            dt = CProduct.Listado(Program.ruc_empresa);
             try
             {
                 dataGridView1.Rows.Clear();
@@ -134,6 +135,7 @@ namespace Presentation.Forms
             Program.precio = Convert.ToDecimal(dataGridView1.CurrentRow.Cells[4].Value.ToString());
             Program.unidad_medida = dataGridView1.CurrentRow.Cells[5].Value.ToString();
             Program.ruc_Pcompany = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+            Program.Even_seleccionar_producto = 1;
             this.Close();
         }
 

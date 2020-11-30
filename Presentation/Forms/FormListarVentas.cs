@@ -15,8 +15,8 @@ namespace Presentation.Forms
 {
     public partial class FormListarVentas : Form
     {
-        int listado = 0;
         BusinessVenta VENTA = new BusinessVenta();
+        BusinessDetalleVenta DVENTA = new BusinessDetalleVenta();
         public FormListarVentas()
         {
             InitializeComponent();
@@ -26,14 +26,11 @@ namespace Presentation.Forms
         {
             FormRegistrarVentas V = new FormRegistrarVentas();
             V.ShowDialog();
-            timer1.Start();
+            CargarListado();
         }
 
         private void FormListarVentas_Load(object sender, EventArgs e)
         {
-            timer1.Start();
-            timer1.Interval = 5000;
-
             CargarListado();
             dataGridView1.ClearSelection();
         }
@@ -41,7 +38,7 @@ namespace Presentation.Forms
         {
 
             DataTable dt = new DataTable();
-            dt = VENTA.ListarVenta(); 
+            dt = VENTA.ListarVenta(Program.ruc_empresa); 
             try
             {
                 dataGridView1.Rows.Clear();
@@ -57,22 +54,6 @@ namespace Presentation.Forms
                     dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
                     dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
                     dataGridView1.Rows[i].Cells[8].Value = dt.Rows[i][8].ToString();
-                    dataGridView1.Rows[i].Cells[9].Value = dt.Rows[i][9].ToString();
-                    dataGridView1.Rows[i].Cells[10].Value = dt.Rows[i][10].ToString();
-                    dataGridView1.Rows[i].Cells[11].Value = dt.Rows[i][11].ToString();
-                    dataGridView1.Rows[i].Cells[12].Value = dt.Rows[i][12].ToString();
-                    dataGridView1.Rows[i].Cells[13].Value = dt.Rows[i][13].ToString();
-                    dataGridView1.Rows[i].Cells[14].Value = dt.Rows[i][14].ToString();
-                    dataGridView1.Rows[i].Cells[15].Value = dt.Rows[i][15].ToString();
-                    dataGridView1.Rows[i].Cells[16].Value = dt.Rows[i][16].ToString();
-                    dataGridView1.Rows[i].Cells[17].Value = dt.Rows[i][17].ToString();
-                    dataGridView1.Rows[i].Cells[18].Value = dt.Rows[i][18].ToString();
-                    dataGridView1.Rows[i].Cells[19].Value = dt.Rows[i][19].ToString();
-                    dataGridView1.Rows[i].Cells[20].Value = dt.Rows[i][20].ToString();
-                    dataGridView1.Rows[i].Cells[21].Value = dt.Rows[i][21].ToString();
-                    dataGridView1.Rows[i].Cells[22].Value = dt.Rows[i][22].ToString();
-                    dataGridView1.Rows[i].Cells[23].Value = dt.Rows[i][23].ToString();
-                    dataGridView1.Rows[i].Cells[24].Value = dt.Rows[i][26].ToString();
                 }
             }
             catch (Exception ex)
@@ -82,20 +63,11 @@ namespace Presentation.Forms
             dataGridView1.ClearSelection();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            switch (listado)
-            {
-                case 0: CargarListado(); break;
-            }
-        }
-
         private void dataGridView1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount > 0)
             {
                 dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
-                timer1.Stop();
             }
         }
 
@@ -107,9 +79,7 @@ namespace Presentation.Forms
             {
                 DataTable dt = new DataTable();
                 date = textBox1.Text;
-                //C.Dni = txtBuscarCliente.Text;
-                dt = VENTA.BuscarVenta(date); 
-                //C.BuscarCliente(C.Dni);
+                dt = VENTA.BuscarVenta(Program.ruc_empresa,date);
                 try
                 {
                     dataGridView1.Rows.Clear();
@@ -125,35 +95,25 @@ namespace Presentation.Forms
                         dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
                         dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
                         dataGridView1.Rows[i].Cells[8].Value = dt.Rows[i][8].ToString();
-                        dataGridView1.Rows[i].Cells[9].Value = dt.Rows[i][9].ToString();
-                        dataGridView1.Rows[i].Cells[10].Value = dt.Rows[i][10].ToString();
-                        dataGridView1.Rows[i].Cells[11].Value = dt.Rows[i][11].ToString();
-                        dataGridView1.Rows[i].Cells[12].Value = dt.Rows[i][12].ToString();
-                        dataGridView1.Rows[i].Cells[13].Value = dt.Rows[i][13].ToString();
-                        dataGridView1.Rows[i].Cells[14].Value = dt.Rows[i][14].ToString();
-                        dataGridView1.Rows[i].Cells[15].Value = dt.Rows[i][15].ToString();
-                        dataGridView1.Rows[i].Cells[16].Value = dt.Rows[i][16].ToString();
-                        dataGridView1.Rows[i].Cells[17].Value = dt.Rows[i][17].ToString();
-                        dataGridView1.Rows[i].Cells[18].Value = dt.Rows[i][18].ToString();
-                        dataGridView1.Rows[i].Cells[19].Value = dt.Rows[i][19].ToString();
-                        dataGridView1.Rows[i].Cells[20].Value = dt.Rows[i][20].ToString();
-                        dataGridView1.Rows[i].Cells[21].Value = dt.Rows[i][21].ToString();
-                        dataGridView1.Rows[i].Cells[22].Value = dt.Rows[i][22].ToString();
-                        dataGridView1.Rows[i].Cells[23].Value = dt.Rows[i][23].ToString();
-                        dataGridView1.Rows[i].Cells[24].Value = dt.Rows[i][26].ToString();
                     }
                     dataGridView1.ClearSelection();
-                    timer1.Stop();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void btnDetalleVenta_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                
+            }
             else
             {
-                CargarListado();
-                timer1.Start();
+                MessageBox.Show("Debe Seleccionar un registro de VENTA en la tabla.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }

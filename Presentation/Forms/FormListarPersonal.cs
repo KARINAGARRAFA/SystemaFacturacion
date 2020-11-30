@@ -43,7 +43,7 @@ namespace Presentation.Forms
         {
 
             DataTable dt = new DataTable();
-            dt = UC.ListarUserCompany();
+            dt = UC.ListarUserCompany(Program.ruc_empresa);
             try
             {
                 dataGridView1.Rows.Clear();

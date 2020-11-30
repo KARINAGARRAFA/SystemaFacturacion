@@ -111,5 +111,21 @@ namespace Presentation.Forms
                 }
             }
         }
+
+        private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                txtPasword.Focus();
+            }
+        }
+
+        private void txtPasword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnIngresar_Click(sender, e);
+            }
+        }
     }
 }

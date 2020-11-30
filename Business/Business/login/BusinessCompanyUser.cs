@@ -107,9 +107,19 @@ namespace Business.Business.login
                 throw ex;
             }
         }
-        public DataTable ListarUserCompany()
+        public DataTable ListarUserCompany( String ruc)
         {
-            return M.Listado("ListarUserCompany", null);
+            List<ClsParameter> lst = new List<ClsParameter>();
+            try
+            {
+                lst.Add(new ClsParameter("@ruc", ruc));
+                return M.Listado("ListarUserCompany", lst);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }

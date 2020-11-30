@@ -68,6 +68,7 @@
             this.txtPasword.PasswordChar = '*';
             this.txtPasword.Size = new System.Drawing.Size(120, 20);
             this.txtPasword.TabIndex = 4;
+            this.txtPasword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPasword_KeyPress);
             // 
             // txtUser
             // 
@@ -75,6 +76,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(120, 20);
             this.txtUser.TabIndex = 3;
+            this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
             // 
             // label2
             // 

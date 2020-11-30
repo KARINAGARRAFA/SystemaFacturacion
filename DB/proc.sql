@@ -280,3 +280,20 @@ End
 -----------------------------------------
 end
 go
+------------------------------
+Create Proc ListarVentas -- no usado
+@ruc char(11)
+As Begin
+	Select * From sfe_sales where company_ruc=@ruc
+End
+go
+-----------------------------------
+Create Proc BuscarVenta --- no usado
+@Datos Varchar(80)
+As Begin
+	Select code,numero,fecha_emision,fecha_pago,cdp_tipo,cdp_serie,cdp_numero,proveedor_tipo,proveedor_numero,
+	valor_exportacion,base_imponible,importe_total_exonerada,importe_total_inafecta,igv,importe_total,dolares,tipo_cambio,igv_retencion,detraccion_id,
+	constancia_detraccion_numero,constancia_detraccion_fecha_pago,constancia_detraccion_monto,constancia_detraccion_referencia_monto,observacion,company_ruc
+	From sfe_sales Where proveedor_numero=@Datos or cdp_serie=@Datos
+End
+go

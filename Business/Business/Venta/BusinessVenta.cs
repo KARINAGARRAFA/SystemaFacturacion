@@ -60,10 +60,11 @@ namespace Business.Business.Venta
                 throw ex;
             }
         }
-        public DataTable BuscarVenta(String objDatos)
+        public DataTable BuscarVenta(String ruc,String objDatos)
         {
             DataTable dt = new DataTable();
             List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
             lst.Add(new ClsParameter("@Datos", objDatos));
             return dt = M.Listado("BuscarVenta", lst);
         }
@@ -137,9 +138,11 @@ namespace Business.Business.Venta
         }
         #endregion
 
-        public DataTable ListarVenta()
+        public DataTable ListarVenta(String ruc)
         {
-            return M.Listado("ListarVentas", null);
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
+            return M.Listado("ListarVentas", lst);
         }
         // NO USADO
         public String GenerarSerieDocumento()

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEliminarItem = new System.Windows.Forms.Button();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -65,7 +65,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblRucUsuario = new System.Windows.Forms.Label();
+            this.lblRucEmpresa = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNroCorrelativo = new System.Windows.Forms.Label();
             this.lblSerie = new System.Windows.Forms.Label();
@@ -180,6 +180,7 @@
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // IdD
             // 
@@ -191,9 +192,9 @@
             // 
             // buscarProducto
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.NullValue = "...";
-            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.NullValue = "...";
+            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle25;
             this.buscarProducto.HeaderText = "...";
             this.buscarProducto.Name = "buscarProducto";
             this.buscarProducto.Width = 25;
@@ -205,9 +206,9 @@
             // 
             // Cant
             // 
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = null;
-            this.Cant.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle26.Format = "N0";
+            dataGridViewCellStyle26.NullValue = null;
+            this.Cant.DefaultCellStyle = dataGridViewCellStyle26;
             this.Cant.HeaderText = "CANT.";
             this.Cant.Name = "Cant";
             this.Cant.ToolTipText = "int";
@@ -229,10 +230,10 @@
             // 
             // P_unidad
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle27.Format = "N2";
+            dataGridViewCellStyle27.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle27;
             this.P_unidad.HeaderText = "P. UNIDAD";
             this.P_unidad.Name = "P_unidad";
             this.P_unidad.ReadOnly = true;
@@ -240,10 +241,10 @@
             // 
             // V_U
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle28.Format = "N2";
+            dataGridViewCellStyle28.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle28;
             this.V_U.HeaderText = "V/U";
             this.V_U.Name = "V_U";
             this.V_U.ReadOnly = true;
@@ -251,10 +252,10 @@
             // 
             // Igv
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle29.Format = "N2";
+            dataGridViewCellStyle29.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle29;
             this.Igv.HeaderText = "IGV";
             this.Igv.Name = "Igv";
             this.Igv.ReadOnly = true;
@@ -262,10 +263,10 @@
             // 
             // Importe
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle30.Format = "N2";
+            dataGridViewCellStyle30.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle30;
             this.Importe.HeaderText = "IMPORTE";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
@@ -420,7 +421,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.lblRucUsuario);
+            this.panel1.Controls.Add(this.lblRucEmpresa);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.lblNroCorrelativo);
             this.panel1.Controls.Add(this.lblSerie);
@@ -440,17 +441,15 @@
             this.label9.TabIndex = 5;
             this.label9.Text = "R.U.C. ";
             // 
-            // lblRucUsuario
+            // lblRucEmpresa
             // 
-            this.lblRucUsuario.AutoSize = true;
-            this.lblRucUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRucUsuario.Location = new System.Drawing.Point(80, 20);
-            this.lblRucUsuario.Name = "lblRucUsuario";
-            this.lblRucUsuario.Size = new System.Drawing.Size(119, 20);
-            this.lblRucUsuario.TabIndex = 4;
-            this.lblRucUsuario.Text = "20605971343";
-            this.lblRucUsuario.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblRucUsuario.Click += new System.EventHandler(this.label3_Click);
+            this.lblRucEmpresa.AutoSize = true;
+            this.lblRucEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRucEmpresa.Location = new System.Drawing.Point(80, 20);
+            this.lblRucEmpresa.Name = "lblRucEmpresa";
+            this.lblRucEmpresa.Size = new System.Drawing.Size(0, 20);
+            this.lblRucEmpresa.TabIndex = 4;
+            this.lblRucEmpresa.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label2
             // 
@@ -813,7 +812,6 @@
             this.txtImporteTotal.Size = new System.Drawing.Size(77, 20);
             this.txtImporteTotal.TabIndex = 2;
             this.txtImporteTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtImporteTotal.Leave += new System.EventHandler(this.txtImporteTotal_Leave);
             // 
             // label25
             // 
@@ -961,7 +959,7 @@
         public System.Windows.Forms.TextBox txtRucCliente;
         public System.Windows.Forms.TextBox txtDireccionCliente;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblRucUsuario;
+        private System.Windows.Forms.Label lblRucEmpresa;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdD;
         private System.Windows.Forms.DataGridViewButtonColumn buscarProducto;

@@ -28,6 +28,7 @@ namespace Presentation.Forms
             if (Program.Even_listar_Cliente == 1)
             {
                 this.WindowState = FormWindowState.Normal;
+                Program.Even_listar_Cliente = 0;
             }
             CargarListado();
             dataGridView1.ClearSelection();

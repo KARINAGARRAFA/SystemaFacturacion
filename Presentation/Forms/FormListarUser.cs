@@ -32,7 +32,8 @@ namespace Presentation.Forms
         {
 
             DataTable dt = new DataTable();
-            dt = USER.ListarUsuario();
+            String user = Program.ruc_empresa;
+            dt = USER.ListarUsuario(user);
             try
             {
                 dataGridView1.Rows.Clear();

@@ -22,6 +22,7 @@ CREATE TABLE sfe_users (
 )
 
 INSERT INTO sfe_users VALUES ('10012924262', 'LIPA RAMOS ANGELUZZI','','comercio','','','','','', '2020-09-20', '2020-09-20')
+INSERT INTO sfe_users VALUES ('20363916008', 'TRANSPORTES FH S.A.C.','','comercio','','','','','', '2020-09-20', '2020-09-20')
 
 
 CREATE TABLE sfe_product(
@@ -164,6 +165,7 @@ CREATE TABLE sfe_sales_detail(
 	code_unit varchar(10) NULL,
 	base_imponible decimal(18, 2) NULL,
 	igv decimal(18, 2) NULL,
+	importe decimal(18, 2) NULL,
 	created_at datetime NULL,
 	updated_at datetime NULL,
 )
@@ -202,7 +204,7 @@ create table sfe_company_users
 )
 
 
-DROP TABLE sfe_company_users
+DROP TABLE sfe_sales_detail
 Create Table sfe_voucher_type(
 	id varchar(100) Primary Key,
 	nombre varchar(11) Not Null ,
@@ -229,7 +231,7 @@ Go
 INSERT INTO sfe_consecutive_number VALUES ('01','20605971343','B001',0,'2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 INSERT INTO sfe_consecutive_number VALUES ('02','20605971343','F001',0,'2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 
-select * from sfe_consecutive_number
+select * from sfe_sales_detail
 
 INSERT INTO sfe_user_login VALUES ('8545','10012924262','admin', '123')
 select * from sfe_user_login
@@ -246,7 +248,7 @@ INSERT INTO sfe_voucher_type VALUES ('03','BOLETA','2020-11-12 00:00:00.000','20
 DROP TABLE sfe_company_products
 
 
-DELETE FROM sfe_sales_detail
+DELETE FROM sfe_consecutive_number
 DELETE FROM sfe_sales
 INSERT INTO sfe_model VALUES ('8545','samsung','----', '2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 

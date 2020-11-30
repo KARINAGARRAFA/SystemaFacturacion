@@ -30,6 +30,7 @@ namespace Presentation
         public static Decimal precio;
         public static String unidad_medida;
         public static String ruc_Pcompany;
+        public static int Even_seleccionar_producto;
 
         //Datos del Cliente
         public static String Ruc_cliente;

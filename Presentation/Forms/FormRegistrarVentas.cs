@@ -24,10 +24,9 @@ namespace Presentation.Forms
         BusinessVenta VENTA = new BusinessVenta();
         BusinessDetalleVenta Dventa = new BusinessDetalleVenta();
         BusinessCliente CL = new BusinessCliente();
-        //BusinessProducto P = new BusinessProducto();
         BusimessCompanyProduct P = new BusimessCompanyProduct();
-        int n=0;
-        bool a = false, b= true;
+        int n=0,selecProducto=0;
+        bool  b= true;
         string IDVenta;
         public FormRegistrarVentas()
         {
@@ -86,7 +85,7 @@ namespace Presentation.Forms
         private void FormRegistrarVentas_Load(object sender, EventArgs e)
         {
             LlenarCombox();
-
+            lblRucEmpresa.Text = Program.ruc_empresa;
         }
         private void LlenarCombox()
         {
@@ -181,19 +180,32 @@ namespace Presentation.Forms
             {
                 ImporteTotal += Convert.ToDecimal(row.Cells["Importe"].Value);
             }
-            txtImporteTotal.Text = ImporteTotal.ToString("N2");
+
+            if (ImporteTotal != 0)
+            {
+                txtImporteTotal.Text = ImporteTotal.ToString("N2");
+            }
+                      
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 IGV += Convert.ToDecimal(row.Cells["Igv"].Value);
             }
-            txtIGV.Text = IGV.ToString("N2");
+
+            if (IGV != 0)
+            {
+                txtIGV.Text = IGV.ToString("N2");
+            }
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 Base_imponible += Convert.ToDecimal(row.Cells["V_U"].Value);
             }
-            txtSubTotalVentas.Text = Base_imponible.ToString("N2");
+
+            if (Base_imponible != 0)
+            {
+                txtSubTotalVentas.Text = Base_imponible.ToString("N2");
+            }
         }
 
         private void FormRegistrarVentas_Activated(object sender, EventArgs e)
@@ -206,13 +218,14 @@ namespace Presentation.Forms
                 txtDireccionCliente.Text = Program.Address;
                 Program.foco = false;
             }
-            if (a == true)
+            selecProducto = Program.Even_seleccionar_producto;
+            if (selecProducto == 1)
             {
                 agregar2();
                 Program.code_product = "";
                 Program.name_product = "";
                 Program.precio = 0;
-                a = false;
+                Program.Even_seleccionar_producto = 0;
             }
         }
         public void agregar2()
@@ -234,9 +247,8 @@ namespace Presentation.Forms
                 {
                     FormProduct P = new FormProduct();
                     Program.Even_listar_producto = 1;
-                    P.ShowDialog();
                     n = e.RowIndex;
-                    a = true;
+                    P.ShowDialog();
                 }
             }
         }
@@ -296,12 +308,8 @@ namespace Presentation.Forms
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
-            a = false;
         }
 
-        private void txtImporteTotal_Leave(object sender, EventArgs e)
-        {
-        }
 
         private void btnRegistrarVenta_Click(object sender, EventArgs e)
         {
@@ -321,7 +329,8 @@ namespace Presentation.Forms
                                 Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value),
                                 Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value),
                                 Convert.ToDecimal(dataGridView1.Rows[i].Cells[8].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value)
+                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value),
+                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[9].Value)
                                 );
                             }
                         }
@@ -351,7 +360,7 @@ namespace Presentation.Forms
             {
                 //string cdp_tipo = cbxTipoDocumento.SelectedValue.ToString(); //Convert.ToString(cbxTipoDocumento.AccessibilityObject); //== "BOLETA" ? "01" : "02";965
 
-                IDVenta = VENTA.GenerarIdVentas(lblRucUsuario.Text, cbxTipoDocumento.SelectedValue.ToString(), lblSerie.Text, Convert.ToInt32(lblNroCorrelativo.Text));
+                IDVenta = VENTA.GenerarIdVentas(lblRucEmpresa.Text, cbxTipoDocumento.SelectedValue.ToString(), lblSerie.Text, Convert.ToInt32(lblNroCorrelativo.Text));
                 v.Code = IDVenta;
                 v.Numero = Convert.ToInt32("0");
                 v.Fecha_emision = DateTime.Now; //Convert.ToDateTime(lblFechaEmision.Text);
@@ -377,13 +386,13 @@ namespace Presentation.Forms
                 v.Observacion = txtObservacion.Text;
                 v.created_at = DateTime.Now;
                 v.updated_at = DateTime.Now;
-                v.Company_ruc = lblRucUsuario.Text;
+                v.Company_ruc = lblRucEmpresa.Text;
                 MessageBox.Show(VENTA.RegistrarVenta(v), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 VENTA.ActualizarNumeroCorrelativo(v.Cdp_serie, v.Cdp_numero);
             }
         }
         private void GuardarDetalleVenta(String objIdProducto, Int32 objCantidad, Decimal objPUnitario,
-            Decimal objIgv, Decimal objSubTotal)
+            Decimal objIgv, Decimal objSubTotal, Decimal importe)
         {
             var dv = new DetalleVenta();
             
@@ -395,6 +404,7 @@ namespace Presentation.Forms
             dv.Code_unit = "";
             dv.Igv = objIgv;
             dv.Base_imponible = objSubTotal;
+            dv.Importe = importe;
             dv.created_at = DateTime.Today;
             dv.updated_at = DateTime.Today;
 
@@ -428,13 +438,18 @@ namespace Presentation.Forms
             C.ShowDialog();
         }
 
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                dataGridView1.CurrentCell = dataGridView1.CurrentRow.Cells[2];
+            }
+        }
+
         private void txtRucCliente_KeyDown(object sender, KeyEventArgs e)
         {
             //buscarCliente();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

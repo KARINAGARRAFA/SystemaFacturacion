@@ -95,6 +95,12 @@
     <Compile Include="Forms\FormListarCompras.Designer.cs">
       <DependentUpon>FormListarCompras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormListarDetalleVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormListarDetalleVenta.Designer.cs">
+      <DependentUpon>FormListarDetalleVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormListarMarca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormListarCompras.resx">
       <DependentUpon>FormListarCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormListarDetalleVenta.resx">
+      <DependentUpon>FormListarDetalleVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormListarMarca.resx">
       <DependentUpon>FormListarMarca.cs</DependentUpon>
