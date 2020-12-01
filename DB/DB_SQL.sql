@@ -112,16 +112,18 @@ CREATE TABLE sfe_purchages(
 	created_at datetime NULL,
 	updated_at datetime NULL,
 	company_ruc char(11) NULL,
+	tipo_moneda varchar(5) NULL,
 )
 CREATE TABLE sfe_purchages_detail(
-    code varchar(100) primary key NOT NULL,
+    code Int Identity primary key NOT NULL,
 	code_purchages varchar(100) NOT NULL,
-	code_product varchar(10),
+	code_product varchar(50),
 	cantidad int NULL,
-	precio int NULL,
+	precio Decimal(18,2) NULL,
 	code_unit varchar(10) NULL,
 	base_imponible decimal(18, 2) NULL,
 	igv decimal(18, 2) NULL,
+	importe decimal(18, 2) NULL,
 	created_at datetime NULL,
 	updated_at datetime NULL,
 )
@@ -154,12 +156,13 @@ CREATE TABLE sfe_sales(
 	created_at datetime NULL,
 	updated_at datetime NULL,
 	company_ruc char(11) NULL,
+	tipo_moneda varchar(5) NULL,
 )
 
 CREATE TABLE sfe_sales_detail(
     code Int Identity primary key NOT NULL,
 	code_sales varchar(100) NOT NULL,
-	code_product varchar(10),
+	code_product varchar(50),
 	cantidad int NULL,
 	precio int NULL,
 	code_unit varchar(10) NULL,
@@ -169,21 +172,6 @@ CREATE TABLE sfe_sales_detail(
 	created_at datetime NULL,
 	updated_at datetime NULL,
 )
-
-select * from sfe_sales_detail
-
-Create Proc GenerarIdDetalleVentas
-@ruc varchar(11),
-@Cdp_tipo varchar(2),
-@Cdp_serie varchar(4),
-@Cdp_numero int,
-@CodeVenta varchar(100) Out
-As Begin
-	Set @CodeVenta=CONCAT(@ruc,'-',@Cdp_tipo,'-',@Cdp_serie,'-',@Cdp_numero)
-	If(Exists(Select code From sfe_sales where code=@CodeVenta))
-		Set @CodeVenta=CONCAT(@ruc,'-',@Cdp_tipo,'-',@Cdp_serie,'-',(@Cdp_numero+1))
-	End
-Go
 
 Create Table sfe_user_login(
 	code_user_login varchar(100) Primary Key,
@@ -204,7 +192,7 @@ create table sfe_company_users
 )
 
 
-DROP TABLE sfe_sales_detail
+DROP TABLE sfe_sales
 Create Table sfe_voucher_type(
 	id varchar(100) Primary Key,
 	nombre varchar(11) Not Null ,
@@ -223,6 +211,19 @@ Create Table sfe_consecutive_number(
 )
 Go
 
+Create Table sfe_type_money(
+	id varchar(5) Primary Key,
+	nombre varchar(50) Not Null ,
+	simbolo varchar(5) Null ,
+	created_at datetime NULL,
+	updated_at datetime NULL
+)
+Go
+
+INSERT INTO sfe_type_money VALUES ('USS','DOLAR ESTADOUNIDENSE','$','2020-12-01 00:00:00.000','2020-12-01 00:00:00.000')
+INSERT INTO sfe_type_money VALUES ('PEN','NUEVO SOL','S/','2020-12-01 00:00:00.000','2020-12-01 00:00:00.000')
+INSERT INTO sfe_type_money VALUES ('EUR','EURO','€','2020-12-01 00:00:00.000','2020-12-01 00:00:00.000')
+select * from sfe_type_money
 
 
 
@@ -234,22 +235,18 @@ INSERT INTO sfe_consecutive_number VALUES ('02','20605971343','F001',0,'2020-11-
 select * from sfe_sales_detail
 
 INSERT INTO sfe_user_login VALUES ('8545','10012924262','admin', '123')
-select * from sfe_user_login
-select * from sfe_users
-Select E.business_name  From sfe_users E Inner Join sfe_user_login U On E.ruc=U.ruc_user Where U.Usuario='admin'
-select * from sfe_product
-select * from sfe_voucher_type
 
 
 select * from sfe_voucher_type
 INSERT INTO sfe_voucher_type VALUES ('01','FACTURA','2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 INSERT INTO sfe_voucher_type VALUES ('03','BOLETA','2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 
-DROP TABLE sfe_company_products
+DROP TABLE sfe_purchages_detail
 
 
 DELETE FROM sfe_consecutive_number
 DELETE FROM sfe_sales
+DELETE FROM sfe_sales_detail
 INSERT INTO sfe_model VALUES ('8545','samsung','----', '2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 
 select * from sfe_trademark

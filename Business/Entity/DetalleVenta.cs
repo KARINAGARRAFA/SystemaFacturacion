@@ -9,7 +9,6 @@ namespace Business.Entity
 {
     public class DetalleVenta : EntityGeneric
     {
-        private String m_code;
         private String m_code_sales;
         private String m_code_product;
         private int m_cantidad;
@@ -19,11 +18,6 @@ namespace Business.Entity
         private Decimal m_igv;
         private Decimal m_importe;
 
-        public String Code
-        {
-            get { return m_code; }
-            set { m_code = value; }
-        }
         public String Code_sales
         {
             get { return m_code_sales; }
@@ -58,7 +52,8 @@ namespace Business.Entity
         {
             get { return m_igv; }
             set { m_igv = value; }
-        }public Decimal Importe
+        }
+        public Decimal Importe
         {
             get { return m_importe; }
             set { m_importe = value; }

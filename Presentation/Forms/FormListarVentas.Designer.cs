@@ -36,8 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lbl = new System.Windows.Forms.Label();
-            this.btnDetalleVenta = new System.Windows.Forms.Button();
             this.Code_marca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +45,8 @@
             this.importe_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.observacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.company_ruc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl = new System.Windows.Forms.Label();
+            this.btnDetalleVenta = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -107,28 +107,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(812, 341);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
-            // 
-            // lbl
-            // 
-            this.lbl.AutoSize = true;
-            this.lbl.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl.Location = new System.Drawing.Point(365, 8);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(107, 38);
-            this.lbl.TabIndex = 22;
-            this.lbl.Text = "VENTAS";
-            // 
-            // btnDetalleVenta
-            // 
-            this.btnDetalleVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetalleVenta.Location = new System.Drawing.Point(565, 441);
-            this.btnDetalleVenta.Name = "btnDetalleVenta";
-            this.btnDetalleVenta.Size = new System.Drawing.Size(116, 23);
-            this.btnDetalleVenta.TabIndex = 23;
-            this.btnDetalleVenta.Text = "Mostrar Detalle";
-            this.btnDetalleVenta.UseVisualStyleBackColor = true;
-            this.btnDetalleVenta.Click += new System.EventHandler(this.btnDetalleVenta_Click);
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // Code_marca
             // 
@@ -202,6 +181,27 @@
             this.company_ruc.Name = "company_ruc";
             this.company_ruc.ReadOnly = true;
             this.company_ruc.Width = 80;
+            // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl.Location = new System.Drawing.Point(365, 8);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(107, 38);
+            this.lbl.TabIndex = 22;
+            this.lbl.Text = "VENTAS";
+            // 
+            // btnDetalleVenta
+            // 
+            this.btnDetalleVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetalleVenta.Location = new System.Drawing.Point(565, 441);
+            this.btnDetalleVenta.Name = "btnDetalleVenta";
+            this.btnDetalleVenta.Size = new System.Drawing.Size(116, 23);
+            this.btnDetalleVenta.TabIndex = 23;
+            this.btnDetalleVenta.Text = "Mostrar Detalle";
+            this.btnDetalleVenta.UseVisualStyleBackColor = true;
+            this.btnDetalleVenta.Click += new System.EventHandler(this.btnDetalleVenta_Click);
             // 
             // FormListarVentas
             // 

@@ -297,3 +297,20 @@ As Begin
 	From sfe_sales Where proveedor_numero=@Datos or cdp_serie=@Datos
 End
 go
+------------------------------------------------
+
+select * from sfe_sales_detail
+
+Create Proc GenerarIdDetalleVentas
+@ruc varchar(11),
+@Cdp_tipo varchar(2),
+@Cdp_serie varchar(4),
+@Cdp_numero int,
+@CodeVenta varchar(100) Out
+As Begin
+	Set @CodeVenta=CONCAT(@ruc,'-',@Cdp_tipo,'-',@Cdp_serie,'-',@Cdp_numero)
+	If(Exists(Select code From sfe_sales where code=@CodeVenta))
+		Set @CodeVenta=CONCAT(@ruc,'-',@Cdp_tipo,'-',@Cdp_serie,'-',(@Cdp_numero+1))
+	End
+Go
+-----------------------------------------------------

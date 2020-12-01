@@ -10,12 +10,21 @@ using System.Windows.Forms;
 
 namespace Presentation.Forms
 {
-    public partial class FormListarDetalleVenta : Form
+    public partial class FormListarDetalleCompra : Form
     {
-        public FormListarDetalleVenta()
+        public FormListarDetalleCompra()
         {
             InitializeComponent();
-           
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void FormListarDetalleCompra_Load(object sender, EventArgs e)
+        {
+            Visibilidad();
         }
         private void Visibilidad()
         {
@@ -47,15 +56,6 @@ namespace Presentation.Forms
             {
                 pnlOtrosCargos.Visible = true;
             }
-        }
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void FormListarDetalleVenta_Load(object sender, EventArgs e)
-        {
-            Visibilidad();
         }
     }
 }

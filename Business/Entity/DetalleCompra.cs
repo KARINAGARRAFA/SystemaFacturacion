@@ -9,20 +9,15 @@ namespace Business.Entity
 {
     public class DetalleCompra : EntityGeneric
     {
-        private String m_code;
         private String m_code_purchages;
         private String m_code_product;
-        private String m_cantidad;
-        private String m_precio;
+        private int m_cantidad;
+        private Decimal m_precio;
         private String m_code_unit;
-        private String m_base_imponible;
-        private String m_igv;
+        private Decimal m_base_imponible;
+        private Decimal m_igv;
+        private Decimal m_importe;
 
-        public String Code
-        {
-            get { return m_code; }
-            set { m_code = value; }
-        }
         public String Code_purchages
         {
             get { return m_code_purchages; }
@@ -33,12 +28,12 @@ namespace Business.Entity
             get { return m_code_product; }
             set { m_code_product = value; }
         }
-        public String Cantidad
+        public int Cantidad
         {
             get { return m_cantidad; }
             set { m_cantidad = value; }
         }
-        public String Precio
+        public Decimal Precio
         {
             get { return m_precio; }
             set { m_precio = value; }
@@ -48,15 +43,20 @@ namespace Business.Entity
             get { return m_code_unit; }
             set { m_code_unit = value; }
         }
-        public String Base_imponible
+        public Decimal Base_imponible
         {
             get { return m_base_imponible; }
             set { m_base_imponible = value; }
         }
-        public String Igv
+        public Decimal Igv
         {
             get { return m_igv; }
             set { m_igv = value; }
+        }
+        public Decimal Importe
+        {
+            get { return m_importe; }
+            set { m_importe = value; }
         }
     }
 }

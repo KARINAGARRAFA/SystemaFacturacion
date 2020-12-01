@@ -139,14 +139,6 @@ namespace Presentation.Forms
             this.Close();
         }
 
-        private void dataGridView1_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.RowCount > 0)
-            {
-                dataGridView1.Rows[dataGridView1.CurrentRow.Index].Selected = true;
-            }
-        }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             dataGridView1.ClearSelection();

@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -63,11 +64,31 @@
             this.txtImporteTotal = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.rbtnDolares = new System.Windows.Forms.RadioButton();
-            this.rbtnSoles = new System.Windows.Forms.RadioButton();
+            this.rbnDolares = new System.Windows.Forms.RadioButton();
+            this.rbnSoles = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dtpFechaPago = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtDireccionProveedor = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtNombreProveedor = new System.Windows.Forms.TextBox();
+            this.txtRucProveedor = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dtpFechaEmision = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxTipoDocumento = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnEliminarItem = new System.Windows.Forms.Button();
+            this.btnRegistrarCompra = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.Compra = new System.Windows.Forms.GroupBox();
+            this.txtNumeroC = new System.Windows.Forms.TextBox();
+            this.txtSerieC = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.IdD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buscarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,29 +99,7 @@
             this.Igv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtDireccionCliente = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtNombreCliente = new System.Windows.Forms.TextBox();
-            this.txtRucCliente = new System.Windows.Forms.TextBox();
-            this.btnBusquedaCliente = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblFechaEmision = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbxTipoDocumento = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblRucUsuario = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblNroCorrelativo = new System.Windows.Forms.Label();
-            this.lblSerie = new System.Windows.Forms.Label();
-            this.lblTipoComprobante = new System.Windows.Forms.Label();
-            this.btnEliminarItem = new System.Windows.Forms.Button();
-            this.btnRegistrarVenta = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.tmCalculos = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlSubTotalVentas.SuspendLayout();
             this.pnlAnticipo.SuspendLayout();
@@ -117,21 +116,21 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.Compra.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtObservacion
             // 
-            this.txtObservacion.Location = new System.Drawing.Point(99, 162);
+            this.txtObservacion.Location = new System.Drawing.Point(106, 179);
             this.txtObservacion.Name = "txtObservacion";
-            this.txtObservacion.Size = new System.Drawing.Size(625, 20);
+            this.txtObservacion.Size = new System.Drawing.Size(857, 20);
             this.txtObservacion.TabIndex = 45;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 161);
+            this.label6.Location = new System.Drawing.Point(16, 178);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 16);
             this.label6.TabIndex = 44;
@@ -406,45 +405,45 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.rbtnDolares);
-            this.groupBox6.Controls.Add(this.rbtnSoles);
+            this.groupBox6.Controls.Add(this.rbnDolares);
+            this.groupBox6.Controls.Add(this.rbnSoles);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(179, 12);
+            this.groupBox6.Location = new System.Drawing.Point(173, 20);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(180, 51);
+            this.groupBox6.Size = new System.Drawing.Size(152, 51);
             this.groupBox6.TabIndex = 42;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Tipo de moneda";
             // 
-            // rbtnDolares
+            // rbnDolares
             // 
-            this.rbtnDolares.AutoSize = true;
-            this.rbtnDolares.Location = new System.Drawing.Point(99, 20);
-            this.rbtnDolares.Name = "rbtnDolares";
-            this.rbtnDolares.Size = new System.Drawing.Size(74, 20);
-            this.rbtnDolares.TabIndex = 4;
-            this.rbtnDolares.Text = "Dolares";
-            this.rbtnDolares.UseVisualStyleBackColor = true;
+            this.rbnDolares.AutoSize = true;
+            this.rbnDolares.Location = new System.Drawing.Point(73, 19);
+            this.rbnDolares.Name = "rbnDolares";
+            this.rbnDolares.Size = new System.Drawing.Size(74, 20);
+            this.rbnDolares.TabIndex = 4;
+            this.rbnDolares.Text = "Dolares";
+            this.rbnDolares.UseVisualStyleBackColor = true;
             // 
-            // rbtnSoles
+            // rbnSoles
             // 
-            this.rbtnSoles.AutoSize = true;
-            this.rbtnSoles.Checked = true;
-            this.rbtnSoles.Location = new System.Drawing.Point(17, 19);
-            this.rbtnSoles.Name = "rbtnSoles";
-            this.rbtnSoles.Size = new System.Drawing.Size(61, 20);
-            this.rbtnSoles.TabIndex = 3;
-            this.rbtnSoles.TabStop = true;
-            this.rbtnSoles.Text = "Soles";
-            this.rbtnSoles.UseVisualStyleBackColor = true;
+            this.rbnSoles.AutoSize = true;
+            this.rbnSoles.Checked = true;
+            this.rbnSoles.Location = new System.Drawing.Point(6, 19);
+            this.rbnSoles.Name = "rbnSoles";
+            this.rbnSoles.Size = new System.Drawing.Size(61, 20);
+            this.rbnSoles.TabIndex = 3;
+            this.rbnSoles.TabStop = true;
+            this.rbnSoles.Text = "Soles";
+            this.rbnSoles.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.dtpFechaPago);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(528, 12);
+            this.groupBox5.Location = new System.Drawing.Point(490, 20);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(196, 51);
+            this.groupBox5.Size = new System.Drawing.Size(152, 51);
             this.groupBox5.TabIndex = 39;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Fecha de pago";
@@ -454,7 +453,7 @@
             this.dtpFechaPago.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaPago.Location = new System.Drawing.Point(17, 20);
             this.dtpFechaPago.Name = "dtpFechaPago";
-            this.dtpFechaPago.Size = new System.Drawing.Size(168, 21);
+            this.dtpFechaPago.Size = new System.Drawing.Size(126, 21);
             this.dtpFechaPago.TabIndex = 0;
             // 
             // dataGridView1
@@ -473,14 +472,212 @@
             this.P_unidad,
             this.Importe});
             this.dataGridView1.GridColor = System.Drawing.Color.DimGray;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 188);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 218);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(945, 233);
+            this.dataGridView1.Size = new System.Drawing.Size(945, 187);
             this.dataGridView1.TabIndex = 41;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtDireccionProveedor);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.txtNombreProveedor);
+            this.groupBox3.Controls.Add(this.txtRucProveedor);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(13, 99);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(949, 65);
+            this.groupBox3.TabIndex = 40;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Proveedor";
+            // 
+            // txtDireccionProveedor
+            // 
+            this.txtDireccionProveedor.Location = new System.Drawing.Point(668, 30);
+            this.txtDireccionProveedor.Name = "txtDireccionProveedor";
+            this.txtDireccionProveedor.Size = new System.Drawing.Size(276, 21);
+            this.txtDireccionProveedor.TabIndex = 8;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(601, 29);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 16);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Direccion : ";
+            // 
+            // txtNombreProveedor
+            // 
+            this.txtNombreProveedor.Location = new System.Drawing.Point(210, 30);
+            this.txtNombreProveedor.Name = "txtNombreProveedor";
+            this.txtNombreProveedor.Size = new System.Drawing.Size(383, 21);
+            this.txtNombreProveedor.TabIndex = 6;
+            // 
+            // txtRucProveedor
+            // 
+            this.txtRucProveedor.Location = new System.Drawing.Point(55, 30);
+            this.txtRucProveedor.Name = "txtRucProveedor";
+            this.txtRucProveedor.Size = new System.Drawing.Size(106, 21);
+            this.txtRucProveedor.TabIndex = 5;
+            this.txtRucProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRucProveedor_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 29);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 16);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "RUC :";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(170, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Sr (a):";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dtpFechaEmision);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(331, 20);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(153, 51);
+            this.groupBox2.TabIndex = 38;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Fecha de Emision";
+            // 
+            // dtpFechaEmision
+            // 
+            this.dtpFechaEmision.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaEmision.Location = new System.Drawing.Point(18, 19);
+            this.dtpFechaEmision.Name = "dtpFechaEmision";
+            this.dtpFechaEmision.Size = new System.Drawing.Size(126, 21);
+            this.dtpFechaEmision.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbxTipoDocumento);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(6, 20);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(155, 51);
+            this.groupBox1.TabIndex = 37;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tipo Documento";
+            // 
+            // cbxTipoDocumento
+            // 
+            this.cbxTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTipoDocumento.FormattingEnabled = true;
+            this.cbxTipoDocumento.Location = new System.Drawing.Point(23, 19);
+            this.cbxTipoDocumento.Name = "cbxTipoDocumento";
+            this.cbxTipoDocumento.Size = new System.Drawing.Size(119, 23);
+            this.cbxTipoDocumento.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(35, 54);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 36;
+            // 
+            // btnEliminarItem
+            // 
+            this.btnEliminarItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarItem.Location = new System.Drawing.Point(628, 753);
+            this.btnEliminarItem.Name = "btnEliminarItem";
+            this.btnEliminarItem.Size = new System.Drawing.Size(110, 25);
+            this.btnEliminarItem.TabIndex = 48;
+            this.btnEliminarItem.Text = "&Eliminar Item";
+            this.btnEliminarItem.UseVisualStyleBackColor = true;
+            this.btnEliminarItem.Click += new System.EventHandler(this.btnEliminarItem_Click);
+            // 
+            // btnRegistrarCompra
+            // 
+            this.btnRegistrarCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarCompra.Location = new System.Drawing.Point(754, 753);
+            this.btnRegistrarCompra.Name = "btnRegistrarCompra";
+            this.btnRegistrarCompra.Size = new System.Drawing.Size(126, 25);
+            this.btnRegistrarCompra.TabIndex = 47;
+            this.btnRegistrarCompra.Text = "&Registrar Compra";
+            this.btnRegistrarCompra.UseVisualStyleBackColor = true;
+            this.btnRegistrarCompra.Click += new System.EventHandler(this.btnRegistrarCompra_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(886, 753);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 25);
+            this.btnSalir.TabIndex = 46;
+            this.btnSalir.Text = "&Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // Compra
+            // 
+            this.Compra.Controls.Add(this.txtNumeroC);
+            this.Compra.Controls.Add(this.txtSerieC);
+            this.Compra.Controls.Add(this.label3);
+            this.Compra.Controls.Add(this.label9);
+            this.Compra.Controls.Add(this.groupBox1);
+            this.Compra.Controls.Add(this.groupBox5);
+            this.Compra.Controls.Add(this.groupBox6);
+            this.Compra.Controls.Add(this.groupBox2);
+            this.Compra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Compra.Location = new System.Drawing.Point(13, 3);
+            this.Compra.Name = "Compra";
+            this.Compra.Size = new System.Drawing.Size(944, 90);
+            this.Compra.TabIndex = 49;
+            this.Compra.TabStop = false;
+            this.Compra.Text = "Datos del Comprobante";
+            // 
+            // txtNumeroC
+            // 
+            this.txtNumeroC.Location = new System.Drawing.Point(852, 36);
+            this.txtNumeroC.Name = "txtNumeroC";
+            this.txtNumeroC.Size = new System.Drawing.Size(86, 21);
+            this.txtNumeroC.TabIndex = 6;
+            // 
+            // txtSerieC
+            // 
+            this.txtSerieC.Location = new System.Drawing.Point(703, 38);
+            this.txtSerieC.Name = "txtSerieC";
+            this.txtSerieC.Size = new System.Drawing.Size(85, 21);
+            this.txtSerieC.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(654, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 16);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Serie:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(797, 39);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 16);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Numero:";
             // 
             // IdD
             // 
-            this.IdD.HeaderText = "IdV";
+            this.IdD.HeaderText = "IdC";
             this.IdD.Name = "IdD";
             this.IdD.ReadOnly = true;
             this.IdD.Visible = false;
@@ -519,10 +716,10 @@
             // 
             // V_U
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle9.Format = "N2";
+            dataGridViewCellStyle9.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle9;
             this.V_U.HeaderText = "V/U";
             this.V_U.Name = "V_U";
             this.V_U.ReadOnly = true;
@@ -530,10 +727,10 @@
             // 
             // Igv
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle10;
             this.Igv.HeaderText = "IGV";
             this.Igv.Name = "Igv";
             this.Igv.ReadOnly = true;
@@ -541,10 +738,10 @@
             // 
             // P_unidad
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle11;
             this.P_unidad.HeaderText = "P. UNIDAD";
             this.P_unidad.Name = "P_unidad";
             this.P_unidad.ReadOnly = true;
@@ -552,265 +749,40 @@
             // 
             // Importe
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle12;
             this.Importe.HeaderText = "IMPORTE";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
             this.Importe.Width = 90;
             // 
-            // groupBox3
+            // tmCalculos
             // 
-            this.groupBox3.Controls.Add(this.txtDireccionCliente);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.txtNombreCliente);
-            this.groupBox3.Controls.Add(this.txtRucCliente);
-            this.groupBox3.Controls.Add(this.btnBusquedaCliente);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 66);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(712, 93);
-            this.groupBox3.TabIndex = 40;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Cliente";
-            // 
-            // txtDireccionCliente
-            // 
-            this.txtDireccionCliente.Location = new System.Drawing.Point(79, 61);
-            this.txtDireccionCliente.Name = "txtDireccionCliente";
-            this.txtDireccionCliente.Size = new System.Drawing.Size(525, 21);
-            this.txtDireccionCliente.TabIndex = 8;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 61);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 16);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Direccion : ";
-            // 
-            // txtNombreCliente
-            // 
-            this.txtNombreCliente.Location = new System.Drawing.Point(206, 24);
-            this.txtNombreCliente.Name = "txtNombreCliente";
-            this.txtNombreCliente.Size = new System.Drawing.Size(398, 21);
-            this.txtNombreCliente.TabIndex = 6;
-            // 
-            // txtRucCliente
-            // 
-            this.txtRucCliente.Location = new System.Drawing.Point(49, 24);
-            this.txtRucCliente.Name = "txtRucCliente";
-            this.txtRucCliente.Size = new System.Drawing.Size(106, 21);
-            this.txtRucCliente.TabIndex = 5;
-            // 
-            // btnBusquedaCliente
-            // 
-            this.btnBusquedaCliente.Location = new System.Drawing.Point(614, 22);
-            this.btnBusquedaCliente.Name = "btnBusquedaCliente";
-            this.btnBusquedaCliente.Size = new System.Drawing.Size(93, 23);
-            this.btnBusquedaCliente.TabIndex = 4;
-            this.btnBusquedaCliente.Text = "Buscar";
-            this.btnBusquedaCliente.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 16);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "RUC :";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(167, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Sr (a):";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.lblFechaEmision);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(380, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(137, 51);
-            this.groupBox2.TabIndex = 38;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Fecha de Emision";
-            // 
-            // lblFechaEmision
-            // 
-            this.lblFechaEmision.AutoSize = true;
-            this.lblFechaEmision.BackColor = System.Drawing.SystemColors.Info;
-            this.lblFechaEmision.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaEmision.Location = new System.Drawing.Point(14, 26);
-            this.lblFechaEmision.Name = "lblFechaEmision";
-            this.lblFechaEmision.Size = new System.Drawing.Size(51, 16);
-            this.lblFechaEmision.TabIndex = 0;
-            this.lblFechaEmision.Text = "label8";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cbxTipoDocumento);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(161, 51);
-            this.groupBox1.TabIndex = 37;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Tipo Documento";
-            // 
-            // cbxTipoDocumento
-            // 
-            this.cbxTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxTipoDocumento.FormattingEnabled = true;
-            this.cbxTipoDocumento.Location = new System.Drawing.Point(23, 19);
-            this.cbxTipoDocumento.Name = "cbxTipoDocumento";
-            this.cbxTipoDocumento.Size = new System.Drawing.Size(121, 23);
-            this.cbxTipoDocumento.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(35, 54);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 13);
-            this.label4.TabIndex = 36;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.lblRucUsuario);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.lblNroCorrelativo);
-            this.panel1.Controls.Add(this.lblSerie);
-            this.panel1.Controls.Add(this.lblTipoComprobante);
-            this.panel1.Location = new System.Drawing.Point(733, 17);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(223, 141);
-            this.panel1.TabIndex = 35;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(16, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(67, 20);
-            this.label9.TabIndex = 5;
-            this.label9.Text = "R.U.C. ";
-            // 
-            // lblRucUsuario
-            // 
-            this.lblRucUsuario.AutoSize = true;
-            this.lblRucUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRucUsuario.Location = new System.Drawing.Point(80, 20);
-            this.lblRucUsuario.Name = "lblRucUsuario";
-            this.lblRucUsuario.Size = new System.Drawing.Size(119, 20);
-            this.lblRucUsuario.TabIndex = 4;
-            this.lblRucUsuario.Text = "20605971343";
-            this.lblRucUsuario.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(79, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 29);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "-";
-            // 
-            // lblNroCorrelativo
-            // 
-            this.lblNroCorrelativo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNroCorrelativo.ForeColor = System.Drawing.Color.Red;
-            this.lblNroCorrelativo.Location = new System.Drawing.Point(106, 104);
-            this.lblNroCorrelativo.Name = "lblNroCorrelativo";
-            this.lblNroCorrelativo.Size = new System.Drawing.Size(78, 23);
-            this.lblNroCorrelativo.TabIndex = 1;
-            // 
-            // lblSerie
-            // 
-            this.lblSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSerie.Location = new System.Drawing.Point(17, 103);
-            this.lblSerie.Name = "lblSerie";
-            this.lblSerie.Size = new System.Drawing.Size(57, 23);
-            this.lblSerie.TabIndex = 1;
-            // 
-            // lblTipoComprobante
-            // 
-            this.lblTipoComprobante.BackColor = System.Drawing.Color.GreenYellow;
-            this.lblTipoComprobante.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblTipoComprobante.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoComprobante.Location = new System.Drawing.Point(-1, 55);
-            this.lblTipoComprobante.Name = "lblTipoComprobante";
-            this.lblTipoComprobante.Size = new System.Drawing.Size(222, 29);
-            this.lblTipoComprobante.TabIndex = 0;
-            this.lblTipoComprobante.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnEliminarItem
-            // 
-            this.btnEliminarItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarItem.Location = new System.Drawing.Point(628, 753);
-            this.btnEliminarItem.Name = "btnEliminarItem";
-            this.btnEliminarItem.Size = new System.Drawing.Size(110, 25);
-            this.btnEliminarItem.TabIndex = 48;
-            this.btnEliminarItem.Text = "&Eliminar Item";
-            this.btnEliminarItem.UseVisualStyleBackColor = true;
-            // 
-            // btnRegistrarVenta
-            // 
-            this.btnRegistrarVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarVenta.Location = new System.Drawing.Point(754, 753);
-            this.btnRegistrarVenta.Name = "btnRegistrarVenta";
-            this.btnRegistrarVenta.Size = new System.Drawing.Size(126, 25);
-            this.btnRegistrarVenta.TabIndex = 47;
-            this.btnRegistrarVenta.Text = "&Registrar Venta";
-            this.btnRegistrarVenta.UseVisualStyleBackColor = true;
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(886, 753);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 25);
-            this.btnSalir.TabIndex = 46;
-            this.btnSalir.Text = "&Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.tmCalculos.Enabled = true;
+            this.tmCalculos.Tick += new System.EventHandler(this.tmCalculos_Tick);
             // 
             // FormReistrarCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(973, 789);
+            this.ClientSize = new System.Drawing.Size(973, 863);
+            this.Controls.Add(this.Compra);
             this.Controls.Add(this.btnEliminarItem);
-            this.Controls.Add(this.btnRegistrarVenta);
+            this.Controls.Add(this.btnRegistrarCompra);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.txtObservacion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.panel1);
             this.Name = "FormReistrarCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormReistrarCompras";
+            this.Activated += new System.EventHandler(this.FormReistrarCompras_Activated);
+            this.Load += new System.EventHandler(this.FormReistrarCompras_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.pnlSubTotalVentas.ResumeLayout(false);
             this.pnlSubTotalVentas.PerformLayout();
@@ -837,10 +809,9 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.Compra.ResumeLayout(false);
+            this.Compra.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -879,11 +850,31 @@
         private System.Windows.Forms.TextBox txtImporteTotal;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RadioButton rbtnDolares;
-        private System.Windows.Forms.RadioButton rbtnSoles;
+        private System.Windows.Forms.RadioButton rbnDolares;
+        private System.Windows.Forms.RadioButton rbnSoles;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DateTimePicker dtpFechaPago;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.TextBox txtDireccionProveedor;
+        private System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox txtNombreProveedor;
+        public System.Windows.Forms.TextBox txtRucProveedor;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cbxTipoDocumento;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnEliminarItem;
+        private System.Windows.Forms.Button btnRegistrarCompra;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.DateTimePicker dtpFechaEmision;
+        private System.Windows.Forms.GroupBox Compra;
+        public System.Windows.Forms.TextBox txtNumeroC;
+        public System.Windows.Forms.TextBox txtSerieC;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdD;
         private System.Windows.Forms.DataGridViewButtonColumn buscarProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn code_product;
@@ -894,28 +885,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Igv;
         private System.Windows.Forms.DataGridViewTextBoxColumn P_unidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
-        private System.Windows.Forms.GroupBox groupBox3;
-        public System.Windows.Forms.TextBox txtDireccionCliente;
-        private System.Windows.Forms.Label label8;
-        public System.Windows.Forms.TextBox txtNombreCliente;
-        public System.Windows.Forms.TextBox txtRucCliente;
-        private System.Windows.Forms.Button btnBusquedaCliente;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label lblFechaEmision;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cbxTipoDocumento;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblRucUsuario;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblNroCorrelativo;
-        private System.Windows.Forms.Label lblSerie;
-        private System.Windows.Forms.Label lblTipoComprobante;
-        private System.Windows.Forms.Button btnEliminarItem;
-        private System.Windows.Forms.Button btnRegistrarVenta;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Timer tmCalculos;
     }
 }

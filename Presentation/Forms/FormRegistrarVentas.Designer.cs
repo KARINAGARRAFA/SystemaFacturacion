@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEliminarItem = new System.Windows.Forms.Button();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -73,8 +73,8 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dtpFechaPago = new System.Windows.Forms.DateTimePicker();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.rbtnDolares = new System.Windows.Forms.RadioButton();
-            this.rbtnSoles = new System.Windows.Forms.RadioButton();
+            this.rbnDolares = new System.Windows.Forms.RadioButton();
+            this.rbnSoles = new System.Windows.Forms.RadioButton();
             this.tmHora = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlSubTotalVentas = new System.Windows.Forms.Panel();
@@ -192,9 +192,9 @@
             // 
             // buscarProducto
             // 
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.NullValue = "...";
-            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "...";
+            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle1;
             this.buscarProducto.HeaderText = "...";
             this.buscarProducto.Name = "buscarProducto";
             this.buscarProducto.Width = 25;
@@ -206,9 +206,9 @@
             // 
             // Cant
             // 
-            dataGridViewCellStyle26.Format = "N0";
-            dataGridViewCellStyle26.NullValue = null;
-            this.Cant.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Cant.DefaultCellStyle = dataGridViewCellStyle2;
             this.Cant.HeaderText = "CANT.";
             this.Cant.Name = "Cant";
             this.Cant.ToolTipText = "int";
@@ -230,10 +230,10 @@
             // 
             // P_unidad
             // 
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle27.Format = "N2";
-            dataGridViewCellStyle27.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle3;
             this.P_unidad.HeaderText = "P. UNIDAD";
             this.P_unidad.Name = "P_unidad";
             this.P_unidad.ReadOnly = true;
@@ -241,10 +241,10 @@
             // 
             // V_U
             // 
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle28.Format = "N2";
-            dataGridViewCellStyle28.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle4;
             this.V_U.HeaderText = "V/U";
             this.V_U.Name = "V_U";
             this.V_U.ReadOnly = true;
@@ -252,10 +252,10 @@
             // 
             // Igv
             // 
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle29.Format = "N2";
-            dataGridViewCellStyle29.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle5;
             this.Igv.HeaderText = "IGV";
             this.Igv.Name = "Igv";
             this.Igv.ReadOnly = true;
@@ -263,10 +263,10 @@
             // 
             // Importe
             // 
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle30.Format = "N2";
-            dataGridViewCellStyle30.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle6;
             this.Importe.HeaderText = "IMPORTE";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
@@ -510,8 +510,8 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.rbtnDolares);
-            this.groupBox6.Controls.Add(this.rbtnSoles);
+            this.groupBox6.Controls.Add(this.rbnDolares);
+            this.groupBox6.Controls.Add(this.rbnSoles);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(197, 9);
             this.groupBox6.Name = "groupBox6";
@@ -520,27 +520,27 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Tipo de moneda";
             // 
-            // rbtnDolares
+            // rbnDolares
             // 
-            this.rbtnDolares.AutoSize = true;
-            this.rbtnDolares.Location = new System.Drawing.Point(99, 20);
-            this.rbtnDolares.Name = "rbtnDolares";
-            this.rbtnDolares.Size = new System.Drawing.Size(74, 20);
-            this.rbtnDolares.TabIndex = 4;
-            this.rbtnDolares.Text = "Dolares";
-            this.rbtnDolares.UseVisualStyleBackColor = true;
+            this.rbnDolares.AutoSize = true;
+            this.rbnDolares.Location = new System.Drawing.Point(99, 20);
+            this.rbnDolares.Name = "rbnDolares";
+            this.rbnDolares.Size = new System.Drawing.Size(74, 20);
+            this.rbnDolares.TabIndex = 4;
+            this.rbnDolares.Text = "Dolares";
+            this.rbnDolares.UseVisualStyleBackColor = true;
             // 
-            // rbtnSoles
+            // rbnSoles
             // 
-            this.rbtnSoles.AutoSize = true;
-            this.rbtnSoles.Checked = true;
-            this.rbtnSoles.Location = new System.Drawing.Point(17, 19);
-            this.rbtnSoles.Name = "rbtnSoles";
-            this.rbtnSoles.Size = new System.Drawing.Size(61, 20);
-            this.rbtnSoles.TabIndex = 3;
-            this.rbtnSoles.TabStop = true;
-            this.rbtnSoles.Text = "Soles";
-            this.rbtnSoles.UseVisualStyleBackColor = true;
+            this.rbnSoles.AutoSize = true;
+            this.rbnSoles.Checked = true;
+            this.rbnSoles.Location = new System.Drawing.Point(17, 19);
+            this.rbnSoles.Name = "rbnSoles";
+            this.rbnSoles.Size = new System.Drawing.Size(61, 20);
+            this.rbnSoles.TabIndex = 3;
+            this.rbnSoles.TabStop = true;
+            this.rbnSoles.Text = "Soles";
+            this.rbnSoles.UseVisualStyleBackColor = true;
             // 
             // tmHora
             // 
@@ -858,6 +858,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormRegistrarVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRegistrarVentas";
@@ -919,8 +921,8 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.DateTimePicker dtpFechaPago;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RadioButton rbtnDolares;
-        private System.Windows.Forms.RadioButton rbtnSoles;
+        private System.Windows.Forms.RadioButton rbnDolares;
+        private System.Windows.Forms.RadioButton rbnSoles;
         private System.Windows.Forms.ComboBox cbxTipoDocumento;
         private System.Windows.Forms.Label lblFechaEmision;
         private System.Windows.Forms.Timer tmHora;

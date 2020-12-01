@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Business;
+using Business.Business.Help;
 using Business.Business.Venta;
 using Business.Business.Cliente;
 using Business.Business.Producto;
@@ -21,6 +22,7 @@ namespace Presentation.Forms
 {
     public partial class FormRegistrarVentas : Form
     {
+        BusinessGeneral GENERAL = new BusinessGeneral();
         BusinessVenta VENTA = new BusinessVenta();
         BusinessDetalleVenta Dventa = new BusinessDetalleVenta();
         BusinessCliente CL = new BusinessCliente();
@@ -58,6 +60,9 @@ namespace Presentation.Forms
                         txtRucCliente.Text = cli[0];
                         txtNombreCliente.Text = cli[1];
                         txtDireccionCliente.Text = cli[7];
+
+                        //  CONDICION EN CASO Q NO ENCUENTREAL CLIENTE
+
                         CL.RegistrarClienteRenic(cli);
                     }
                     else
@@ -90,7 +95,7 @@ namespace Presentation.Forms
         private void LlenarCombox()
         {
             DataTable dt = new DataTable();
-            dt = VENTA.ListarTipoDocumento();
+            dt = GENERAL.ListarTipoDocumento();
 
             cbxTipoDocumento.DataSource = null;
             cbxTipoDocumento.Items.Clear();
@@ -282,7 +287,7 @@ namespace Presentation.Forms
             {
                 dgvRow.Cells["nombre"].Value = dt.Rows[i][1].ToString();                
                 dgvRow.Cells["P_unidad"].Value = dt.Rows[i][4].ToString();
-                dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value);
+                dgvRow.Cells["Importe"].Value = Convert.ToDouble(dgvRow.Cells["P_unidad"].Value) * Convert.ToDouble(dgvRow.Cells["Cant"].Value); 
                 dgvRow.Cells["V_U"].Value = Convert.ToDouble(dgvRow.Cells["Importe"].Value) / 1.18;
                 dgvRow.Cells["Igv"].Value = Convert.ToDouble(dgvRow.Cells["Importe"].Value) - Convert.ToDouble(dgvRow.Cells["V_U"].Value);
             }
@@ -361,6 +366,7 @@ namespace Presentation.Forms
                 //string cdp_tipo = cbxTipoDocumento.SelectedValue.ToString(); //Convert.ToString(cbxTipoDocumento.AccessibilityObject); //== "BOLETA" ? "01" : "02";965
 
                 IDVenta = VENTA.GenerarIdVentas(lblRucEmpresa.Text, cbxTipoDocumento.SelectedValue.ToString(), lblSerie.Text, Convert.ToInt32(lblNroCorrelativo.Text));
+                String TipoMoneda=  rbnSoles.Checked == true ? "PEN" : "USS";
                 v.Code = IDVenta;
                 v.Numero = Convert.ToInt32("0");
                 v.Fecha_emision = DateTime.Now; //Convert.ToDateTime(lblFechaEmision.Text);
@@ -387,6 +393,7 @@ namespace Presentation.Forms
                 v.created_at = DateTime.Now;
                 v.updated_at = DateTime.Now;
                 v.Company_ruc = lblRucEmpresa.Text;
+                v.Tipo_moneda = TipoMoneda;
                 MessageBox.Show(VENTA.RegistrarVenta(v), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 VENTA.ActualizarNumeroCorrelativo(v.Cdp_serie, v.Cdp_numero);
             }

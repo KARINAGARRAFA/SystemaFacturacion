@@ -47,6 +47,8 @@
     <Compile Include="Business\Categoria\BusinessCategoria.cs" />
     <Compile Include="Business\Cliente\BusinessCliente.cs" />
     <Compile Include="Business\Compra\BusinessCompra.cs" />
+    <Compile Include="Business\Compra\BusinessDetalleCompra.cs" />
+    <Compile Include="Business\Help\BusinessGeneral.cs" />
     <Compile Include="Business\login\BusinessCompanyUser.cs" />
     <Compile Include="Business\login\BusinessUserLogin.cs" />
     <Compile Include="Business\Help\Encrypt.cs" />

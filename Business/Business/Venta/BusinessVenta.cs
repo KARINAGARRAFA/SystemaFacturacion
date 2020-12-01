@@ -40,7 +40,6 @@ namespace Business.Business.Venta
                 lst.Add(new ClsParameter("@Igv", v.Igv));
                 lst.Add(new ClsParameter("@Importe_total", v.Importe_total));
                 lst.Add(new ClsParameter("@Dolares", v.Dolares));
-                //lst.Add(new ClsParameter("@Tipo_cambio", v.Tipo_cambio));
                 lst.Add(new ClsParameter("@Igv_retencion", v.Igv_retencion));
                 lst.Add(new ClsParameter("@Detraccion_id", v.Detraccion_id));
                 lst.Add(new ClsParameter("@Constancia_detraccion_numero", v.Constancia_detraccion_numero));
@@ -51,9 +50,10 @@ namespace Business.Business.Venta
                 lst.Add(new ClsParameter("@created_at", v.created_at));
                 lst.Add(new ClsParameter("@updated_at", v.updated_at));
                 lst.Add(new ClsParameter("@Company_ruc", v.Company_ruc));
+                lst.Add(new ClsParameter("@Tipo_moneda", v.Tipo_moneda));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
                 M.EjecutarSP("RegistrarVenta", ref lst);
-                return Mensaje = lst[26].Valor.ToString();
+                return Mensaje = lst[27].Valor.ToString();
             }
             catch (Exception ex)
             {
@@ -130,12 +130,7 @@ namespace Business.Business.Venta
             }
             return idVentas;
         }
-
-        // TABLA : VOUCHER TIPO
-        public DataTable ListarTipoDocumento()
-        {
-            return M.Listado("ListarTipoComprobante", null);
-        }
+                
         #endregion
 
         public DataTable ListarVenta(String ruc)

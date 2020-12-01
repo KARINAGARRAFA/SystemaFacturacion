@@ -502,7 +502,7 @@ BEGIN  -- DETALLE-VENTA PROC  sfe_sales_detail
 
 Create Proc RegistrarDetalleVenta
 	@Code_sales varchar(100),
-	@Code_product varchar(10),
+	@code_product varchar(50),
 	@Cantidad int,
 	@precio Decimal(18,2),
 	@code_unit varchar(10),
@@ -517,29 +517,24 @@ As Begin
 	Set @Mensaje='Registrado Correctamente. Detalle Venta'
 End              
 ----------------
+Create Proc ListarDetalleVentaCln
+@Code varchar(100)
+As Begin
+	select m.nombre,v.fecha_emision,v.fecha_pago,v.company_ruc,t.nombre+' ELECTRONICA',v.cdp_serie,v.cdp_numero,c.ruc,c.business_name,c.address,v.observacion,v.base_imponible,v.igv,v.importe_total
+	from sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc
+						inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+						inner join sfe_type_money as m on v.tipo_moneda =m.id
+	where v.code=@Code
+End
+------------------------------------------------
 Create Proc ListarDetalleVenta
 @Code varchar(100)
 As Begin
-	-- cliente
-	--producto
-	select v.fecha_emision,v.fecha_pago,v.company_ruc,t.nombre+'ELECTRONICA',v.cdp_serie,v.cdp_numero,c.ruc,c.business_name,c.address,v.observacion,
-			p.code_product,p.name_product,dv.cantidad,p.precio,dv.base_imponible,dv.igv,dv.importe
-	from sfe_sales as v inner join sfe_sales_detail as dv on v.code=dv.code_sales
-						inner join gen_vendors as c on v.proveedor_numero=c.ruc
-						inner join sfe_voucher_type as t on v.cdp_tipo=t.id
-						inner join sfe_company_products p on dv.code_product= p.code_product
-
-	where dv.code_sales=@code
+	select p.code_product,p.name_product,dv.cantidad,p.precio,dv.base_imponible,dv.igv,dv.importe
+	from sfe_sales_detail as dv inner join sfe_company_products as p on p.code_product=dv.code_product
+	where dv.code_sales=@Code
 End
 ------------------------------------------------------------
-Create Proc ListarVentas
-@ruc char(11)
-As Begin
-	Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
-	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
-	where v.company_ruc=@ruc
-End
-select * from sfe_sales_detail
 END
 GO
 
@@ -571,6 +566,7 @@ Create Proc RegistrarVenta
 @created_at datetime,
 @Updated_at datetime,
 @Company_ruc char(11),
+@Tipo_moneda varchar(5),
 @Mensaje Varchar(100) Out
 As Begin
 	Declare @Tipo_cambio decimal(4, 3)
@@ -578,7 +574,7 @@ As Begin
 	Begin
 		Insert sfe_sales Values(@Code,@Numero,@Fecha_emision,@fecha_pago,@Cdp_tipo,@Cdp_serie,@Cdp_numero,@Proveedor_tipo,@Proveedor_numero,@Valor_exportacion,@Base_imponible,
 		@Importe_total_exonerada,@Importe_total_inafecta,@Igv,@Importe_total,@Dolares,@Tipo_cambio,@Igv_retencion,@Detraccion_id,@constancia_detraccion_numero,
-		@constancia_detraccion_fecha_pago,@constancia_detraccion_monto,@constancia_detraccion_referencia_monto,@observacion,@created_at,@Updated_at,@Company_ruc)
+		@constancia_detraccion_fecha_pago,@constancia_detraccion_monto,@constancia_detraccion_referencia_monto,@observacion,@created_at,@Updated_at,@Company_ruc,@Tipo_moneda)
 			Set @Mensaje='La Venta se ha Generado Correctamente.'
 		End
 	End
@@ -752,38 +748,38 @@ End
 
 
 Go
-BEGIN  -- VENTA PROC  sfe_sales
-Create Proc RegistrarVenta
+BEGIN  --COMPRA PROC  sfe_purchages
+Create Proc RegistrarCompra
 	@code_purchages varchar(100),
-	@numero int,
+	@numero int,-----------VACIO
 	@fecha_emision datetime,
 	@fecha_pago datetime,
 	@cdp_tipo char(2),
 	@cdp_serie varchar(4),
 	@cdp_numero int,
-	@proveedor_tipo varchar(1),
+	@proveedor_tipo varchar(1),---------VACIO
 	@proveedor_numero char(11),
-	@base_imponible decimal(18, 2),
-	@igv decimal(18, 2),
-	@no_gravada decimal(18, 2),
-	@descuento decimal(18, 2),
-	@importe_total decimal(18, 2),
-	@dolares decimal(18, 2),
-	@tipo_cambio decimal(4, 3),
-	@percepcion decimal(18, 2),
-	@detraccion_id int,
-	@constancia_detraccion_numero varchar(50),
-	@constancia_detraccion_fecha_pago datetime,
-	@constancia_detraccion_monto decimal(18, 2),
-	@monto_referencial decimal(18, 2),
-	@nota_credito_referencia_fecha datetime,
-	@nota_credito_referencia_tipo varchar(2),
-	@nota_credito_referencia_serie varchar(4),
-	@nota_credito_referencia_numero varchar(50),
+	@base_imponible decimal(18, 2),-----------SUB TOTAL		
+	@igv decimal(18, 2), -------- ------------total igv
+	@no_gravada decimal(18, 2),---vacio
+	@descuento decimal(18, 2),  --vacio
+	@importe_total decimal(18, 2),------------importe total
+	@dolares decimal(18, 2),---vacio
+	@percepcion decimal(18, 2),--vacio
+	@detraccion_id int,----vacio
+	@constancia_detraccion_numero varchar(50),----vacio
+	@constancia_detraccion_fecha_pago datetime,----vacio
+	@constancia_detraccion_monto decimal(18, 2),----vacio
+	@monto_referencial decimal(18, 2),----vacio
+	@nota_credito_referencia_fecha datetime,----vacio
+	@nota_credito_referencia_tipo varchar(2),----vacio
+	@nota_credito_referencia_serie varchar(4),----vacio
+	@nota_credito_referencia_numero varchar(50),----vacio
 	@observacion varchar(1000),
 	@created_at datetime,
 	@updated_at datetime,
-	@company_ruc char(11),
+	@company_ruc char(11),-------------------------ruc-compania propia
+	@Tipo_moneda varchar(5),
 	@Mensaje Varchar(100) Out
 As Begin
 	Declare @Tipo_cambio decimal(4, 3)
@@ -792,21 +788,20 @@ As Begin
 		Insert sfe_purchages Values(@code_purchages,@numero,@fecha_emision,@fecha_pago,@cdp_tipo,@cdp_serie,@cdp_numero,@proveedor_tipo,@proveedor_numero,@base_imponible,
 									@igv,@no_gravada,@descuento,@importe_total,@dolares,@tipo_cambio,@percepcion,@detraccion_id,@constancia_detraccion_numero,
 									@constancia_detraccion_fecha_pago,@constancia_detraccion_monto,@monto_referencial,@nota_credito_referencia_fecha,@nota_credito_referencia_tipo,
-									@nota_credito_referencia_serie,@nota_credito_referencia_numero,@observacion,@created_at,@updated_at,@company_ruc)
+									@nota_credito_referencia_serie,@nota_credito_referencia_numero,@observacion,@created_at,@updated_at,@company_ruc,@Tipo_moneda)
 			Set @Mensaje='La compra se ha registrado Correctamente.'
 		End
 	End
 ---------------------------- 
---select * from sfe_purchages
 Create Proc BuscarCompra
 @ruc char(11),
 @Datos Varchar(80)
 As Begin
-	Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
+	Select v.code_purchages,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
 	From sfe_purchages as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
 	Where v.company_ruc=@ruc and (v.proveedor_numero like '%'+@Datos+'%' or c.business_name like '%'+@Datos+'%' or t.nombre like '%'+@Datos+'%')
 End
------------------------- falta aaaaaaaaaaaaaaaaaaaaaaaa
+------------------------ select * from sfe_purchages
 Create Proc GenerarIdCompra
 @ruc varchar(11),
 @Cdp_tipo varchar(2),
@@ -815,16 +810,16 @@ Create Proc GenerarIdCompra
 @CodeCompra varchar(100) Out
 As Begin
 	Set @CodeCompra=CONCAT(@ruc,'-',@Cdp_tipo,'-',@Cdp_serie,'-',@Cdp_numero)
-	If(Exists(Select code_purchages From sfe_purchages where code_purchages=@CodeVenta))
+	If(Exists(Select code_purchages From sfe_purchages where code_purchages=@CodeCompra))
 		Set @CodeCompra=CONCAT(@ruc,'-',@Cdp_tipo,'-',@Cdp_serie,'-',(@Cdp_numero+1))
 	End
 ---------------------
-Create Proc ListarVentas
+Create Proc ListarCompras
 @ruc char(11)
 As Begin
-	Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
-	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
-	where v.company_ruc=@ruc
+	Select v.code_purchages,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
+	From sfe_purchages as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+	Where v.company_ruc=@ruc
 End
 -----------------------------------------------
 
@@ -833,7 +828,48 @@ End
 END
 GO
 
+BEGIN  -- DETALLE-COMPRA PROC  sfe_purchages_detail
 
+Create Proc RegistrarDetalleCompra
+	@code_purchages varchar(100),
+	@code_product varchar(50),
+	@cantidad int,
+	@precio Decimal(18,2),
+	@code_unit varchar(10),
+	@base_imponible decimal(18, 2),
+	@igv decimal(18, 2),
+	@importe decimal(18, 2),
+	@created_at datetime,
+	@updated_at datetime,
+	@Mensaje Varchar(50) Out
+As Begin
+	Insert sfe_purchages_detail Values(@code_purchages,@Code_product,@cantidad,@precio,@code_unit,@base_imponible,@igv,@importe,@created_at,@updated_at)
+	Set @Mensaje='Registrado Correctamente. Detalle Compra'
+End             
+select * from sfe_purchages_detail
+select * from sfe_purchages
+---------------- FALTAAAAAAAA
+
+Create Proc ListarDetalleVentaPro
+@Code varchar(100)
+As Begin
+	select m.nombre,v.fecha_emision,v.fecha_pago,v.company_ruc,t.nombre+' ELECTRONICA',v.cdp_serie,v.cdp_numero,c.ruc,c.business_name,c.address,v.observacion,v.base_imponible,v.igv,v.importe_total
+	from sfe_purchages_detail as v inner join gen_vendors as c on v.proveedor_numero=c.ruc
+						inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+						inner join sfe_type_money as m on v.tipo_moneda =m.id
+	where v.code=@Code
+End
+------------------------------------------------
+Create Proc ListarDetalleVenta
+@Code varchar(100)
+As Begin
+	select p.code_product,p.name_product,dv.cantidad,p.precio,dv.base_imponible,dv.igv,dv.importe
+	from sfe_sales_detail as dv inner join sfe_company_products as p on p.code_product=dv.code_product
+	where dv.code_sales=@Code
+End
+------------------------------------------------------------
+END
+GO
 
 
 
@@ -859,29 +895,28 @@ Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.ig
 	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc  inner join sfe_voucher_type as t on v.cdp_tipo=t.id
 	where v.company_ruc='20605971343'
 
-
-	select v.fecha_emision,v.fecha_pago,v.company_ruc,t.nombre+'ELECTRONICA',v.cdp_serie,v.cdp_numero,c.ruc,c.business_name,c.address,v.observacion
+--------------------------------------------------
+	select m.nombre,v.fecha_emision,v.fecha_pago,v.company_ruc,t.nombre+' ELECTRONICA',v.cdp_serie,v.cdp_numero,c.ruc,c.business_name,c.address,v.observacion
 	from sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc
 						inner join sfe_voucher_type as t on v.cdp_tipo=t.id
-	where v.code='20363916008-01-F001-3'
+						inner join sfe_type_money as m on v.tipo_moneda =m.id
+	where v.code='20363916008-01-F001-1'
 
 
 	select p.code_product,p.name_product,dv.cantidad,p.precio,dv.base_imponible,dv.igv,dv.importe
 	from sfe_sales_detail as dv inner join sfe_company_products as p on p.code_product=dv.code_product
-								inner join sfe_sales as v on dv.code_sales=v.code
-	where v.code='20363916008-01-F001-3'
-
-	select * 
-	from sfe_sales_detail dv,sfe_company_products p
-	where dv.code_product = p.code_product
+	where dv.code_sales='20363916008-01-F001-1'
+----------------------------------------
+	
 
 select * from sfe_sales_detail
 select * from sfe_company_products
 select * from sfe_sales
+select * from sfe_type_money
 
 
 -- HELP
-DROP PROC RegistrarDetalleVenta
+DROP PROC ListarDetalleVentaCln
 
 exec FiltrarDatosProducto 'papel'
 

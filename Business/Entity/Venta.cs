@@ -33,6 +33,7 @@ namespace Business.Entity
         private Decimal m_constancia_detraccion_referencia_monto;
         private String m_observacion;
         private String m_company_ruc;
+        private String m_tipo_moneda;
 
 
         public String Code
@@ -154,6 +155,11 @@ namespace Business.Entity
         {
             get { return m_company_ruc; }
             set { m_company_ruc = value; }
+        }
+        public String Tipo_moneda
+        {
+            get { return m_tipo_moneda; }
+            set { m_tipo_moneda = value; }
         }
     }
 }

@@ -45,10 +45,16 @@ namespace Business.Business.Venta
             }
             return Mensaje;
         }
+        public DataTable ListarDetalleVentaCln(String code)
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@Code", code));
+            return M.Listado("ListarDetalleVentaCln", lst);
+        }
         public DataTable ListarDetalleVenta(String code)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
-            lst.Add(new ClsParameter("@ruc", code));
+            lst.Add(new ClsParameter("@Code", code));
             return M.Listado("ListarDetalleVenta", lst);
         }
         #endregion
