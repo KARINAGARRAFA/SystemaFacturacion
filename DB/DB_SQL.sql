@@ -84,8 +84,8 @@ select * from sfe_unit_measurement
 CREATE TABLE sfe_purchages(
 	code_purchages varchar(100) primary key NOT NULL,
 	numero int NULL,
-	fecha_emision date NULL,
-	fecha_pago date NULL,
+	fecha_emision datetime NULL,
+	fecha_pago datetime NULL,
 	cdp_tipo char(2) NULL,
 	cdp_serie varchar(4) NULL,
 	cdp_numero int NULL,
@@ -101,10 +101,10 @@ CREATE TABLE sfe_purchages(
 	percepcion decimal(18, 2) NULL,
 	detraccion_id int NULL,
 	constancia_detraccion_numero varchar(50) NULL,
-	constancia_detraccion_fecha_pago date NULL,
+	constancia_detraccion_fecha_pago datetime NULL,
 	constancia_detraccion_monto decimal(18, 2) NULL,
 	monto_referencial decimal(18, 2) NULL,
-	nota_credito_referencia_fecha date NULL,
+	nota_credito_referencia_fecha datetime NULL,
 	nota_credito_referencia_tipo varchar(2) NULL,
 	nota_credito_referencia_serie varchar(4) NULL,
 	nota_credito_referencia_numero varchar(50) NULL,
@@ -157,7 +157,9 @@ CREATE TABLE sfe_sales(
 	updated_at datetime NULL,
 	company_ruc char(11) NULL,
 	tipo_moneda varchar(5) NULL,
+	estado varchar(20)
 )
+
 
 CREATE TABLE sfe_sales_detail(
     code Int Identity primary key NOT NULL,
@@ -191,8 +193,6 @@ create table sfe_company_users
 	updated_at datetime NULL,
 )
 
-
-DROP TABLE sfe_sales
 Create Table sfe_voucher_type(
 	id varchar(100) Primary Key,
 	nombre varchar(11) Not Null ,
@@ -232,7 +232,9 @@ select * from sfe_type_money
 INSERT INTO sfe_consecutive_number VALUES ('01','20605971343','B001',0,'2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 INSERT INTO sfe_consecutive_number VALUES ('02','20605971343','F001',0,'2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 
+select * from sfe_consecutive_number
 select * from sfe_sales_detail
+select * from sfe_sales
 
 INSERT INTO sfe_user_login VALUES ('8545','10012924262','admin', '123')
 
@@ -255,3 +257,5 @@ select * from gen_vendors
 INSERT INTO sfe_trademark VALUES ('8545','samsung','----', '2020-11-12 00:00:00.000','2020-11-12 00:00:00.000')
 
 DELETE FROM sfe_voucher_type
+
+ALTER TABLE sfe_sales ADD estado varchar(20);

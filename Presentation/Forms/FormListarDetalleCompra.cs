@@ -20,6 +20,7 @@ namespace Presentation.Forms
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+
         }
 
         private void FormListarDetalleCompra_Load(object sender, EventArgs e)

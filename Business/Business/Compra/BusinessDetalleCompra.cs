@@ -43,18 +43,17 @@ namespace Business.Business.Compra
             }
             return Mensaje;
         }
-        //falta 
-        public DataTable ListarDetalleVentaCln(String code)
+        public DataTable ListarDetalleCompraCln(String code)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
             lst.Add(new ClsParameter("@Code", code));
-            return M.Listado("ListarDetalleVentaCln", lst);
+            return M.Listado("ListarDetalleCompraPro", lst);
         }
-        public DataTable ListarDetalleVenta(String code)
+        public DataTable ListarDetalleCompra(String code)
         {
             List<ClsParameter> lst = new List<ClsParameter>();
             lst.Add(new ClsParameter("@Code", code));
-            return M.Listado("ListarDetalleVenta", lst);
+            return M.Listado("ListarDetalleCompra", lst);
         }
         #endregion
     }

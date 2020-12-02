@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -89,6 +90,7 @@
             this.txtSerieC = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.tmCalculos = new System.Windows.Forms.Timer(this.components);
             this.IdD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buscarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,7 +101,6 @@
             this.Igv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.P_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tmCalculos = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlSubTotalVentas.SuspendLayout();
             this.pnlAnticipo.SuspendLayout();
@@ -675,6 +676,11 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Numero:";
             // 
+            // tmCalculos
+            // 
+            this.tmCalculos.Enabled = true;
+            this.tmCalculos.Tick += new System.EventHandler(this.tmCalculos_Tick);
+            // 
             // IdD
             // 
             this.IdD.HeaderText = "IdC";
@@ -685,6 +691,9 @@
             // 
             // buscarProducto
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = "...";
+            this.buscarProducto.DefaultCellStyle = dataGridViewCellStyle1;
             this.buscarProducto.HeaderText = "...";
             this.buscarProducto.Name = "buscarProducto";
             this.buscarProducto.Width = 30;
@@ -716,10 +725,10 @@
             // 
             // V_U
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.V_U.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.V_U.DefaultCellStyle = dataGridViewCellStyle2;
             this.V_U.HeaderText = "V/U";
             this.V_U.Name = "V_U";
             this.V_U.ReadOnly = true;
@@ -727,10 +736,10 @@
             // 
             // Igv
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.Igv.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Igv.DefaultCellStyle = dataGridViewCellStyle3;
             this.Igv.HeaderText = "IGV";
             this.Igv.Name = "Igv";
             this.Igv.ReadOnly = true;
@@ -738,10 +747,10 @@
             // 
             // P_unidad
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.P_unidad.DefaultCellStyle = dataGridViewCellStyle4;
             this.P_unidad.HeaderText = "P. UNIDAD";
             this.P_unidad.Name = "P_unidad";
             this.P_unidad.ReadOnly = true;
@@ -749,19 +758,14 @@
             // 
             // Importe
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle5;
             this.Importe.HeaderText = "IMPORTE";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
             this.Importe.Width = 90;
-            // 
-            // tmCalculos
-            // 
-            this.tmCalculos.Enabled = true;
-            this.tmCalculos.Tick += new System.EventHandler(this.tmCalculos_Tick);
             // 
             // FormReistrarCompras
             // 
@@ -875,6 +879,7 @@
         public System.Windows.Forms.TextBox txtSerieC;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Timer tmCalculos;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdD;
         private System.Windows.Forms.DataGridViewButtonColumn buscarProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn code_product;
@@ -885,6 +890,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Igv;
         private System.Windows.Forms.DataGridViewTextBoxColumn P_unidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
-        private System.Windows.Forms.Timer tmCalculos;
     }
 }

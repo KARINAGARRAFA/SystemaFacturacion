@@ -17,6 +17,7 @@ using Business.Entity;
 using Newtonsoft.Json;
 using System.Net;
 using System.IO;
+using System.Drawing.Printing;
 
 namespace Presentation.Forms
 {
@@ -29,7 +30,7 @@ namespace Presentation.Forms
         BusimessCompanyProduct P = new BusimessCompanyProduct();
         int n=0,selecProducto=0;
         bool  b= true;
-        string IDVenta;
+        string IDVenta,mensaje;
         public FormRegistrarVentas()
         {
             InitializeComponent();           
@@ -313,6 +314,7 @@ namespace Presentation.Forms
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Close();
+            Limpiar1();
         }
 
 
@@ -322,30 +324,38 @@ namespace Presentation.Forms
             {
                 if (Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value) != "")
                 {
-                    GuardarVenta();
-                    try
+                    if (cbxTipoDocumento.SelectedValue.ToString() == "01")
                     {
-                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        if (txtRucCliente.Text != "")
                         {
-                            if (Convert.ToString(dataGridView1.Rows[i].Cells[2].Value) != "")
-                            {
-                                GuardarDetalleVenta(
-                                Convert.ToString(dataGridView1.Rows[i].Cells[2].Value),
-                                Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[8].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[9].Value)
-                                );
-                            }
+                            GenerarVenta();
+                        }
+                        else
+                        {
+                            MessageBox.Show("ingrese el RUC del cliente", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtRucCliente.Focus();
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
-                    }
-                    Limpiar1();
-                    lblNroCorrelativo.Text = VENTA.NumeroComprobante(lblSerie.Text);
+                        if (Convert.ToDecimal(txtImporteTotal.Text) >= 700)
+                        {
+                            if (txtRucCliente.Text != "")
+                            {
+                                GenerarVenta();
+                            }
+                            else
+                            {
+                                MessageBox.Show("ingrese el RUC o DNI del cliente", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txtRucCliente.Focus();
+                            }
+                        }
+                        else
+                        {
+                            GenerarVenta();
+                        }
+
+                    }                    
                 }
                 else
                 {
@@ -357,6 +367,50 @@ namespace Presentation.Forms
             {
                 MessageBox.Show("No Existe Ningún Producto en la Lista.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            // ------------------------- proceso de impresion-----------------------------
+            //printComprobante = new PrintDocument();
+            //PrinterSettings ps = new PrinterSettings();
+            //printComprobante.PrinterSettings = ps;
+            //printComprobante.PrintPage += Imprimir;
+            //printComprobante.Print();
+
+        }
+        private void GenerarVenta()
+        {
+            GuardarVenta();
+            if (mensaje != "Esta Venta ya ha sido Registrado.")
+            {
+                try
+                {
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        if (Convert.ToString(dataGridView1.Rows[i].Cells[2].Value) != "")
+                        {
+                            GuardarDetalleVenta(
+                            Convert.ToString(dataGridView1.Rows[i].Cells[2].Value),
+                            Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value),
+                            Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value),
+                            Convert.ToDecimal(dataGridView1.Rows[i].Cells[8].Value),
+                            Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value),
+                            Convert.ToDecimal(dataGridView1.Rows[i].Cells[9].Value)
+                            );
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                MessageBox.Show(mensaje, "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar1();
+                lblNroCorrelativo.Text = VENTA.NumeroComprobante(lblSerie.Text);
+            }
+            else
+            {
+                lblNroCorrelativo.Text = Convert.ToString(Convert.ToInt32(lblNroCorrelativo.Text) + 1);
+                GenerarVenta();
+            }            
         }
         private void GuardarVenta()
         {
@@ -364,7 +418,7 @@ namespace Presentation.Forms
             if (Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value) != "")
             {
                 //string cdp_tipo = cbxTipoDocumento.SelectedValue.ToString(); //Convert.ToString(cbxTipoDocumento.AccessibilityObject); //== "BOLETA" ? "01" : "02";965
-
+                
                 IDVenta = VENTA.GenerarIdVentas(lblRucEmpresa.Text, cbxTipoDocumento.SelectedValue.ToString(), lblSerie.Text, Convert.ToInt32(lblNroCorrelativo.Text));
                 String TipoMoneda=  rbnSoles.Checked == true ? "PEN" : "USS";
                 v.Code = IDVenta;
@@ -394,7 +448,8 @@ namespace Presentation.Forms
                 v.updated_at = DateTime.Now;
                 v.Company_ruc = lblRucEmpresa.Text;
                 v.Tipo_moneda = TipoMoneda;
-                MessageBox.Show(VENTA.RegistrarVenta(v), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                v.Estado = "";
+                mensaje = VENTA.RegistrarVenta(v);
                 VENTA.ActualizarNumeroCorrelativo(v.Cdp_serie, v.Cdp_numero);
             }
         }
@@ -424,6 +479,12 @@ namespace Presentation.Forms
             txtDireccionCliente.Text = "";
             txtObservacion.Text = "";
             dataGridView1.Rows.Clear();
+            Program.Ruc_cliente = "";
+            Program.Business_name= "";
+            Program.Address = "";
+            txtSubTotalVentas.Text = "";
+            txtIGV.Text = "";
+            txtImporteTotal.Text = "";
         }
         private void txtDireccionCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -443,6 +504,15 @@ namespace Presentation.Forms
             FormListarClientes C = new FormListarClientes();
             Program.Even_listar_Cliente = 1;
             C.ShowDialog();
+        }
+
+        private void Imprimir(object sender, PrintPageEventArgs e)
+        {
+            Font font = new Font("Arial",14);
+            int ancho = 300;
+            int y = 20;
+
+            e.Graphics.DrawString("----- Punto de venta------", font, Brushes.Black, new RectangleF(0, y + 20, ancho, 20));
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)

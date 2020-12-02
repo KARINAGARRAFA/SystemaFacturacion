@@ -69,11 +69,20 @@ namespace Business.Business.Compra
             lst.Add(new ClsParameter("@Datos", objDatos));
             return dt = M.Listado("BuscarCompra", lst);
         }
+        public DataTable BuscarCompraXfecha(String ruc, DateTime FI, DateTime FF)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
+            lst.Add(new ClsParameter("@FechaInicio", FI));
+            lst.Add(new ClsParameter("@fechaFin", FF));
+            return dt = M.Listado("BuscarCompraXfecha", lst);
+        }
 
         #endregion
 
         #region HELP
-        
+
         public String GenerarIdCompra(string ruc, string cdp_tipo, string cdp_serie, int cdp_numero)
         {
             List<ClsParameter> lst = new List<ClsParameter>();

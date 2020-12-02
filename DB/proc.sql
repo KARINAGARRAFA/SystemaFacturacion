@@ -105,12 +105,6 @@ As Begin
 
 go
 
-   select * from gen_users Select * From sfe_company_users
-
-exec IniciarSesion3 '20363916008','5BAA61E4C9B93F3F0682250B6CF8331B7EE68FD8',''
-exec IniciarSesion3 'admin','123',''
-DROP PROC IniciarSesion3
-
 Create Proc [Serie Documento]
 @Serie char(5) out
 as begin
@@ -247,6 +241,64 @@ As Begin
 		End
 	End
 Go
+
+
+
+
+
+--APUNTES HELP
+Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
+	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+
+
+Select v.code,v.fecha_emision,v.fecha_pago,v.proveedor_numero,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
+	From sfe_sales as v inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+	where proveedor_numero=''
+
+
+
+
+
+
+Select * From sfe_company_users select * from gen_users
+
+Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
+	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+	Where v.company_ruc='20363916008' and (v.proveedor_numero like '%'+''+'%' or c.business_name like '%'+''+'%' or t.nombre like '%'+''+'%')
+
+
+Select v.code,v.fecha_emision,v.fecha_pago,v.proveedor_numero,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
+	From sfe_sales as v inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+	Where v.company_ruc='20363916008' and v.proveedor_numero='' and (v.proveedor_numero like '%'+''+'%' or t.nombre like '%'+''+'%')
+
+
+Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
+	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc  inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+	where v.company_ruc='20605971343'
+
+--------------------------------------------------
+	select m.nombre,v.fecha_emision,v.fecha_pago,v.company_ruc,t.nombre+' ELECTRONICA',v.cdp_serie,v.cdp_numero,c.ruc,c.business_name,c.address,v.observacion
+	from sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc
+						inner join sfe_voucher_type as t on v.cdp_tipo=t.id
+						inner join sfe_type_money as m on v.tipo_moneda =m.id
+	where v.code='20363916008-01-F001-1'
+
+
+	select p.code_product,p.name_product,dv.cantidad,p.precio,dv.base_imponible,dv.igv,dv.importe
+	from sfe_sales_detail as dv inner join sfe_company_products as p on p.code_product=dv.code_product
+	where dv.code_sales='20363916008-01-F001-1'
+----------------------------------------
+
+
+
+SELECT * FROM sfe_sales
+where fecha_emision between  '02/12/2020 00:00:00.000' and '03/12/2020 00:00:00.000'
+
+
+select * from sfe_sales_detail
+
+
+
 --ELIMINADOS
 begin
 ------------------

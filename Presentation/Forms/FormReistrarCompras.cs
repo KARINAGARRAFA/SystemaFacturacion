@@ -26,7 +26,7 @@ namespace Presentation.Forms
 
         int n = 0, selecProducto = 0;
         bool b = true;
-        string IDCompra;
+        string IDCompra,mensaje;
 
         public FormReistrarCompras()
         {
@@ -274,29 +274,62 @@ namespace Presentation.Forms
             {
                 if (Convert.ToString(dataGridView1.CurrentRow.Cells[3].Value) != "")
                 {
-                    GuardarCompra();
-                    try
+                    if (txtSerieC.Text != "")
                     {
-                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        if (txtNumeroC.Text != "")
                         {
-                            if (Convert.ToString(dataGridView1.Rows[i].Cells[2].Value) != "")
+                            if ( txtRucProveedor.Text != "" )
                             {
-                                GuardarDetalleCompra(
-                                Convert.ToString(dataGridView1.Rows[i].Cells[2].Value),
-                                Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[8].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value),
-                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[9].Value)
-                                );
+                                GuardarCompra();
+                                if (mensaje != "Esta Compra ya ha sido Registrado.")
+                                {
+                                    try
+                                    {
+                                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                                        {
+                                            if (Convert.ToString(dataGridView1.Rows[i].Cells[2].Value) != "")
+                                            {
+                                                GuardarDetalleCompra(
+                                                Convert.ToString(dataGridView1.Rows[i].Cells[2].Value),
+                                                Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value),
+                                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[6].Value),
+                                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[8].Value),
+                                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[7].Value),
+                                                Convert.ToDecimal(dataGridView1.Rows[i].Cells[9].Value)
+                                                );
+                                            }
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message);
+                                    }
+                                    MessageBox.Show(mensaje, "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    Limpiar1();
+                                }
+                                else
+                                {
+                                    MessageBox.Show(mensaje, "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }                                
                             }
+                            else
+                            {
+                                MessageBox.Show("ingrese el RUC del proveedor", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txtRucProveedor.Focus();
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("ingrese el numero del Comprobate", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtSerieC.Focus();
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
-                    }
-                    Limpiar1();
+                        MessageBox.Show("ingrese la seire del Comprobate", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txtSerieC.Focus();
+                    }                        
                 }
                 else
                 {
@@ -319,10 +352,10 @@ namespace Presentation.Forms
                 String TipoMoneda = rbnSoles.Checked == true ? "PEN" : "USS";
                 c.Code_purchages = IDCompra;
                 c.Numero = Convert.ToInt32("0");
-                c.Fecha_emision = Convert.ToDateTime(dtpFechaEmision.Value); //Convert.ToDateTime(lblFechaEmision.Text);
+                c.Fecha_emision = Convert.ToDateTime(dtpFechaEmision.Value);
                 c.Fecha_pago = Convert.ToDateTime(dtpFechaPago.Value);
                 c.Cdp_tipo = cbxTipoDocumento.SelectedValue.ToString();
-                c.Cdp_serie = txtSerieC.Text;  ///--------------------4 digitos
+                c.Cdp_serie = txtSerieC.Text; 
                 c.Cdp_numero = Convert.ToInt32(txtNumeroC.Text);
                 c.Proveedor_tipo = "";
                 c.Proveedor_numero = txtRucProveedor.Text;
@@ -347,6 +380,7 @@ namespace Presentation.Forms
                 c.updated_at = DateTime.Now;
                 c.Company_ruc = Program.ruc_empresa;
                 c.Tipo_moneda = TipoMoneda;
+                mensaje = COMPRA.RegistrarCompra(c);
                 MessageBox.Show(COMPRA.RegistrarCompra(c), "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

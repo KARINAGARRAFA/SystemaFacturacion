@@ -51,9 +51,10 @@ namespace Business.Business.Venta
                 lst.Add(new ClsParameter("@updated_at", v.updated_at));
                 lst.Add(new ClsParameter("@Company_ruc", v.Company_ruc));
                 lst.Add(new ClsParameter("@Tipo_moneda", v.Tipo_moneda));
+                lst.Add(new ClsParameter("@estado", v.Estado));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 100));
                 M.EjecutarSP("RegistrarVenta", ref lst);
-                return Mensaje = lst[27].Valor.ToString();
+                return Mensaje = lst[28].Valor.ToString();
             }
             catch (Exception ex)
             {
@@ -68,6 +69,36 @@ namespace Business.Business.Venta
             lst.Add(new ClsParameter("@Datos", objDatos));
             return dt = M.Listado("BuscarVenta", lst);
         }
+        public DataTable BuscarVenta1(String ruc, String objDatos)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
+            lst.Add(new ClsParameter("@Datos", objDatos));
+            return dt = M.Listado("BuscarVenta1", lst);
+        }
+
+        public DataTable BuscarVentaXfecha(String ruc, DateTime FI, DateTime FF)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
+            lst.Add(new ClsParameter("@FechaInicio", FI));
+            lst.Add(new ClsParameter("@fechaFin", FF));
+            return dt = M.Listado("BuscarVentaFecha", lst);
+        }
+        public DataTable BuscarVentaXfecha1(String ruc, DateTime FI, DateTime FF)
+        {
+            DataTable dt = new DataTable();
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
+            lst.Add(new ClsParameter("@FechaInicio", FI));
+            lst.Add(new ClsParameter("@fechaFin", FF));
+            return dt = M.Listado("BuscarVentaFecha1", lst);
+        }
+
+
+
 
         #endregion
 
@@ -138,6 +169,12 @@ namespace Business.Business.Venta
             List<ClsParameter> lst = new List<ClsParameter>();
             lst.Add(new ClsParameter("@ruc", ruc));
             return M.Listado("ListarVentas", lst);
+        }
+        public DataTable ListarVenta1(String ruc)
+        {
+            List<ClsParameter> lst = new List<ClsParameter>();
+            lst.Add(new ClsParameter("@ruc", ruc));
+            return M.Listado("ListarVentas1", lst);
         }
         // NO USADO
         public String GenerarSerieDocumento()

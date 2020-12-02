@@ -68,7 +68,7 @@
             this.lblTipoMoneda = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblFechaPago = new System.Windows.Forms.Label();
-            this.dgvDetalleVenta = new System.Windows.Forms.DataGridView();
+            this.dgvDetalleCompra = new System.Windows.Forms.DataGridView();
             this.code_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name_product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,7 +106,7 @@
             this.pnlImporteTotal.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleVenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleCompra)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -455,12 +455,12 @@
             this.lblFechaPago.TabIndex = 0;
             this.lblFechaPago.Text = "label10";
             // 
-            // dgvDetalleVenta
+            // dgvDetalleCompra
             // 
-            this.dgvDetalleVenta.AllowUserToAddRows = false;
-            this.dgvDetalleVenta.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDetalleVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalleVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvDetalleCompra.AllowUserToAddRows = false;
+            this.dgvDetalleCompra.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDetalleCompra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalleCompra.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.code_product,
             this.name_product,
             this.Cant,
@@ -469,11 +469,11 @@
             this.V_U,
             this.Igv,
             this.Importe});
-            this.dgvDetalleVenta.GridColor = System.Drawing.Color.DimGray;
-            this.dgvDetalleVenta.Location = new System.Drawing.Point(11, 188);
-            this.dgvDetalleVenta.Name = "dgvDetalleVenta";
-            this.dgvDetalleVenta.Size = new System.Drawing.Size(849, 182);
-            this.dgvDetalleVenta.TabIndex = 52;
+            this.dgvDetalleCompra.GridColor = System.Drawing.Color.DimGray;
+            this.dgvDetalleCompra.Location = new System.Drawing.Point(11, 188);
+            this.dgvDetalleCompra.Name = "dgvDetalleCompra";
+            this.dgvDetalleCompra.Size = new System.Drawing.Size(849, 182);
+            this.dgvDetalleCompra.TabIndex = 52;
             // 
             // code_product
             // 
@@ -729,7 +729,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.dgvDetalleVenta);
+            this.Controls.Add(this.dgvDetalleCompra);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label4);
@@ -760,7 +760,7 @@
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleVenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleCompra)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -809,7 +809,7 @@
         public System.Windows.Forms.Label lblTipoMoneda;
         private System.Windows.Forms.GroupBox groupBox5;
         public System.Windows.Forms.Label lblFechaPago;
-        public System.Windows.Forms.DataGridView dgvDetalleVenta;
+        public System.Windows.Forms.DataGridView dgvDetalleCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn code_product;
         private System.Windows.Forms.DataGridViewTextBoxColumn name_product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;

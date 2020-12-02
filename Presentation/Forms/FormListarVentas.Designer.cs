@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,6 +47,11 @@
             this.company_ruc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbl = new System.Windows.Forms.Label();
             this.btnDetalleVenta = new System.Windows.Forms.Button();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnBuscarXfecha = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -54,7 +59,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(713, 441);
+            this.btnNuevo.Location = new System.Drawing.Point(724, 477);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 23);
             this.btnNuevo.TabIndex = 20;
@@ -64,9 +69,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(79, 49);
+            this.textBox1.Location = new System.Drawing.Point(74, 62);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(748, 20);
+            this.textBox1.Size = new System.Drawing.Size(133, 20);
             this.textBox1.TabIndex = 19;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -74,7 +79,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 49);
+            this.label1.Location = new System.Drawing.Point(7, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 16);
             this.label1.TabIndex = 18;
@@ -83,9 +88,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(9, 75);
+            this.panel1.Location = new System.Drawing.Point(9, 88);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(818, 347);
+            this.panel1.Size = new System.Drawing.Size(818, 373);
             this.panel1.TabIndex = 17;
             // 
             // dataGridView1
@@ -105,7 +110,7 @@
             this.company_ruc});
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(812, 341);
+            this.dataGridView1.Size = new System.Drawing.Size(812, 367);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
@@ -137,10 +142,10 @@
             // 
             // base_imponible
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.base_imponible.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = null;
+            this.base_imponible.DefaultCellStyle = dataGridViewCellStyle10;
             this.base_imponible.HeaderText = "Base Impo.";
             this.base_imponible.Name = "base_imponible";
             this.base_imponible.ReadOnly = true;
@@ -148,10 +153,10 @@
             // 
             // igv
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.igv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.igv.DefaultCellStyle = dataGridViewCellStyle11;
             this.igv.HeaderText = "Igv";
             this.igv.Name = "igv";
             this.igv.ReadOnly = true;
@@ -159,10 +164,10 @@
             // 
             // importe_total
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.importe_total.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.importe_total.DefaultCellStyle = dataGridViewCellStyle12;
             this.importe_total.HeaderText = "Importe Total";
             this.importe_total.Name = "importe_total";
             this.importe_total.ReadOnly = true;
@@ -195,7 +200,7 @@
             // btnDetalleVenta
             // 
             this.btnDetalleVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetalleVenta.Location = new System.Drawing.Point(565, 441);
+            this.btnDetalleVenta.Location = new System.Drawing.Point(576, 477);
             this.btnDetalleVenta.Name = "btnDetalleVenta";
             this.btnDetalleVenta.Size = new System.Drawing.Size(116, 23);
             this.btnDetalleVenta.TabIndex = 23;
@@ -203,11 +208,66 @@
             this.btnDetalleVenta.UseVisualStyleBackColor = true;
             this.btnDetalleVenta.Click += new System.EventHandler(this.btnDetalleVenta_Click);
             // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(438, 62);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(113, 20);
+            this.dtpFechaInicio.TabIndex = 24;
+            this.dtpFechaInicio.Value = new System.DateTime(2020, 12, 2, 0, 0, 0, 0);
+            this.dtpFechaInicio.ValueChanged += new System.EventHandler(this.dtpFechaInicio_ValueChanged);
+            // 
+            // dtpFechaFin
+            // 
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaFin.Location = new System.Drawing.Point(613, 62);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(114, 20);
+            this.dtpFechaFin.TabIndex = 25;
+            this.dtpFechaFin.Value = new System.DateTime(2020, 12, 2, 0, 0, 0, 0);
+            this.dtpFechaFin.ValueChanged += new System.EventHandler(this.dtpFechaFin_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(384, 68);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "DESDE:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(561, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "HASTA:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // btnBuscarXfecha
+            // 
+            this.btnBuscarXfecha.Location = new System.Drawing.Point(749, 60);
+            this.btnBuscarXfecha.Name = "btnBuscarXfecha";
+            this.btnBuscarXfecha.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarXfecha.TabIndex = 28;
+            this.btnBuscarXfecha.Text = "BUSCAR";
+            this.btnBuscarXfecha.UseVisualStyleBackColor = true;
+            this.btnBuscarXfecha.Click += new System.EventHandler(this.btnBuscarXfecha_Click);
+            // 
             // FormListarVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 512);
+            this.Controls.Add(this.btnBuscarXfecha);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dtpFechaFin);
+            this.Controls.Add(this.dtpFechaInicio);
             this.Controls.Add(this.btnDetalleVenta);
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.btnNuevo);
@@ -244,5 +304,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn importe_total;
         private System.Windows.Forms.DataGridViewTextBoxColumn observacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn company_ruc;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
+        private System.Windows.Forms.DateTimePicker dtpFechaFin;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnBuscarXfecha;
     }
 }

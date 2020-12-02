@@ -38,11 +38,14 @@ namespace Presentation.Forms
         {
 
             DataTable dt = new DataTable();
+            DataTable dt1 = new DataTable();
             dt = VENTA.ListarVenta(Program.ruc_empresa); 
+            dt1 = VENTA.ListarVenta1(Program.ruc_empresa); 
             try
             {
                 dataGridView1.Rows.Clear();
-                for (int i = 0; i < dt.Rows.Count; i++)
+                int i, j,a=0;
+                for (i = 0; i < dt.Rows.Count; i++)
                 {
                     dataGridView1.Rows.Add(dt.Rows[i][0]);
                     dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
@@ -54,6 +57,21 @@ namespace Presentation.Forms
                     dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
                     dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
                     dataGridView1.Rows[i].Cells[8].Value = dt.Rows[i][8].ToString();
+                }
+                for (j = i; j < dt1.Rows.Count+i; j++)
+                {
+                    
+                    dataGridView1.Rows.Add(dt1.Rows[a][0]);
+                    dataGridView1.Rows[j].Cells[0].Value = dt1.Rows[a][0].ToString();
+                    dataGridView1.Rows[j].Cells[1].Value = dt1.Rows[a][1].ToString();
+                    dataGridView1.Rows[j].Cells[2].Value = dt1.Rows[a][2].ToString();
+                    dataGridView1.Rows[j].Cells[3].Value = dt1.Rows[a][3].ToString();
+                    dataGridView1.Rows[j].Cells[4].Value = dt1.Rows[a][4].ToString();
+                    dataGridView1.Rows[j].Cells[5].Value = dt1.Rows[a][5].ToString();
+                    dataGridView1.Rows[j].Cells[6].Value = dt1.Rows[a][6].ToString();
+                    dataGridView1.Rows[j].Cells[7].Value = dt1.Rows[a][7].ToString();
+                    dataGridView1.Rows[j].Cells[8].Value = dt1.Rows[a][8].ToString();
+                    a++;
                 }
             }
             catch (Exception ex)
@@ -70,12 +88,15 @@ namespace Presentation.Forms
             if (e.KeyChar == 13)
             {
                 DataTable dt = new DataTable();
+                DataTable dt1 = new DataTable();
                 date = textBox1.Text;
                 dt = VENTA.BuscarVenta(Program.ruc_empresa,date);
+                dt1 = VENTA.BuscarVenta1(Program.ruc_empresa,date);
                 try
                 {
                     dataGridView1.Rows.Clear();
-                    for (int i = 0; i < dt.Rows.Count; i++)
+                    int i, j, a = 0;
+                    for (i = 0; i < dt.Rows.Count; i++)
                     {
                         dataGridView1.Rows.Add(dt.Rows[i][0]);
                         dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
@@ -87,6 +108,19 @@ namespace Presentation.Forms
                         dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
                         dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
                         dataGridView1.Rows[i].Cells[8].Value = dt.Rows[i][8].ToString();
+                    }
+                    for (j = i; j < dt1.Rows.Count + i; j++)
+                    {
+                        dataGridView1.Rows.Add(dt1.Rows[a][0]);
+                        dataGridView1.Rows[j].Cells[0].Value = dt1.Rows[a][0].ToString();
+                        dataGridView1.Rows[j].Cells[1].Value = dt1.Rows[a][1].ToString();
+                        dataGridView1.Rows[j].Cells[2].Value = dt1.Rows[a][2].ToString();
+                        dataGridView1.Rows[j].Cells[3].Value = dt1.Rows[a][3].ToString();
+                        dataGridView1.Rows[j].Cells[4].Value = dt1.Rows[a][4].ToString();
+                        dataGridView1.Rows[j].Cells[5].Value = dt1.Rows[a][5].ToString();
+                        dataGridView1.Rows[j].Cells[6].Value = dt1.Rows[a][6].ToString();
+                        dataGridView1.Rows[j].Cells[7].Value = dt1.Rows[a][7].ToString();
+                        dataGridView1.Rows[j].Cells[8].Value = dt1.Rows[a][8].ToString();
                     }
                     dataGridView1.ClearSelection();
                 }
@@ -168,6 +202,73 @@ namespace Presentation.Forms
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             mostrarDetalle();
+        }
+
+        private void btnBuscarXfecha_Click(object sender, EventArgs e)
+        {
+            dataGridView1.ClearSelection();
+            
+                DataTable dt = new DataTable();
+                DataTable dt1 = new DataTable();
+                dt = VENTA.BuscarVentaXfecha(Program.ruc_empresa, dtpFechaInicio.Value, dtpFechaFin.Value);
+                dt1 = VENTA.BuscarVentaXfecha1(Program.ruc_empresa, dtpFechaInicio.Value, dtpFechaFin.Value);
+                try
+                {
+                    dataGridView1.Rows.Clear();
+                    int i, j, a = 0;
+                    for (i = 0; i < dt.Rows.Count; i++)
+                    {
+                        dataGridView1.Rows.Add(dt.Rows[i][0]);
+                        dataGridView1.Rows[i].Cells[0].Value = dt.Rows[i][0].ToString();
+                        dataGridView1.Rows[i].Cells[1].Value = dt.Rows[i][1].ToString();
+                        dataGridView1.Rows[i].Cells[2].Value = dt.Rows[i][2].ToString();
+                        dataGridView1.Rows[i].Cells[3].Value = dt.Rows[i][3].ToString();
+                        dataGridView1.Rows[i].Cells[4].Value = dt.Rows[i][4].ToString();
+                        dataGridView1.Rows[i].Cells[5].Value = dt.Rows[i][5].ToString();
+                        dataGridView1.Rows[i].Cells[6].Value = dt.Rows[i][6].ToString();
+                        dataGridView1.Rows[i].Cells[7].Value = dt.Rows[i][7].ToString();
+                        dataGridView1.Rows[i].Cells[8].Value = dt.Rows[i][8].ToString();
+                    }
+                    for (j = i; j < dt1.Rows.Count + i; j++)
+                    {
+                        dataGridView1.Rows.Add(dt1.Rows[a][0]);
+                        dataGridView1.Rows[j].Cells[0].Value = dt1.Rows[a][0].ToString();
+                        dataGridView1.Rows[j].Cells[1].Value = dt1.Rows[a][1].ToString();
+                        dataGridView1.Rows[j].Cells[2].Value = dt1.Rows[a][2].ToString();
+                        dataGridView1.Rows[j].Cells[3].Value = dt1.Rows[a][3].ToString();
+                        dataGridView1.Rows[j].Cells[4].Value = dt1.Rows[a][4].ToString();
+                        dataGridView1.Rows[j].Cells[5].Value = dt1.Rows[a][5].ToString();
+                        dataGridView1.Rows[j].Cells[6].Value = dt1.Rows[a][6].ToString();
+                        dataGridView1.Rows[j].Cells[7].Value = dt1.Rows[a][7].ToString();
+                        dataGridView1.Rows[j].Cells[8].Value = dt1.Rows[a][8].ToString();
+                    }
+                    dataGridView1.ClearSelection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpFechaFin_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpFechaInicio_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

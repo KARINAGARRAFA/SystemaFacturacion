@@ -106,6 +106,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtObservacion = new System.Windows.Forms.TextBox();
+            this.printComprobante = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -839,6 +840,10 @@
             this.txtObservacion.Size = new System.Drawing.Size(624, 20);
             this.txtObservacion.TabIndex = 34;
             // 
+            // printComprobante
+            // 
+            this.printComprobante.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
+            // 
             // FormRegistrarVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -973,5 +978,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn V_U;
         private System.Windows.Forms.DataGridViewTextBoxColumn Igv;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
+        private System.Drawing.Printing.PrintDocument printComprobante;
     }
 }

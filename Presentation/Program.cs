@@ -33,10 +33,10 @@ namespace Presentation
         public static int Even_seleccionar_producto;
 
         //Datos del Cliente
-        public static String Ruc_cliente;
-        public static String Business_name;
+        public static String Ruc_cliente="";
+        public static String Business_name="";
         public static String Brand;
-        public static String Address;
+        public static String Address="";
         public static String Email;
         public static String Telephone;
         public static String Status;

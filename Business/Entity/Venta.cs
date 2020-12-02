@@ -34,6 +34,7 @@ namespace Business.Entity
         private String m_observacion;
         private String m_company_ruc;
         private String m_tipo_moneda;
+        private String m_estado;
 
 
         public String Code
@@ -160,6 +161,11 @@ namespace Business.Entity
         {
             get { return m_tipo_moneda; }
             set { m_tipo_moneda = value; }
+        }
+        public String Estado
+        {
+            get { return m_estado; }
+            set { m_estado = value; }
         }
     }
 }

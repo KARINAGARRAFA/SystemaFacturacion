@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbl = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Code_marca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +45,13 @@
             this.importe_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.observacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.company_ruc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbl = new System.Windows.Forms.Label();
+            this.btnDetalleCompra = new System.Windows.Forms.Button();
+            this.btnBuscarXfecha = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +71,7 @@
             // 
             this.txtBuscar.Location = new System.Drawing.Point(91, 69);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(731, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(182, 20);
             this.txtBuscar.TabIndex = 15;
             this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
             // 
@@ -87,16 +93,6 @@
             this.panel1.Size = new System.Drawing.Size(832, 353);
             this.panel1.TabIndex = 13;
             // 
-            // lbl
-            // 
-            this.lbl.AutoSize = true;
-            this.lbl.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl.Location = new System.Drawing.Point(322, 18);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(129, 38);
-            this.lbl.TabIndex = 33;
-            this.lbl.Text = "COMPRAS";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -116,6 +112,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(812, 341);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // Code_marca
             // 
@@ -145,10 +142,10 @@
             // 
             // base_imponible
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.base_imponible.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.base_imponible.DefaultCellStyle = dataGridViewCellStyle4;
             this.base_imponible.HeaderText = "Base Impo.";
             this.base_imponible.Name = "base_imponible";
             this.base_imponible.ReadOnly = true;
@@ -156,10 +153,10 @@
             // 
             // igv
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.igv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.igv.DefaultCellStyle = dataGridViewCellStyle5;
             this.igv.HeaderText = "Igv";
             this.igv.Name = "igv";
             this.igv.ReadOnly = true;
@@ -167,10 +164,10 @@
             // 
             // importe_total
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.importe_total.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.importe_total.DefaultCellStyle = dataGridViewCellStyle6;
             this.importe_total.HeaderText = "Importe Total";
             this.importe_total.Name = "importe_total";
             this.importe_total.ReadOnly = true;
@@ -190,11 +187,84 @@
             this.company_ruc.ReadOnly = true;
             this.company_ruc.Width = 80;
             // 
+            // lbl
+            // 
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl.Location = new System.Drawing.Point(322, 18);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(129, 38);
+            this.lbl.TabIndex = 33;
+            this.lbl.Text = "COMPRAS";
+            // 
+            // btnDetalleCompra
+            // 
+            this.btnDetalleCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetalleCompra.Location = new System.Drawing.Point(572, 460);
+            this.btnDetalleCompra.Name = "btnDetalleCompra";
+            this.btnDetalleCompra.Size = new System.Drawing.Size(116, 23);
+            this.btnDetalleCompra.TabIndex = 34;
+            this.btnDetalleCompra.Text = "Mostrar Detalle";
+            this.btnDetalleCompra.UseVisualStyleBackColor = true;
+            this.btnDetalleCompra.Click += new System.EventHandler(this.btnDetalleCompra_Click);
+            // 
+            // btnBuscarXfecha
+            // 
+            this.btnBuscarXfecha.Location = new System.Drawing.Point(749, 67);
+            this.btnBuscarXfecha.Name = "btnBuscarXfecha";
+            this.btnBuscarXfecha.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarXfecha.TabIndex = 39;
+            this.btnBuscarXfecha.Text = "BUSCAR";
+            this.btnBuscarXfecha.UseVisualStyleBackColor = true;
+            this.btnBuscarXfecha.Click += new System.EventHandler(this.btnBuscarXfecha_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(561, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "HASTA:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(384, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "DESDE:";
+            // 
+            // dtpFechaFin
+            // 
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaFin.Location = new System.Drawing.Point(613, 69);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(114, 20);
+            this.dtpFechaFin.TabIndex = 36;
+            this.dtpFechaFin.Value = new System.DateTime(2020, 12, 2, 0, 0, 0, 0);
+            // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(438, 69);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(113, 20);
+            this.dtpFechaInicio.TabIndex = 35;
+            this.dtpFechaInicio.Value = new System.DateTime(2020, 12, 2, 0, 0, 0, 0);
+            // 
             // FormListarCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(856, 495);
+            this.Controls.Add(this.btnBuscarXfecha);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dtpFechaFin);
+            this.Controls.Add(this.dtpFechaInicio);
+            this.Controls.Add(this.btnDetalleCompra);
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.txtBuscar);
@@ -228,5 +298,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn importe_total;
         private System.Windows.Forms.DataGridViewTextBoxColumn observacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn company_ruc;
+        private System.Windows.Forms.Button btnDetalleCompra;
+        private System.Windows.Forms.Button btnBuscarXfecha;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dtpFechaFin;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
     }
 }
