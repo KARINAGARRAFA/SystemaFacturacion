@@ -28,9 +28,11 @@ namespace Presentation.Forms
         BusinessDetalleVenta Dventa = new BusinessDetalleVenta();
         BusinessCliente CL = new BusinessCliente();
         BusimessCompanyProduct P = new BusimessCompanyProduct();
+
+        
         int n=0,selecProducto=0;
         bool  b= true;
-        string IDVenta,mensaje;
+        string IDVenta,mensaje,numero;
         public FormRegistrarVentas()
         {
             InitializeComponent();           
@@ -368,7 +370,7 @@ namespace Presentation.Forms
                 MessageBox.Show("No Existe Ningún Producto en la Lista.", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // ------------------------- proceso de impresion-----------------------------
+            //-------------------------proceso de impresion-----------------------------
             //printComprobante = new PrintDocument();
             //PrinterSettings ps = new PrinterSettings();
             //printComprobante.PrinterSettings = ps;
@@ -403,7 +405,7 @@ namespace Presentation.Forms
                     MessageBox.Show(ex.Message);
                 }
                 MessageBox.Show(mensaje, "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Limpiar1();
+                
                 lblNroCorrelativo.Text = VENTA.NumeroComprobante(lblSerie.Text);
             }
             else
@@ -418,7 +420,7 @@ namespace Presentation.Forms
             if (Convert.ToString(dataGridView1.CurrentRow.Cells[2].Value) != "")
             {
                 //string cdp_tipo = cbxTipoDocumento.SelectedValue.ToString(); //Convert.ToString(cbxTipoDocumento.AccessibilityObject); //== "BOLETA" ? "01" : "02";965
-                
+                numero = lblNroCorrelativo.Text;
                 IDVenta = VENTA.GenerarIdVentas(lblRucEmpresa.Text, cbxTipoDocumento.SelectedValue.ToString(), lblSerie.Text, Convert.ToInt32(lblNroCorrelativo.Text));
                 String TipoMoneda=  rbnSoles.Checked == true ? "PEN" : "USS";
                 v.Code = IDVenta;
@@ -506,15 +508,144 @@ namespace Presentation.Forms
             C.ShowDialog();
         }
 
-        private void Imprimir(object sender, PrintPageEventArgs e)
+        private void cargar_Click(object sender, EventArgs e)
         {
-            Font font = new Font("Arial",14);
-            int ancho = 300;
-            int y = 20;
+            PrintDocument printDoc = new PrintDocument();
 
-            e.Graphics.DrawString("----- Punto de venta------", font, Brushes.Black, new RectangleF(0, y + 20, ancho, 20));
+            cbImpresoras.Items.Clear();
+
+            for (int i = 0; i < System.Drawing.Printing.PrinterSettings.InstalledPrinters.Count; i++)
+            {
+                cbImpresoras.Items.Add(PrinterSettings.InstalledPrinters[i]);
+                if (printDoc.PrinterSettings.IsDefaultPrinter)
+                {
+                    cbImpresoras.Text = printDoc.PrinterSettings.PrinterName;
+                }
+            }
+            MessageBox.Show("impresoras cargadas ", "Sistema de Facturacion.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
         }
 
+        private void btnImprimirComprobante_Click(object sender, EventArgs e)
+        {
+            printComprobante = new PrintDocument();
+            PrinterSettings ps = new PrinterSettings();
+            printComprobante.PrinterSettings = ps;
+            printComprobante.PrintPage += Imprimir;
+
+            PaperSize tamanoHoja = new PaperSize();
+            tamanoHoja.RawKind = (int)PaperKind.A4;
+
+            printComprobante.DefaultPageSettings.PaperSize = tamanoHoja;
+
+            printComprobante.Print();
+
+
+
+
+        }
+
+        private void Imprimir(object sender, PrintPageEventArgs e)
+        {
+            //------------------------------------------------------------------------------
+            //DataGridViewRow dgvRow = dataGridView1.CurrentRow;
+            //Font font = new Font("Arial",9);
+            //int ancho = 600;
+            //int y = 20;
+
+            //e.Graphics.DrawString("----- COMPROBANTE ELECTRONICO ------", font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("Factura "+numero, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("Cliente: "+txtNombreCliente.Text, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("--------Productos--------- ", font, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
+            //for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            //{
+            //    e.Graphics.DrawString(dataGridView1.Rows[i].Cells[2].Value + " " +
+            //                          dataGridView1.Rows[i].Cells[4].Value + " " +
+            //                          dataGridView1.Rows[i].Cells[3].Value + " " +
+            //                          dataGridView1.Rows[i].Cells[6].Value + " " +
+            //                          dataGridView1.Rows[i].Cells[9].Value
+
+            //        , font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //}
+            //e.Graphics.DrawString("            subTotal:  " + txtSubTotalVentas.Text, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("                 IGV:  " + txtIGV.Text, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("               Total:  " + txtImporteTotal.Text, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("-----GRACIAS POR SU PREFERENCIA------", font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //Limpiar1();
+            //-----------------------------------------------------------------------
+
+            DataGridViewRow dgvRow = dataGridView1.CurrentRow;
+            Font font = new Font("Arial", 9);
+            Font font1 = new Font("Arial", 15);
+            // TAMAÑO DELA HOJA
+
+
+
+            int ancho = 1000;
+            int y = 50;
+            int x = 20;
+
+            String imagen = @"C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\img\img.png";
+            Image img = Image.FromFile(imagen);
+            e.Graphics.DrawImage(img,new Rectangle(x,y +=20,150,50));
+
+            DataTable dt = new DataTable();
+            String user = Program.ruc_empresa;
+            dt = USER.ListarUsuario(user);
+            // llamar el nombre de la mepresa admin
+
+            e.Graphics.DrawString("COMUNICACIONES MPJ SOCIEDAD ANONIMA CERRADA", font, Brushes.Black, new RectangleF(x, y += 60, ancho, 20));// nombre de la empresa PROCOMP BUSINESS
+            e.Graphics.DrawString("JR. JAUREGUI 289 2do PISO OFICINA 203", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20));  // DIRECCION DE LA EMPRESA
+            e.Graphics.DrawString("Juliaca - SAN ROMAN - PUNO", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20)); // LUGAR  provincia
+
+
+
+            int a = 20;
+            e.Graphics.DrawString("RUC 20605971343", font1, Brushes.Black, new RectangleF(x+550, a += 60, ancho, 20)); // ruc de la empresa
+            e.Graphics.DrawString("    FACTURA", font1, Brushes.Black, new RectangleF(x+550, a += 30, ancho, 20)); // tipo de comprobante
+            e.Graphics.DrawString("  ELECTRONICA", font1, Brushes.Black, new RectangleF(x+550, a += 30, ancho, 20));
+            e.Graphics.DrawString(" FA31 - 000045 ", font1, Brushes.Black, new RectangleF(x+550, a += 30, ancho, 20));// serie y numero
+
+            //-------------------------------------------------------
+
+            
+            e.Graphics.DrawString("CLIENTE", font, Brushes.Black, new RectangleF(x, y += 40, ancho, 20));
+            e.Graphics.DrawString("RUC               : 10025525375", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20));// ruc del cliente
+            e.Graphics.DrawString("DENOMINACION      : QUILLA QUENALLATA JUAN", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20)); // nombre del cliente
+            e.Graphics.DrawString("DIRECCION         : SECTOR BUENA VISTA S/N ALTO INAMBARI - SANDIA - PUNO", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20)); // direccion del cliente
+
+
+            a = 200;
+            e.Graphics.DrawString("FECHA EMISION      : 09/11/2020", font, Brushes.Black, new RectangleF(x + 550, a += 20, ancho, 20)); //fecha de eemision
+            e.Graphics.DrawString("FECHA DE VENC.     : 09/11/2020", font, Brushes.Black, new RectangleF(x + 550, a += 20, ancho, 20));// fecha de pago
+            e.Graphics.DrawString("MONEDA             : SOLES", font, Brushes.Black, new RectangleF(x + 550, a += 20, ancho, 20));// tipo de moneda
+
+
+            //-----------------------------------------------------------------
+
+
+            e.Graphics.DrawString("CANT.                   UM                 COD.                DESCRIPCION                                                   V/U               P/U             IMPORTE", font, Brushes.Black, new RectangleF(x, y += 50, ancho, 20));
+            e.Graphics.DrawString(" 1                         ZZ                 2002                PETITORIO MINERO (10NOV)                            593.220            700.00             700.00", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20));//detalles del producto
+            e.Graphics.DrawString("                                                                                                                            ", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20));
+            e.Graphics.DrawString("                                                                                                                            ", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20));
+            e.Graphics.DrawString("                                                                                                                            ", font, Brushes.Black, new RectangleF(x, y += 20, ancho, 20));
+            e.Graphics.DrawString("GRAVADA                S/         593.22", font, Brushes.Black, new RectangleF(x+550, y += 20, ancho, 20));// sub total
+            e.Graphics.DrawString("IGV 18.00%               S/         106.78", font, Brushes.Black, new RectangleF(x+550, y += 20, ancho, 20));// igv
+            e.Graphics.DrawString("TOTAL                      S/         700.00", font, Brushes.Black, new RectangleF(x+550, y += 20, ancho, 20));// total
+
+
+
+            //e.Graphics.DrawString("----- COMPROBANTE ELECTRONICO ------", font, Brushes.Black, new RectangleF(0, y += 100, ancho, 20));
+            //e.Graphics.DrawString("Factura " + numero, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("Cliente: " + txtNombreCliente.Text, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("--------Productos--------- ", font, Brushes.Black, new RectangleF(0, y += 40, ancho, 20));
+           
+            //e.Graphics.DrawString("            subTotal:  " + txtSubTotalVentas.Text, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("                 IGV:  " + txtIGV.Text, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("               Total:  " + txtImporteTotal.Text, font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            //e.Graphics.DrawString("-----GRACIAS POR SU PREFERENCIA------", font, Brushes.Black, new RectangleF(0, y += 20, ancho, 20));
+            
+        }
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)

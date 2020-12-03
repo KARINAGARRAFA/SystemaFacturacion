@@ -920,7 +920,7 @@ GO
 
 
 
-
+select * from sfe_sales
 END
 GO
 

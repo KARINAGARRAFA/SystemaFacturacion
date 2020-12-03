@@ -107,6 +107,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtObservacion = new System.Windows.Forms.TextBox();
             this.printComprobante = new System.Drawing.Printing.PrintDocument();
+            this.cbImpresoras = new System.Windows.Forms.ComboBox();
+            this.cargar = new System.Windows.Forms.Button();
+            this.btnImprimirComprobante = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -844,11 +847,42 @@
             // 
             this.printComprobante.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir);
             // 
+            // cbImpresoras
+            // 
+            this.cbImpresoras.FormattingEnabled = true;
+            this.cbImpresoras.Location = new System.Drawing.Point(320, 598);
+            this.cbImpresoras.Name = "cbImpresoras";
+            this.cbImpresoras.Size = new System.Drawing.Size(152, 21);
+            this.cbImpresoras.TabIndex = 35;
+            // 
+            // cargar
+            // 
+            this.cargar.Location = new System.Drawing.Point(360, 631);
+            this.cargar.Name = "cargar";
+            this.cargar.Size = new System.Drawing.Size(75, 23);
+            this.cargar.TabIndex = 36;
+            this.cargar.Text = "cargar";
+            this.cargar.UseVisualStyleBackColor = true;
+            this.cargar.Click += new System.EventHandler(this.cargar_Click);
+            // 
+            // btnImprimirComprobante
+            // 
+            this.btnImprimirComprobante.Location = new System.Drawing.Point(487, 501);
+            this.btnImprimirComprobante.Name = "btnImprimirComprobante";
+            this.btnImprimirComprobante.Size = new System.Drawing.Size(118, 23);
+            this.btnImprimirComprobante.TabIndex = 37;
+            this.btnImprimirComprobante.Text = "Prueba Imprimirr";
+            this.btnImprimirComprobante.UseVisualStyleBackColor = true;
+            this.btnImprimirComprobante.Click += new System.EventHandler(this.btnImprimirComprobante_Click);
+            // 
             // FormRegistrarVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1017, 793);
+            this.Controls.Add(this.btnImprimirComprobante);
+            this.Controls.Add(this.cargar);
+            this.Controls.Add(this.cbImpresoras);
             this.Controls.Add(this.txtObservacion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -979,5 +1013,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Igv;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
         private System.Drawing.Printing.PrintDocument printComprobante;
+        private System.Windows.Forms.ComboBox cbImpresoras;
+        private System.Windows.Forms.Button cargar;
+        private System.Windows.Forms.Button btnImprimirComprobante;
     }
 }
