@@ -86,7 +86,7 @@ namespace Business.Business.login
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
                 M.EjecutarSP("IniciarSesion4", ref lst);
                 return Mensaje = lst[2].Valor.ToString();
-            }
+            } 
             catch (Exception ex)
             {
                 throw ex;
