@@ -117,3 +117,5 @@ C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\Newt
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormRegistrarCompanyUser.resources
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarDetalleVenta.resources
 C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.FormListarDetalleCompra.resources
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\bin\Debug\img\img.png
+C:\Users\Procont Business\Desktop\SystemaFacturacion\Presentation\obj\Debug\Presentation.Forms.Loading.resources

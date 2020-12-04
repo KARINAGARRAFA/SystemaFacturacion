@@ -78,17 +78,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Presentation.exe" size="182280">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Presentation.exe" size="184840">
       <assemblyIdentity name="Presentation" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>pmUIoUbSfU9yy+vYHWC7L4qq0hT74MR6lRyOWTh2qJ8=</dsig:DigestValue>
+        <dsig:DigestValue>R2aHRhknjOfld3sFkftDc+brrTvMW2wqVyhucYxzU4E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="img\img.png" size="5353">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1DOaRiSYrM3w8EL1YhzHhsCqPqNbQHLSrFvWsU8RVCk=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Presentation.exe.config" size="597">
     <hash>
       <dsig:Transforms>
