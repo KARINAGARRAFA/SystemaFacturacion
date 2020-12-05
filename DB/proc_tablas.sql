@@ -489,7 +489,8 @@ As Begin
 	Select ruc,business_name,brand,cod_sector,address,email,telephone,status,condition 
 	From sfe_users Where ruc like '%'+@Datos+'%' or business_name like '%'+@Datos+'%'
 End
-----------------------------
+---------------------------- 
+select * from gen_vendors
 Create Proc ListarUsuario
 @ruc varchar(11)
 As Begin
@@ -667,7 +668,8 @@ As Begin
 	End
 ---------------------
 Create Proc ListarVentas
-@ruc char(11)
+@ruc char(11),
+@created_at datetime,
 As Begin
 	Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
 	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
@@ -720,10 +722,13 @@ As Begin
      If(Exists(Select * From sfe_company_users Where username=@Usuario and password=@Contraseña))
 	 Select username,state,ruc_company From sfe_company_users Where username=@Usuario And password=@Contraseña
 	 Else Begin
-		If(Exists(Select * From gen_users Where username=@Usuario and password=@Contraseña))
-			Select username,state From gen_users Where username=@Usuario And password=@Contraseña
+		Select username,state From gen_users Where username=@Usuario And password=@Contraseña
 	End
 end
+exec DevolverDatosSesion 'alguien','25625304d4ab6165fdee1f0c4c66fd58cb436544'
+Select * From sfe_company_users Where username='alguien' and password='25625304d4ab6165fdee1f0c4c66fd58cb436544'
+Select username,state,ruc_company From sfe_company_users Where username='alguien' and password='25625304d4ab6165fdee1f0c4c66fd58cb436544'
+drop Proc DevolverDatosSesion
 ---------------------------
 Create Proc IniciarSesion4
 @Usuario Varchar(20),
@@ -926,7 +931,7 @@ GO
 
 
 -- HELP
-DROP PROC RegistrarVenta
+DROP PROC DevolverDatosSesion
 
 exec FiltrarDatosProducto 'papel'
 exec DevolverDatosSesion ''
