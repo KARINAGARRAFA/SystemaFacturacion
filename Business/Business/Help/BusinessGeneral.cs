@@ -19,7 +19,7 @@ namespace Business.Business.Help
         // TABLA : VOUCHER TIPO
         public DataTable ListarTipoDocumento()
         {
-            return M.Listado("ListarTipoComprobante", null);
+            return M.Listado("sfe_voucherType_list", null);
         }
     }
 }

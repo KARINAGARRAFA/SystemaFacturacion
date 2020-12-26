@@ -84,7 +84,7 @@ namespace Business.Business.login
                 lst.Add(new ClsParameter("@Usuario", U.User));
                 lst.Add(new ClsParameter("@Password", pas));
                 lst.Add(new ClsParameter("@Mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
-                M.EjecutarSP("IniciarSesion4", ref lst);
+                M.EjecutarSP("sfe_personal_login", ref lst);
                 return Mensaje = lst[2].Valor.ToString();
             } 
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace Business.Business.login
             {
                 lst.Add(new ClsParameter("@Usuario", objUser));
                 lst.Add(new ClsParameter("@Contraseña", objPassword));
-                return M.Listado("DevolverDatosSesion", lst);
+                return M.Listado("sfe_personal_showSesion", lst);
             }
             catch (Exception ex)
             {

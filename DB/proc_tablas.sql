@@ -609,17 +609,19 @@ Create Proc BuscarVentaFecha
 As Begin
 	Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
 	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
-	Where v.company_ruc=@ruc and (v.fecha_emision between @FechaInicio and @fechaFin)
+	Where v.company_ruc=@ruc and (CAST(v.fecha_emision AS DATE) between @FechaInicio and @fechaFin)
 End
+DROP PROC BuscarVentaFecha1
 ----------------------------------------------
 Create Proc BuscarVentaFecha1
+select * from sfe_sales
 @ruc char(11),
 @FechaInicio datetime,
 @fechaFin datetime
 As Begin
 	Select v.code,v.fecha_emision,v.fecha_pago,v.proveedor_numero,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
 	From sfe_sales as v inner join sfe_voucher_type as t on v.cdp_tipo=t.id
-	Where v.company_ruc=@ruc and v.proveedor_numero='' and (v.fecha_emision between @FechaInicio and @fechaFin)
+	Where v.company_ruc=@ruc and v.proveedor_numero='' and (CAST(v.fecha_emision AS date) between @FechaInicio and @fechaFin)
 End
 ------------------------------------
 Create Procedure consecutive_number
@@ -669,22 +671,26 @@ As Begin
 ---------------------
 Create Proc ListarVentas
 @ruc char(11),
-@created_at datetime,
+@fecha datetime
 As Begin
 	Select v.code,v.fecha_emision,v.fecha_pago,c.business_name,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
 	From sfe_sales as v inner join gen_vendors as c on v.proveedor_numero=c.ruc inner join sfe_voucher_type as t on v.cdp_tipo=t.id
-	where v.company_ruc=@ruc
+	where v.company_ruc=@ruc-- and v.fecha_emision >= @fecha
 End
+drop Proc ListarVentas1
+select * from sfe_sales
 -----------------------------------------------
 Create Proc ListarVentas1
-@ruc char(11)
+@ruc char(11),
+@fecha datetime
 As Begin
 	Select v.code,v.fecha_emision,v.fecha_pago,v.proveedor_numero,v.base_imponible,v.igv,v.importe_total,v.observacion,t.nombre
 	From sfe_sales as v inner join sfe_voucher_type as t on v.cdp_tipo=t.id
-	where proveedor_numero='' and v.company_ruc=@ruc
+	where proveedor_numero='' and v.company_ruc=@ruc-- and v.fecha_emision >= @fecha
 End
 ---------------------
-
+exec ListarVentas '20363916008','2020-12-05'
+select * from sfe_sales
 
 END
 GO

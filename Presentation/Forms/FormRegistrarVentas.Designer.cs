@@ -854,6 +854,7 @@
             this.cbImpresoras.Name = "cbImpresoras";
             this.cbImpresoras.Size = new System.Drawing.Size(152, 21);
             this.cbImpresoras.TabIndex = 35;
+            this.cbImpresoras.SelectedIndexChanged += new System.EventHandler(this.cbImpresoras_SelectedIndexChanged);
             // 
             // cargar
             // 

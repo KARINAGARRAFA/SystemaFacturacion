@@ -102,7 +102,7 @@ namespace Business.Business.Cliente
             DataTable dt = new DataTable();
             List<ClsParameter> lst = new List<ClsParameter>();
             lst.Add(new ClsParameter("@Datos", objDatos));
-            return dt = M.Listado("FiltrarDatosCliente", lst);
+            return dt = M.Listado("sfe_client_search", lst);
         }
         public List<string> BuscarClienteAPIReniec(String ruc)
         {

@@ -39,6 +39,7 @@
             this.pbLoading.Size = new System.Drawing.Size(802, 450);
             this.pbLoading.TabIndex = 0;
             this.pbLoading.TabStop = false;
+            this.pbLoading.Click += new System.EventHandler(this.pbLoading_Click);
             // 
             // Loading
             // 

@@ -22,5 +22,10 @@ namespace Presentation.Forms
             pbLoading.Load("loading.gif");
             pbLoading.Location = new Point(this.Width/2-pbLoading.Width/2, this.Height / 2 - pbLoading.Height / 2);
         }
+
+        private void pbLoading_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

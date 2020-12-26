@@ -30,8 +30,9 @@ namespace Presentation.Forms
         BusinessCliente CL = new BusinessCliente();
         BusimessCompanyProduct P = new BusimessCompanyProduct();
         BusinessUser USER = new BusinessUser();
+        Loading lod;
 
-        
+
         int n=0,selecProducto=0;
         bool  b= true;
         string IDVenta,mensaje,numero;
@@ -66,7 +67,7 @@ namespace Presentation.Forms
             if (loading != null)
                 loading.Close();
         }
-        public void buscarCliente()
+        public async void buscarCliente()
         {
             if (txtRucCliente.Text != "")
             {
@@ -79,15 +80,17 @@ namespace Presentation.Forms
                     if (dt.Rows.Count == 0)
                     {
                         List<string> cli = new List<string>();
-                        cli= CL.BuscarClienteAPIReniec(ruc);
-
+                        //show();
+                        cli = await CL.BuscarClienteAPIReniec(ruc);
+                         
+                        //Closes();
                         txtRucCliente.Text = cli[0];
                         txtNombreCliente.Text = cli[1];
                         txtDireccionCliente.Text = cli[7];
 
                         //  CONDICION EN CASO Q NO ENCUENTREAL CLIENTE
 
-                        CL.RegistrarClienteRenic(cli);
+                        //CL.RegistrarClienteRenic(cli);
                     }
                     else
                     {
@@ -110,6 +113,16 @@ namespace Presentation.Forms
                 txtRucCliente.Focus();
             }
             
+        }
+        public void show()
+        {
+            lod = new Loading();
+            lod.ShowDialog();
+        }
+        public void Closes()
+        {
+            if (lod != null)
+                lod.Close();
         }
         private void FormRegistrarVentas_Load(object sender, EventArgs e)
         {
@@ -214,8 +227,6 @@ namespace Presentation.Forms
             {
                 txtImporteTotal.Text = ImporteTotal.ToString("N2");
             }
-                      
-
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 IGV += Convert.ToDecimal(row.Cells["Igv"].Value);
@@ -576,6 +587,11 @@ namespace Presentation.Forms
 
 
 
+
+        }
+
+        private void cbImpresoras_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 
